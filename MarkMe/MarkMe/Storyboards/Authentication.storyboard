@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--AuthenticationVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="authentication" id="Y6W-OH-hqX" customClass="AuthenticationVC" customModule="MarkMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kIy-Q3-eI0">
+                                <rect key="frame" x="41.5" y="236" width="331" height="434"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYX-fX-ohB">
+                                        <rect key="frame" x="0.0" y="0.0" width="331" height="62.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Log In"/>
+                                        <connections>
+                                            <action selector="goToLogin:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="naT-hP-nNx"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ImE-i2-9zu">
+                                        <rect key="frame" x="0.0" y="82.5" width="331" height="63"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Registration">
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="goToRegister:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="cg5-w4-orQ"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2S-0e-Awu">
+                                        <rect key="frame" x="157.5" y="165.5" width="16" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAA-Xe-GNv">
+                                        <rect key="frame" x="0.0" y="206" width="331" height="62.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="applelogo" catalog="system" imagePlacement="leading" title="Sign in with Apple " imagePadding="20">
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hwk-BF-tJr">
+                                        <rect key="frame" x="0.0" y="288.5" width="331" height="63"/>
+                                        <color key="backgroundColor" red="0.1778600853" green="0.41887626319999999" blue="0.86618254579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Sing in with Facebook">
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hG-0I-xYt">
+                                        <rect key="frame" x="0.0" y="371.5" width="331" height="62.5"/>
+                                        <color key="backgroundColor" red="0.072883703859999996" green="0.5093939931" blue="0.86087566609999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Sign in with Google">
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="6hG-0I-xYt" firstAttribute="width" secondItem="kIy-Q3-eI0" secondAttribute="width" id="38G-bc-6xH"/>
+                                    <constraint firstItem="yYX-fX-ohB" firstAttribute="width" secondItem="kIy-Q3-eI0" secondAttribute="width" id="8Qh-mW-6b6"/>
+                                    <constraint firstItem="Hwk-BF-tJr" firstAttribute="width" secondItem="kIy-Q3-eI0" secondAttribute="width" id="a94-Ew-ip9"/>
+                                    <constraint firstItem="HAA-Xe-GNv" firstAttribute="width" secondItem="kIy-Q3-eI0" secondAttribute="width" id="qhG-sR-paq"/>
+                                    <constraint firstItem="ImE-i2-9zu" firstAttribute="width" secondItem="kIy-Q3-eI0" secondAttribute="width" id="tTb-bx-azf"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <constraints>
+                            <constraint firstItem="kIy-Q3-eI0" firstAttribute="centerY" secondItem="vDu-zF-Fre" secondAttribute="centerY" id="CBv-ar-0y7"/>
+                            <constraint firstItem="yYX-fX-ohB" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.07" id="ITY-Mx-e7W"/>
+                            <constraint firstItem="kIy-Q3-eI0" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="PVA-sU-TcC"/>
+                            <constraint firstItem="kIy-Q3-eI0" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.8" id="QXj-Lx-BjU"/>
+                            <constraint firstItem="6hG-0I-xYt" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.07" id="Wy7-do-C3z"/>
+                            <constraint firstItem="ImE-i2-9zu" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.07" id="a8S-GD-AZQ"/>
+                            <constraint firstItem="HAA-Xe-GNv" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.07" id="weZ-zT-orQ"/>
+                            <constraint firstItem="Hwk-BF-tJr" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.07" id="yL7-OB-P0p"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outletCollection property="buttons" destination="yYX-fX-ohB" collectionClass="NSMutableArray" id="ZBn-b7-G8w"/>
+                        <outletCollection property="buttons" destination="ImE-i2-9zu" collectionClass="NSMutableArray" id="GX8-2z-JbA"/>
+                        <outletCollection property="buttons" destination="HAA-Xe-GNv" collectionClass="NSMutableArray" id="6Pd-Ho-nRu"/>
+                        <outletCollection property="buttons" destination="Hwk-BF-tJr" collectionClass="NSMutableArray" id="hvD-S1-OH2"/>
+                        <outletCollection property="buttons" destination="6hG-0I-xYt" collectionClass="NSMutableArray" id="MTF-7l-Cmo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-13.125" y="86.619718309859152"/>
+        </scene>
+        <!--RegisterVC-->
+        <scene sceneID="PZV-nD-SbN">
+            <objects>
+                <viewController storyboardIdentifier="register" id="3mh-Hz-b1H" customClass="RegisterVC" customModule="MarkMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UP1-Pu-Jt1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="h94-xf-ufe">
+                                <rect key="frame" x="41.5" y="159" width="331" height="588"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wGf-tX-2KS">
+                                        <rect key="frame" x="0.0" y="0.0" width="331" height="44.5"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X0h-zP-aYf">
+                                        <rect key="frame" x="0.0" y="59.5" width="331" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eum-KM-qdM">
+                                        <rect key="frame" x="0.0" y="119.5" width="331" height="44.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M04-Fh-y8H">
+                                        <rect key="frame" x="0.0" y="179" width="331" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRC-fp-VSt">
+                                        <rect key="frame" x="122.5" y="239" width="86" height="35"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                        <color key="tintColor" red="0.10993874820000001" green="0.11746589089999999" blue="0.12549158930000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Sign up">
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55R-da-lcL">
+                                        <rect key="frame" x="157.5" y="289" width="16" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kDT-Vd-BIT">
+                                        <rect key="frame" x="16.5" y="324.5" width="298" height="62.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="applelogo" catalog="system" imagePlacement="leading" title="Sign in with Apple " imagePadding="20">
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEQ-I1-elf">
+                                        <rect key="frame" x="16.5" y="402" width="298" height="63"/>
+                                        <color key="backgroundColor" red="0.1778600853" green="0.41887626319999999" blue="0.86618254579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Sing in with Facebook">
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLT-0g-8Cs">
+                                        <rect key="frame" x="16.5" y="480" width="298" height="62.5"/>
+                                        <color key="backgroundColor" red="0.072883703859999996" green="0.5093939931" blue="0.86087566609999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Sign in with Google">
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hc1-B9-THg">
+                                        <rect key="frame" x="46.5" y="557.5" width="238.5" height="30.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8C-kd-51E">
+                                                <rect key="frame" x="0.0" y="7.5" width="167.5" height="16"/>
+                                                <fontDescription key="fontDescription" name=".SFNS-Regular" family=".AppleSystemUIFont" pointSize="14"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nf-hH-wmL">
+                                                <rect key="frame" x="167.5" y="0.0" width="71" height="30.5"/>
+                                                <color key="tintColor" systemColor="linkColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="SIgn in">
+                                                            <attributes>
+                                                                <font key="NSFont" size="14" name="Helvetica-Bold"/>
+                                                                <font key="NSOriginalFont" size="17" name="Helvetica-Bold"/>
+                                                                <integer key="NSUnderline" value="1"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="goToLogin:" destination="3mh-Hz-b1H" eventType="touchUpInside" id="6qO-nJ-Oi9"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="wGf-tX-2KS" firstAttribute="width" secondItem="h94-xf-ufe" secondAttribute="width" id="52K-Ak-zYQ"/>
+                                    <constraint firstItem="PLT-0g-8Cs" firstAttribute="width" secondItem="h94-xf-ufe" secondAttribute="width" multiplier="0.9" id="FSe-an-8mA"/>
+                                    <constraint firstItem="gEQ-I1-elf" firstAttribute="width" secondItem="h94-xf-ufe" secondAttribute="width" multiplier="0.9" id="NZq-2N-Jqr"/>
+                                    <constraint firstItem="M04-Fh-y8H" firstAttribute="width" secondItem="h94-xf-ufe" secondAttribute="width" id="c5r-3k-oZb"/>
+                                    <constraint firstItem="Eum-KM-qdM" firstAttribute="width" secondItem="h94-xf-ufe" secondAttribute="width" id="ne4-mF-seZ"/>
+                                    <constraint firstItem="X0h-zP-aYf" firstAttribute="width" secondItem="h94-xf-ufe" secondAttribute="width" id="xRP-3o-I9r"/>
+                                    <constraint firstItem="kDT-Vd-BIT" firstAttribute="width" secondItem="h94-xf-ufe" secondAttribute="width" multiplier="0.9" id="yKf-XK-fsY"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="yf6-7R-D9p"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <constraints>
+                            <constraint firstItem="h94-xf-ufe" firstAttribute="centerY" secondItem="yf6-7R-D9p" secondAttribute="centerY" id="2Ux-xh-i4p"/>
+                            <constraint firstItem="h94-xf-ufe" firstAttribute="centerX" secondItem="yf6-7R-D9p" secondAttribute="centerX" id="2zq-7x-2w8"/>
+                            <constraint firstItem="PLT-0g-8Cs" firstAttribute="height" secondItem="UP1-Pu-Jt1" secondAttribute="height" multiplier="0.07" id="E7m-Cy-rR3"/>
+                            <constraint firstItem="X0h-zP-aYf" firstAttribute="height" secondItem="UP1-Pu-Jt1" secondAttribute="height" multiplier="0.05" id="LFI-K0-sNQ"/>
+                            <constraint firstItem="M04-Fh-y8H" firstAttribute="height" secondItem="UP1-Pu-Jt1" secondAttribute="height" multiplier="0.05" id="Nbt-Du-RJa"/>
+                            <constraint firstItem="Eum-KM-qdM" firstAttribute="height" secondItem="UP1-Pu-Jt1" secondAttribute="height" multiplier="0.05" id="Y4z-hq-3WO"/>
+                            <constraint firstItem="kDT-Vd-BIT" firstAttribute="height" secondItem="UP1-Pu-Jt1" secondAttribute="height" multiplier="0.07" id="asr-6m-jj4"/>
+                            <constraint firstItem="gEQ-I1-elf" firstAttribute="height" secondItem="UP1-Pu-Jt1" secondAttribute="height" multiplier="0.07" id="cxw-yH-Ai3"/>
+                            <constraint firstItem="wGf-tX-2KS" firstAttribute="height" secondItem="UP1-Pu-Jt1" secondAttribute="height" multiplier="0.05" id="e70-nb-CbX"/>
+                            <constraint firstItem="h94-xf-ufe" firstAttribute="width" secondItem="UP1-Pu-Jt1" secondAttribute="width" multiplier="0.8" id="z6c-R1-fHb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outletCollection property="buttons" destination="hRC-fp-VSt" collectionClass="NSMutableArray" id="SLN-k9-bba"/>
+                        <outletCollection property="buttons" destination="kDT-Vd-BIT" collectionClass="NSMutableArray" id="K2I-jh-i1G"/>
+                        <outletCollection property="buttons" destination="gEQ-I1-elf" collectionClass="NSMutableArray" id="wew-1z-Y1D"/>
+                        <outletCollection property="buttons" destination="PLT-0g-8Cs" collectionClass="NSMutableArray" id="ET5-wp-39a"/>
+                        <outletCollection property="textFields" destination="wGf-tX-2KS" collectionClass="NSMutableArray" id="QtN-a7-JJm"/>
+                        <outletCollection property="textFields" destination="X0h-zP-aYf" collectionClass="NSMutableArray" id="fV6-Lp-qG2"/>
+                        <outletCollection property="textFields" destination="Eum-KM-qdM" collectionClass="NSMutableArray" id="7Ol-cM-rbN"/>
+                        <outletCollection property="textFields" destination="M04-Fh-y8H" collectionClass="NSMutableArray" id="fmT-Rm-VjA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vk2-hV-9ha" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="703" y="86"/>
+        </scene>
+        <!--LoginVC-->
+        <scene sceneID="5bv-Xl-yPd">
+            <objects>
+                <viewController storyboardIdentifier="login" id="dAr-SR-Vh4" customClass="LoginVC" customModule="MarkMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QrR-E1-YDE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="zuN-oc-M3w">
+                                <rect key="frame" x="41.5" y="196" width="331" height="514"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ii0-F6-1ph">
+                                        <rect key="frame" x="0.0" y="0.0" width="331" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cMb-EG-agR">
+                                        <rect key="frame" x="0.0" y="60" width="331" height="44.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Vu9-A6-wJ9">
+                                        <rect key="frame" x="0.0" y="119.5" width="331" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wc9-ym-ggP">
+                                                <rect key="frame" x="0.0" y="0.0" width="115" height="30"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Forgot password">
+                                                            <attributes>
+                                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                <integer key="NSUnderline" value="1"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47d-U7-eNw">
+                                        <rect key="frame" x="125.5" y="164.5" width="80" height="35"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Sign In">
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cn5-lb-AMQ">
+                                        <rect key="frame" x="157.5" y="214.5" width="16" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pu5-VU-c0f">
+                                        <rect key="frame" x="0.0" y="250" width="331" height="63"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="applelogo" catalog="system" imagePlacement="leading" title="Sign in with Apple " imagePadding="20">
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JdO-hC-3sg">
+                                        <rect key="frame" x="0.0" y="328" width="331" height="62.5"/>
+                                        <color key="backgroundColor" red="0.1778600853" green="0.41887626319999999" blue="0.86618254579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Sing in with Facebook">
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="63a-Ra-hBj">
+                                        <rect key="frame" x="0.0" y="405.5" width="331" height="63"/>
+                                        <color key="backgroundColor" red="0.072883703859999996" green="0.5093939931" blue="0.86087566609999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Sign in with Google">
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ejg-qi-5yy">
+                                        <rect key="frame" x="62.5" y="483.5" width="206" height="30.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wu-Pe-zbT">
+                                                <rect key="frame" x="0.0" y="7" width="130.5" height="16"/>
+                                                <fontDescription key="fontDescription" name=".SFNS-Regular" family=".AppleSystemUIFont" pointSize="14"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VvR-yj-YWP">
+                                                <rect key="frame" x="130.5" y="0.0" width="75.5" height="30.5"/>
+                                                <color key="tintColor" systemColor="linkColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Sign up">
+                                                            <attributes>
+                                                                <font key="NSFont" size="14" name="Helvetica-Bold"/>
+                                                                <font key="NSOriginalFont" size="17" name="Helvetica-Bold"/>
+                                                                <integer key="NSUnderline" value="1"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="goToRegister:" destination="dAr-SR-Vh4" eventType="touchUpInside" id="BWW-z9-Xdn"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="pu5-VU-c0f" firstAttribute="width" secondItem="zuN-oc-M3w" secondAttribute="width" id="8nJ-Qz-qO3"/>
+                                    <constraint firstItem="JdO-hC-3sg" firstAttribute="width" secondItem="zuN-oc-M3w" secondAttribute="width" id="FIB-RH-v8u"/>
+                                    <constraint firstItem="63a-Ra-hBj" firstAttribute="width" secondItem="zuN-oc-M3w" secondAttribute="width" id="Rjt-xg-Jrm"/>
+                                    <constraint firstItem="Cn5-lb-AMQ" firstAttribute="centerX" secondItem="zuN-oc-M3w" secondAttribute="centerX" id="TaN-oK-n4y"/>
+                                    <constraint firstItem="cMb-EG-agR" firstAttribute="width" secondItem="zuN-oc-M3w" secondAttribute="width" id="dSR-G6-SWT"/>
+                                    <constraint firstItem="ii0-F6-1ph" firstAttribute="width" secondItem="zuN-oc-M3w" secondAttribute="width" id="kjy-FM-pGk"/>
+                                    <constraint firstItem="Vu9-A6-wJ9" firstAttribute="width" secondItem="zuN-oc-M3w" secondAttribute="width" id="xSC-WY-bSb"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Tnk-hb-m1J"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <constraints>
+                            <constraint firstItem="JdO-hC-3sg" firstAttribute="height" secondItem="QrR-E1-YDE" secondAttribute="height" multiplier="0.07" id="3c6-2t-TRv"/>
+                            <constraint firstItem="ii0-F6-1ph" firstAttribute="height" secondItem="QrR-E1-YDE" secondAttribute="height" multiplier="0.05" id="6bu-YZ-cpk"/>
+                            <constraint firstItem="63a-Ra-hBj" firstAttribute="height" secondItem="QrR-E1-YDE" secondAttribute="height" multiplier="0.07" id="GIv-6r-bKe"/>
+                            <constraint firstItem="zuN-oc-M3w" firstAttribute="width" secondItem="QrR-E1-YDE" secondAttribute="width" multiplier="0.8" id="RfO-t8-2K3"/>
+                            <constraint firstItem="zuN-oc-M3w" firstAttribute="centerY" secondItem="Tnk-hb-m1J" secondAttribute="centerY" id="Ux2-nP-ljl"/>
+                            <constraint firstItem="pu5-VU-c0f" firstAttribute="height" secondItem="QrR-E1-YDE" secondAttribute="height" multiplier="0.07" id="Xs0-AM-k7U"/>
+                            <constraint firstItem="zuN-oc-M3w" firstAttribute="centerX" secondItem="Tnk-hb-m1J" secondAttribute="centerX" id="eFj-GV-p6Q"/>
+                            <constraint firstItem="cMb-EG-agR" firstAttribute="height" secondItem="QrR-E1-YDE" secondAttribute="height" multiplier="0.05" id="gBZ-nX-e7c"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outletCollection property="buttons" destination="47d-U7-eNw" collectionClass="NSMutableArray" id="9id-8v-gyh"/>
+                        <outletCollection property="buttons" destination="pu5-VU-c0f" collectionClass="NSMutableArray" id="BVO-gm-32U"/>
+                        <outletCollection property="buttons" destination="JdO-hC-3sg" collectionClass="NSMutableArray" id="Fse-XV-IHR"/>
+                        <outletCollection property="buttons" destination="63a-Ra-hBj" collectionClass="NSMutableArray" id="nEA-Ul-1uL"/>
+                        <outletCollection property="textFields" destination="ii0-F6-1ph" collectionClass="NSMutableArray" id="E84-pd-iyp"/>
+                        <outletCollection property="textFields" destination="cMb-EG-agR" collectionClass="NSMutableArray" id="vyo-Sl-Hpp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VsO-0U-2wv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1414" y="86"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="applelogo" catalog="system" width="103" height="128"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
