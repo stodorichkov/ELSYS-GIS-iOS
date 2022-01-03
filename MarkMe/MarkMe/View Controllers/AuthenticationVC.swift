@@ -20,12 +20,12 @@ class AuthenticationVC: UIViewController {
     }
     
     @IBAction func goToLogin(_ sender: UIButton) {
-        changeScreen(storyboardName: "Authentication", viewControllerId: "login")
+        changeScreen(storyboardName: "Authentication", viewControllerId: "login", transistion: .coverVertical)
     }
     
     
     @IBAction func goToRegister(_ sender: UIButton) {
-        changeScreen(storyboardName: "Authentication", viewControllerId: "register")
+        changeScreen(storyboardName: "Authentication", viewControllerId: "register", transistion: .coverVertical)
     }
     
 }

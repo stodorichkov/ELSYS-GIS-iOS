@@ -30,7 +30,7 @@ class RegisterVC: UIViewController {
     }
     
     @IBAction func goToLogin(_ sender: UIButton) {
-        changeScreen(storyboardName: "Authentication", viewControllerId: "login")
+        changeScreen(storyboardName: "Authentication", viewControllerId: "login", transistion: .flipHorizontal)
     }
     
 

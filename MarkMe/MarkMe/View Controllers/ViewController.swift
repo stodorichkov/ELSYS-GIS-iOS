@@ -19,11 +19,11 @@ class ViewController: UIViewController {
 }
 
 extension UIViewController {
-    func changeScreen(storyboardName: String, viewControllerId: String) {
+    func changeScreen(storyboardName: String, viewControllerId: String, transistion: UIModalTransitionStyle) {
         let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: viewControllerId)
         viewController.modalPresentationStyle = .fullScreen
-        viewController.modalTransitionStyle = .crossDissolve
+        viewController.modalTransitionStyle = transistion
         present(viewController, animated: true, completion: nil)
     }
 }
@@ -32,15 +32,15 @@ extension ViewController {
     func makeLoad() {
         var progress: Float = 0.0
         progressBar.progress = progress
-        Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true, block: { (timer) in
+        Timer.scheduledTimer(withTimeInterval: 0.07, repeats: true, block: { (timer) in
             progress += 0.1
             self.progressBar.progress = progress
             if progress == 1 {
                 timer.invalidate()
             }
         })
-        Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false, block: { (timer) in
-            self.changeScreen(storyboardName: "Authentication", viewControllerId: "authentication")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (timer) in
+            self.changeScreen(storyboardName: "Authentication", viewControllerId: "authentication", transistion: .crossDissolve)
         })
     }
 }
