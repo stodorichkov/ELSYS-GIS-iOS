@@ -29,9 +29,11 @@ class RegisterVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func goToLogin(_ sender: UIButton) {
-        changeScreen(storyboardName: "Authentication", viewControllerId: "login", transistion: .flipHorizontal)
+    @IBAction func signUp(_ sender: UIButton) {
+        changeScreen(storyboardName: "Tabs", viewControllerId: "tabs", transition: .crossDissolve)
     }
     
-
+    @IBAction func goToLogin(_ sender: UIButton) {
+        changeScreen(storyboardName: "Authentication", viewControllerId: "login", transition: .flipHorizontal)
+    }
 }

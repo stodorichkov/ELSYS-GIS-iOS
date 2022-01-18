@@ -30,8 +30,12 @@ class LoginVC: UIViewController {
         
     }
 
+    @IBAction func signIN(_ sender: UIButton) {
+        changeScreen(storyboardName: "Tabs", viewControllerId: "tabs", transition: .crossDissolve)
+    }
+    
     @IBAction func goToRegister(_ sender: UIButton) {
-        changeScreen(storyboardName: "Authentication", viewControllerId: "register", transistion: .flipHorizontal)
+        changeScreen(storyboardName: "Authentication", viewControllerId: "register", transition: .flipHorizontal)
     }
     
 }
