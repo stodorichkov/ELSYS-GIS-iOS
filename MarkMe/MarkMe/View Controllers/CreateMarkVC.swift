@@ -17,11 +17,11 @@ class CreateMarkVC: UIViewController {
         button.layer.cornerRadius = 5
     }
     @IBAction func backToHome(_ sender: UIButton) {
-        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func createNewMark(_ sender: UIButton) {
-        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
 }

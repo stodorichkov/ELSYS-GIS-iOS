@@ -20,6 +20,6 @@ class HomeVC: UIViewController {
     }
 
     @IBAction func goToCreateMark(_ sender: UIButton) {
-        changeScreen(storyboardName: "Marks", viewControllerId: "createMark", transition: .coverVertical)
+        navigateToScreen(storyboardName: "Marks", viewControllerId: "createMark")
     }
 }

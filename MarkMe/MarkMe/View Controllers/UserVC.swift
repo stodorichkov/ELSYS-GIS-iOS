@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class UserVC: UIViewController {
 
@@ -23,7 +24,13 @@ class UserVC: UIViewController {
     
 
     @IBAction func signOut(_ sender: UIButton) {
-        changeScreen(storyboardName: "Authentication", viewControllerId: "authentication", transition: .crossDissolve)
+        do {
+            try Auth.auth().signOut()
+            changeScreen(storyboardName: "Authentication", viewControllerId: "authentication", transition: .crossDissolve)
+        }
+        catch let error {
+            showAlert(alertMessage: error.localizedDescription)
+        }
     }
     
     @IBAction func deleteUser(_ sender: UIButton) {

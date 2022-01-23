@@ -17,17 +17,6 @@ class ViewController: UIViewController {
         makeLoad()
     }
 }
-
-extension UIViewController {
-    func changeScreen(storyboardName: String, viewControllerId: String, transition: UIModalTransitionStyle) {
-        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: viewControllerId)
-        viewController.modalPresentationStyle = .fullScreen
-        viewController.modalTransitionStyle = transition
-        present(viewController, animated: true, completion: nil)
-    }
-}
-
 extension ViewController {
     func makeLoad() {
         var progress: Float = 0.0
