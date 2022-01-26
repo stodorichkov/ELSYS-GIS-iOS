@@ -41,6 +41,28 @@ class RegisterVC: UIViewController {
 
 extension RegisterVC {
     
+    func createUser(username: String, email: String, password: String) {
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+            // check for errors
+            if err != nil {
+                self.showAlert(alertMessage: err!.localizedDescription)
+            }
+            else {
+                // try to save user data in DB
+                let db = Firestore.firestore()
+                db.collection("User").document(username).setData(["username": username, "uid": result!.user.uid, "email": email]) { (error) in
+                    // check for errors
+                    if error != nil {
+                        self.showAlert(alertMessage: error!.localizedDescription)
+                    }
+                }
+                // go to Home screen
+                self.changeScreen(storyboardName: "Tabs", viewControllerId: "tabs", transition: .crossDissolve)
+            }
+        }
+    }
+    
     @IBAction func signUp(_ sender: UIButton) {
         // check some fields is empty
         if usernameField.text?.isEmpty ?? true || emailField.text?.isEmpty ?? true || passwordField.text?.isEmpty ?? true || confirmPassField.text?.isEmpty ?? true {
@@ -61,31 +83,24 @@ extension RegisterVC {
                 showAlert(alertMessage: "Password not confirmed")
             }
             else {
-                // try to create user
-                Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
-                    // check for errors
-                    if err != nil {
-                        self.showAlert(alertMessage: "Problem with creating user!")
-                    }
-                    else {
-                        // try to save user data in DB
-                        let db = Firestore.firestore()
-                        
-                        db.collection("User").addDocument(data: ["username": username, "uid": result!.user.uid]) { (error) in
-                            // check for errors
-                            if error != nil {
-                                self.showAlert(alertMessage: error!.localizedDescription)
+                let db = Firestore.firestore()
+                // check username is already taken
+                db.collection("User").whereField("username", isEqualTo: username).getDocuments() { (querySnapshot, err) in
+                        if let err = err {
+                            print("Error getting documents: \(err)")
+                        }
+                        else {
+                            if querySnapshot!.documents.isEmpty {
+                                // create user
+                                self.createUser(username: username, email: email, password: password)
+                            }
+                            else {
+                                self.showAlert(alertMessage: "Username is already taken!")
                             }
                         }
-                        // go to Home screen
-                        self.changeScreen(storyboardName: "Tabs", viewControllerId: "tabs", transition: .crossDissolve)
-                    }
                 }
-               
             }
         }
-        
-       
     }
     
     @IBAction func goToLogin(_ sender: UIButton) {
