@@ -100,8 +100,8 @@
                         <outletCollection property="buttons" destination="yYX-fX-ohB" collectionClass="NSMutableArray" id="ZBn-b7-G8w"/>
                         <outletCollection property="buttons" destination="ImE-i2-9zu" collectionClass="NSMutableArray" id="GX8-2z-JbA"/>
                         <outletCollection property="buttons" destination="HAA-Xe-GNv" collectionClass="NSMutableArray" id="6Pd-Ho-nRu"/>
-                        <outletCollection property="buttons" destination="Hwk-BF-tJr" collectionClass="NSMutableArray" id="hvD-S1-OH2"/>
                         <outletCollection property="buttons" destination="6hG-0I-xYt" collectionClass="NSMutableArray" id="MTF-7l-Cmo"/>
+                        <outletCollection property="buttons" destination="Hwk-BF-tJr" collectionClass="NSMutableArray" id="mLf-Du-zjf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -415,6 +415,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="passwordField" destination="cMb-EG-agR" id="2Lj-ik-Gd5"/>
+                        <outlet property="usernameField" destination="ii0-F6-1ph" id="7l0-i7-EuO"/>
                         <outletCollection property="buttons" destination="47d-U7-eNw" collectionClass="NSMutableArray" id="9id-8v-gyh"/>
                         <outletCollection property="buttons" destination="pu5-VU-c0f" collectionClass="NSMutableArray" id="BVO-gm-32U"/>
                         <outletCollection property="buttons" destination="JdO-hC-3sg" collectionClass="NSMutableArray" id="Fse-XV-IHR"/>

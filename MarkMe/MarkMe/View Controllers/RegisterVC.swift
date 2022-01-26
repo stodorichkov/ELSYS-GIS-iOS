@@ -86,18 +86,18 @@ extension RegisterVC {
                 let db = Firestore.firestore()
                 // check username is already taken
                 db.collection("User").whereField("username", isEqualTo: username).getDocuments() { (querySnapshot, err) in
-                        if let err = err {
-                            print("Error getting documents: \(err)")
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    }
+                    else {
+                        if querySnapshot!.documents.isEmpty {
+                            // create user
+                            self.createUser(username: username, email: email, password: password)
                         }
                         else {
-                            if querySnapshot!.documents.isEmpty {
-                                // create user
-                                self.createUser(username: username, email: email, password: password)
-                            }
-                            else {
-                                self.showAlert(alertMessage: "Username is already taken!")
-                            }
+                            self.showAlert(alertMessage: "Username is already taken!")
                         }
+                    }
                 }
             }
         }
