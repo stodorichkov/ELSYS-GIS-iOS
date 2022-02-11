@@ -21,10 +21,6 @@ class LoginVC: UIViewController {
     
     @IBOutlet weak var fbButton: FBButton!
     
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -113,9 +109,6 @@ extension LoginVC {
         }
     }
 
-    
-    
-    
     // registattion button
     @IBAction func goToRegister(_ sender: UIButton) {
         changeScreen(storyboardName: "Authentication", viewControllerId: "register", transition: .flipHorizontal)

@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         makeLoad()
     }
 }
+
 extension ViewController {
     func makeLoad() {
         var progress: Float = 0.0

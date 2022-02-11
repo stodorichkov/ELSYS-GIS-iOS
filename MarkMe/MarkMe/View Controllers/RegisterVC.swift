@@ -31,11 +31,7 @@ class RegisterVC: UIViewController {
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.borderWidth = 2
         button.layer.cornerRadius = 5
-        
-        // Do any additional setup after loading the view.
     }
-    
-    
 }
 
 extension RegisterVC {

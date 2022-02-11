@@ -15,8 +15,6 @@ class HomeVC: UIViewController {
         addButton.layer.cornerRadius = addButton.frame.width / 2
         addButton.layer.borderWidth = 3
         addButton.layer.borderColor = UIColor.white.cgColor
-
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func goToCreateMark(_ sender: UIButton) {
