@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import FacebookLogin
 
 class LoginVC: UIViewController {
     
@@ -17,6 +18,12 @@ class LoginVC: UIViewController {
     
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    
+    @IBOutlet weak var fbButton: FBButton!
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +38,17 @@ class LoginVC: UIViewController {
             button.layer.borderColor = UIColor.black.cgColor
             button.layer.borderWidth = 2
             button.layer.cornerRadius = 5
+            button.titleLabel?.font = UIFont(name: "Helvetica Neue Bold", size: 18)
         }
+        
+        fbButton.setTitle("Sign in with Facebook", for: .normal)
+        fbButton.titleLabel?.textAlignment = .center
     }
+     
 }
 
 extension LoginVC {
+    // sign in button
     @IBAction func signIN(_ sender: UIButton) {
         if usernameField.text?.isEmpty ?? true ||  passwordField.text?.isEmpty ?? true {
             showAlert(alertMessage: "The form must be completed!")
@@ -73,6 +86,37 @@ extension LoginVC {
         }
     }
     
+    // login with facebook
+    @IBAction func loginWithFacebook(_ sender: UIButton) {
+        LoginManager().logIn(permissions: ["public_profile","email"], from: self) { (fbResult, fbError) in
+            // check for error
+            if fbError != nil {
+                self.showAlert(alertMessage: fbError!.localizedDescription)
+            }
+            else {
+                // check for cancle
+                if fbResult!.isCancelled {
+                    return
+                }
+                // make firebase login
+                let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+                Auth.auth().signIn(with: credential) { (result, error) in
+                    if error != nil {
+                        self.showAlert(alertMessage: fbError!.localizedDescription)
+                    }
+                    else {
+                        // success
+                        self.changeScreen(storyboardName: "Tabs", viewControllerId: "tabs", transition: .crossDissolve)
+                    }
+                }
+            }
+        }
+    }
+
+    
+    
+    
+    // registattion button
     @IBAction func goToRegister(_ sender: UIButton) {
         changeScreen(storyboardName: "Authentication", viewControllerId: "register", transition: .flipHorizontal)
     }

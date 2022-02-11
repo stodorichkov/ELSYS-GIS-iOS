@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 class RegisterVC: UIViewController {
 
-    @IBOutlet var buttons: [UIButton]!
+    @IBOutlet var button: UIButton!
     @IBOutlet var textFields: [UITextField]!
     
     @IBOutlet weak var usernameField: UITextField!
@@ -28,11 +28,10 @@ class RegisterVC: UIViewController {
             textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         }
         
-        for button in buttons {
-            button.layer.borderColor = UIColor.black.cgColor
-            button.layer.borderWidth = 2
-            button.layer.cornerRadius = 5
-        }
+        button.layer.borderColor = UIColor.black.cgColor
+        button.layer.borderWidth = 2
+        button.layer.cornerRadius = 5
+        
         // Do any additional setup after loading the view.
     }
     

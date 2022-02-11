@@ -110,11 +110,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="button" destination="hRC-fp-VSt" id="Hg5-K7-Cdc"/>
                         <outlet property="confirmPassField" destination="M04-Fh-y8H" id="1ee-OD-VSe"/>
                         <outlet property="emailField" destination="X0h-zP-aYf" id="p0H-oP-R4s"/>
                         <outlet property="passwordField" destination="Eum-KM-qdM" id="MMq-lb-92c"/>
                         <outlet property="usernameField" destination="wGf-tX-2KS" id="yyh-Q9-jZZ"/>
-                        <outletCollection property="buttons" destination="hRC-fp-VSt" collectionClass="NSMutableArray" id="SLN-k9-bba"/>
                         <outletCollection property="textFields" destination="wGf-tX-2KS" collectionClass="NSMutableArray" id="QtN-a7-JJm"/>
                         <outletCollection property="textFields" destination="X0h-zP-aYf" collectionClass="NSMutableArray" id="fV6-Lp-qG2"/>
                         <outletCollection property="textFields" destination="Eum-KM-qdM" collectionClass="NSMutableArray" id="7Ol-cM-rbN"/>
@@ -199,14 +199,15 @@
                                             <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                         </buttonConfiguration>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JdO-hC-3sg">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JdO-hC-3sg" customClass="FBSDKButton">
                                         <rect key="frame" x="0.0" y="352" width="256" height="40"/>
                                         <color key="backgroundColor" red="0.1778600853" green="0.41887626319999999" blue="0.86618254579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="google.png" title="Sing in with Facebook" imagePadding="20">
-                                            <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
-                                        </buttonConfiguration>
+                                        <buttonConfiguration key="configuration" style="plain" title="Facebook"/>
+                                        <connections>
+                                            <action selector="loginWithFacebook:" destination="dAr-SR-Vh4" eventType="touchUpInside" id="t3D-rh-EsN"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="63a-Ra-hBj">
                                         <rect key="frame" x="0.0" y="412" width="256" height="39.5"/>
@@ -273,6 +274,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="fbButton" destination="JdO-hC-3sg" id="3AM-gZ-Q00"/>
                         <outlet property="passwordField" destination="cMb-EG-agR" id="2Lj-ik-Gd5"/>
                         <outlet property="usernameField" destination="ii0-F6-1ph" id="7l0-i7-EuO"/>
                         <outletCollection property="buttons" destination="47d-U7-eNw" collectionClass="NSMutableArray" id="9id-8v-gyh"/>
