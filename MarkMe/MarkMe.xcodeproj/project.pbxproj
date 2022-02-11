@@ -15,7 +15,6 @@
 		D94CB1C02795E5F30045B391 /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94CB1BF2795E5F30045B391 /* UserVC.swift */; };
 		D9770A2E27B589DD00455DC0 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = D9770A2D27B589DD00455DC0 /* FacebookCore */; };
 		D98BFF932781E6D600ACFA59 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D98BFF922781E6D600ACFA59 /* Authentication.storyboard */; };
-		D98BFF952781EA1A00ACFA59 /* AuthenticationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98BFF942781EA1A00ACFA59 /* AuthenticationVC.swift */; };
 		D98BFF9C2781F17100ACFA59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98BFF992781F17100ACFA59 /* Assets.xcassets */; };
 		D98BFF9E2782117100ACFA59 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98BFF9D2782117100ACFA59 /* LoginVC.swift */; };
 		D98BFFA02782118D00ACFA59 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98BFF9F2782118D00ACFA59 /* RegisterVC.swift */; };
@@ -42,7 +41,6 @@
 		D94CB1BD2795E5D10045B391 /* MarksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksVC.swift; sourceTree = "<group>"; };
 		D94CB1BF2795E5F30045B391 /* UserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
 		D98BFF922781E6D600ACFA59 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
-		D98BFF942781EA1A00ACFA59 /* AuthenticationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationVC.swift; sourceTree = "<group>"; };
 		D98BFF992781F17100ACFA59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../../Downloads/AppIcons (1)/Assets.xcassets"; sourceTree = "<group>"; };
 		D98BFF9D2782117100ACFA59 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		D98BFF9F2782118D00ACFA59 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
@@ -98,7 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				D9A0FDB12781E447009062C1 /* ViewController.swift */,
-				D98BFF942781EA1A00ACFA59 /* AuthenticationVC.swift */,
 				D98BFF9D2782117100ACFA59 /* LoginVC.swift */,
 				D98BFF9F2782118D00ACFA59 /* RegisterVC.swift */,
 				D94CB1BB2795E5A00045B391 /* HomeVC.swift */,
@@ -235,7 +232,6 @@
 				D9F96EDD279831B4005CD268 /* ShowMarkVC.swift in Sources */,
 				D94CB1BC2795E5A00045B391 /* HomeVC.swift in Sources */,
 				D9A0FDAE2781E447009062C1 /* AppDelegate.swift in Sources */,
-				D98BFF952781EA1A00ACFA59 /* AuthenticationVC.swift in Sources */,
 				D98BFFA02782118D00ACFA59 /* RegisterVC.swift in Sources */,
 				D9A0FDB02781E447009062C1 /* SceneDelegate.swift in Sources */,
 				D98BFF9E2782117100ACFA59 /* LoginVC.swift in Sources */,

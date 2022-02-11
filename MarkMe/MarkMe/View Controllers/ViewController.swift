@@ -29,7 +29,7 @@ extension ViewController {
             }
         })
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (timer) in
-            self.changeScreen(storyboardName: "Authentication", viewControllerId: "authentication", transition: .crossDissolve)
+            self.changeScreen(storyboardName: "Authentication", viewControllerId: "login", transition: .crossDissolve)
         })
     }
 }
