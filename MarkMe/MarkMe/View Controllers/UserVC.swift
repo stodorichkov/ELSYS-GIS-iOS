@@ -10,7 +10,7 @@ import FirebaseAuth
 
 class UserVC: UIViewController {
 
-    @IBOutlet var buttons: [UIButton]!
+    @IBOutlet private var buttons: [UIButton]!
     override func viewDidLoad() {
         super.viewDidLoad()
         for button in buttons {
@@ -18,10 +18,7 @@ class UserVC: UIViewController {
             button.layer.borderWidth = 2
             button.layer.cornerRadius = 5
         }
-
-        // Do any additional setup after loading the view.
     }
-    
 
     @IBAction func signOut(_ sender: UIButton) {
         do {
@@ -29,7 +26,7 @@ class UserVC: UIViewController {
             changeScreen(storyboardName: "Authentication", viewControllerId: "authentication", transition: .crossDissolve)
         }
         catch let error {
-            showAlert(alertMessage: error.localizedDescription)
+            showAlert(alertMessage: error.localizedDescription, title: "Error")
         }
     }
     

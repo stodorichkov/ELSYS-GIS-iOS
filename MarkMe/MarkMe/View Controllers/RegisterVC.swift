@@ -11,13 +11,15 @@ import FirebaseFirestore
 
 class RegisterVC: UIViewController {
 
-    @IBOutlet var buttons: [UIButton]!
-    @IBOutlet var textFields: [UITextField]!
+    @IBOutlet private var buttons: [UIButton]!
+    @IBOutlet private var textFields: [UITextField]!
     
-    @IBOutlet weak var usernameField: UITextField!
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var confirmPassField: UITextField!
+    @IBOutlet private var usernameField: UITextField!
+    @IBOutlet private  var emailField: UITextField!
+    @IBOutlet private  var passwordField: UITextField!
+    @IBOutlet private  var confirmPassField: UITextField!
+    
+    private let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,70 +35,77 @@ class RegisterVC: UIViewController {
             button.layer.borderWidth = 2
             button.layer.cornerRadius = 5
         }
-        // Do any additional setup after loading the view.
     }
-    
-    
 }
 
 extension RegisterVC {
+    func validateData(email: String ,password: String, confirmPass: String) -> String? {
+        let emailPattern = #"^\S+@\S+\.\S+$"#
+        guard (email.range(of: emailPattern, options: .regularExpression) != nil) else {
+            return "Email is not valid"
+        }
+        if password.count < 8 {
+            return "Password must be 8 or more charecters!"
+        }
+        if password != confirmPass {
+            return "Password not confirmed"
+        }
+        return nil;
+    }
     
     func createUser(username: String, email: String, password: String) {
-        
-        Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] (result, err) in
             // check for errors
-            if err != nil {
-                self.showAlert(alertMessage: err!.localizedDescription, title: "Error")
+            guard err == nil else {
+                self?.showAlert(alertMessage: err!.localizedDescription, title: "Regsitration Error")
+                return
             }
-            else {
-                // try to save user data in DB
-                let db = Firestore.firestore()
-                db.collection("User").document(username).setData(["username": username, "uid": result!.user.uid, "email": email]) { (error) in
-                    // check for errors
-                    if error != nil {
-                        self.showAlert(alertMessage: error!.localizedDescription, title: "Error")
-                    }
+            // try to save user data in DB
+            self?.db.collection("User").document(username).setData(["username": username, "uid": result!.user.uid, "email": email]) { [weak self] (error) in
+                // check for errors
+                if let error = error {
+                    self?.showAlert(alertMessage: error.localizedDescription, title: "Database Error")
                 }
-                // go to Home screen
-                self.changeScreen(storyboardName: "Tabs", viewControllerId: "tabs", transition: .crossDissolve)
             }
+            // go to Home screen
+            self?.changeScreen(storyboardName: "Tabs", viewControllerId: "tabs", transition: .crossDissolve)
         }
     }
     
     @IBAction func signUp(_ sender: UIButton) {
+        // get data from fields
+        guard let username = usernameField.text else { return }
+        guard let email = emailField.text else { return }
+        guard let password = passwordField.text else { return }
+        guard let confirmPass = confirmPassField.text else { return }
+        
         // check some fields is empty
-        if usernameField.text?.isEmpty ?? true || emailField.text?.isEmpty ?? true || passwordField.text?.isEmpty ?? true || confirmPassField.text?.isEmpty ?? true {
+        guard (username.isEmpty || email.isEmpty || password.isEmpty || confirmPass.isEmpty) == false else {
             showAlert(alertMessage: "The form must be completed!", title: "Error")
+            return
+        }
+        
+        // validate data
+        if let validationError = validateData(email: email, password: password, confirmPass: confirmPass) {
+            showAlert(alertMessage: validationError, title: "Validation Error")
+            return
         }
         else {
-            // get data from fields
-            let username = usernameField.text!
-            let email = emailField.text!
-            let password = passwordField.text!
-            let confirmPass = confirmPassField.text!
-            
-            // validate data
-            if password.count < 8 {
-                showAlert(alertMessage: "Password must be 8 or more charecters!", title: "Error")
-            }
-            else if password != confirmPass {
-                showAlert(alertMessage: "Password not confirmed", title: "Error")
-            }
-            else {
-                let db = Firestore.firestore()
-                // check username is already taken
-                db.collection("User").whereField("username", isEqualTo: username).getDocuments() { (querySnapshot, err) in
-                    if let err = err {
-                        print("Error getting documents: \(err)")
+            // check username is already taken
+            db.collection("User").whereField("username", isEqualTo: username).getDocuments() { [weak self] (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                }
+                else {
+                    guard let querySnapshot = querySnapshot else {
+                        return
+                    }
+                    if querySnapshot.documents.isEmpty {
+                        // create user
+                        self?.createUser(username: username, email: email, password: password)
                     }
                     else {
-                        if querySnapshot!.documents.isEmpty {
-                            // create user
-                            self.createUser(username: username, email: email, password: password)
-                        }
-                        else {
-                            self.showAlert(alertMessage: "Username is already taken!", title: "Error")
-                        }
+                        self?.showAlert(alertMessage: "Username is already taken!", title: "Error")
                     }
                 }
             }

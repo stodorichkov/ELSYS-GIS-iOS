@@ -11,12 +11,11 @@ import FirebaseFirestore
 
 class LoginVC: UIViewController {
     
+    @IBOutlet private var buttons: [UIButton]!
+    @IBOutlet private var textFields: [UITextField]!
     
-    @IBOutlet var buttons: [UIButton]!
-    @IBOutlet var textFields: [UITextField]!
-    
-    @IBOutlet weak var usernameField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet private var usernameField: UITextField!
+    @IBOutlet private var passwordField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()

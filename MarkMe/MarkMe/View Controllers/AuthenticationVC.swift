@@ -8,7 +8,7 @@
 import UIKit
 
 class AuthenticationVC: UIViewController {
-    @IBOutlet var buttons: [UIButton]!
+    @IBOutlet private var buttons: [UIButton]!
     
     override func viewDidLoad() {
         super.viewDidLoad()

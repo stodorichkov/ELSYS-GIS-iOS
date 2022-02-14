@@ -9,13 +9,14 @@ import UIKit
 
 class CreateMarkVC: UIViewController {
 
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet private var button: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.borderWidth = 2
         button.layer.cornerRadius = 5
     }
+    
     @IBAction func backToHome(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
