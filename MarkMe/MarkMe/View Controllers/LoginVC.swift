@@ -38,7 +38,7 @@ class LoginVC: UIViewController {
 extension LoginVC {
     @IBAction func signIN(_ sender: UIButton) {
         if usernameField.text?.isEmpty ?? true ||  passwordField.text?.isEmpty ?? true {
-            showAlert(alertMessage: "The form must be completed!")
+            showAlert(alertMessage: "The form must be completed!", title: "Error")
         }
         else {
             // get data from fields
@@ -53,14 +53,14 @@ extension LoginVC {
                 }
                 else {
                     if querySnapshot!.documents.isEmpty {
-                        self.showAlert(alertMessage: "User is not found!")
+                        self.showAlert(alertMessage: "User is not found!", title: "Error")
                     }
                     else {
                         let email = querySnapshot!.documents[0].data()["email"]! as! String
                         print(type(of: email))
                         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                             if error != nil {
-                                self.showAlert(alertMessage: error!.localizedDescription)
+                                self.showAlert(alertMessage: error!.localizedDescription, title: "Error")
                             }
                             else {
                                 self.changeScreen(storyboardName: "Tabs", viewControllerId: "tabs", transition: .crossDissolve)

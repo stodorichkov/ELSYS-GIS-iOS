@@ -46,7 +46,7 @@ extension RegisterVC {
         Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
             // check for errors
             if err != nil {
-                self.showAlert(alertMessage: err!.localizedDescription)
+                self.showAlert(alertMessage: err!.localizedDescription, title: "Error")
             }
             else {
                 // try to save user data in DB
@@ -54,7 +54,7 @@ extension RegisterVC {
                 db.collection("User").document(username).setData(["username": username, "uid": result!.user.uid, "email": email]) { (error) in
                     // check for errors
                     if error != nil {
-                        self.showAlert(alertMessage: error!.localizedDescription)
+                        self.showAlert(alertMessage: error!.localizedDescription, title: "Error")
                     }
                 }
                 // go to Home screen
@@ -66,7 +66,7 @@ extension RegisterVC {
     @IBAction func signUp(_ sender: UIButton) {
         // check some fields is empty
         if usernameField.text?.isEmpty ?? true || emailField.text?.isEmpty ?? true || passwordField.text?.isEmpty ?? true || confirmPassField.text?.isEmpty ?? true {
-            showAlert(alertMessage: "The form must be completed!")
+            showAlert(alertMessage: "The form must be completed!", title: "Error")
         }
         else {
             // get data from fields
@@ -77,10 +77,10 @@ extension RegisterVC {
             
             // validate data
             if password.count < 8 {
-                showAlert(alertMessage: "Password must be 8 or more charecters!")
+                showAlert(alertMessage: "Password must be 8 or more charecters!", title: "Error")
             }
             else if password != confirmPass {
-                showAlert(alertMessage: "Password not confirmed")
+                showAlert(alertMessage: "Password not confirmed", title: "Error")
             }
             else {
                 let db = Firestore.firestore()
@@ -95,7 +95,7 @@ extension RegisterVC {
                             self.createUser(username: username, email: email, password: password)
                         }
                         else {
-                            self.showAlert(alertMessage: "Username is already taken!")
+                            self.showAlert(alertMessage: "Username is already taken!", title: "Error")
                         }
                     }
                 }

@@ -23,8 +23,8 @@ extension UIViewController {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func showAlert(alertMessage: String) {
-        let alert = UIAlertController(title: "Errror", message: alertMessage, preferredStyle: .alert)
+    func showAlert(alertMessage: String, title: String) {
+        let alert = UIAlertController(title: title, message: alertMessage, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
         alert.view.tintColor = .red
         
