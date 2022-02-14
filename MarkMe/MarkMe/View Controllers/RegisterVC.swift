@@ -15,9 +15,9 @@ class RegisterVC: UIViewController {
     @IBOutlet private var textFields: [UITextField]!
     
     @IBOutlet private var usernameField: UITextField!
-    @IBOutlet private  var emailField: UITextField!
-    @IBOutlet private  var passwordField: UITextField!
-    @IBOutlet private  var confirmPassField: UITextField!
+    @IBOutlet private var emailField: UITextField!
+    @IBOutlet private var passwordField: UITextField!
+    @IBOutlet private var confirmPassField: UITextField!
     
     private let db = Firestore.firestore()
     
@@ -72,6 +72,34 @@ extension RegisterVC {
         }
     }
     
+    func checkUserExisted(email: String, username: String) -> String? {
+        var result: String? = nil
+        
+        // check username is already used
+        db.collection("User").whereField("username", isEqualTo: username).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            }
+            guard querySnapshot?.documents.isEmpty == true else {
+                result = "Username is already used!"
+                return
+            }
+        }
+        
+        // check email is already used
+        db.collection("User").whereField("email", isEqualTo: email).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            }
+            guard querySnapshot?.documents.isEmpty == true else {
+                result = "Email is already used!"
+                return
+            }
+        }
+        
+        return result
+    }
+    
     @IBAction func signUp(_ sender: UIButton) {
         // get data from fields
         guard let username = usernameField.text else { return }
@@ -91,23 +119,12 @@ extension RegisterVC {
             return
         }
         else {
-            // check username is already taken
-            db.collection("User").whereField("username", isEqualTo: username).getDocuments() { [weak self] (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                }
-                else {
-                    guard let querySnapshot = querySnapshot else {
-                        return
-                    }
-                    if querySnapshot.documents.isEmpty {
-                        // create user
-                        self?.createUser(username: username, email: email, password: password)
-                    }
-                    else {
-                        self?.showAlert(alertMessage: "Username is already taken!", title: "Error")
-                    }
-                }
+            // check user existed
+            if let userExistError = checkUserExisted(email: email, username: username) {
+                showAlert(alertMessage: userExistError, title: "Error")
+            }
+            else {
+                createUser(username: username, email: email, password: password)
             }
         }
     }

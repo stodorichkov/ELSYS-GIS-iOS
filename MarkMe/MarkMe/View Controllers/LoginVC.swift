@@ -36,38 +36,36 @@ class LoginVC: UIViewController {
 
 extension LoginVC {
     @IBAction func signIN(_ sender: UIButton) {
-        if usernameField.text?.isEmpty ?? true ||  passwordField.text?.isEmpty ?? true {
+        // get data from fields
+        guard let username = usernameField.text else { return }
+        guard let password = passwordField.text else { return }
+        
+        // check some fields is empty
+        guard (username.isEmpty || password.isEmpty ) == false else {
             showAlert(alertMessage: "The form must be completed!", title: "Error")
+            return
         }
-        else {
-            // get data from fields
-            let username = usernameField.text!
-            let password = passwordField.text!
-            
-            let db = Firestore.firestore()
-            // find user
-            db.collection("User").whereField("username", isEqualTo: username).getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
+        
+        let db = Firestore.firestore()
+        // find user
+        db.collection("User").whereField("username", isEqualTo: username).getDocuments() { [weak self] (querySnapshot, err) in
+            guard err == nil else {
+                print("Error in searching in db")
+                return
+            }
+            guard querySnapshot?.documents.isEmpty == false else {
+                self?.showAlert(alertMessage: "User is not found!", title: "Error")
+                return
+            }
+            guard let email = querySnapshot?.documents[0].data()["email"] as? String  else {
+                return
+            }
+            Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
+                guard error == nil else{
+                    self?.showAlert(alertMessage: error!.localizedDescription, title: "Error")
+                    return
                 }
-                else {
-                    if querySnapshot!.documents.isEmpty {
-                        self.showAlert(alertMessage: "User is not found!", title: "Error")
-                    }
-                    else {
-                        let email = querySnapshot!.documents[0].data()["email"]! as! String
-                        print(type(of: email))
-                        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-                            if error != nil {
-                                self.showAlert(alertMessage: error!.localizedDescription, title: "Error")
-                            }
-                            else {
-                                self.changeScreen(storyboardName: "Tabs", viewControllerId: "tabs", transition: .crossDissolve)
-                            }
-                        }
-                        
-                    }
-                }
+                self?.changeScreen(storyboardName: "Tabs", viewControllerId: "tabs", transition: .crossDissolve)
             }
         }
     }
