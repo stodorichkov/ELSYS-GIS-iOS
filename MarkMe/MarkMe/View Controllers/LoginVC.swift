@@ -11,26 +11,12 @@ import FirebaseFirestore
 
 class LoginVC: UIViewController {
     
-    @IBOutlet private var buttons: [UIButton]!
-    @IBOutlet private var textFields: [UITextField]!
-    
+    @IBOutlet weak var line: UIView!
     @IBOutlet private var usernameField: UITextField!
     @IBOutlet private var passwordField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        for textField in textFields {
-            textField.backgroundColor = .white
-            textField.textColor = .black
-            textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
-        }
-        
-        for button in buttons {
-            button.layer.borderColor = UIColor.black.cgColor
-            button.layer.borderWidth = 2
-            button.layer.cornerRadius = 5
-        }
     }
 }
 

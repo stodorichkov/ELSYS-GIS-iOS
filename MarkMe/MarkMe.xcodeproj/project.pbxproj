@@ -18,6 +18,9 @@
 		D98BFF9C2781F17100ACFA59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98BFF992781F17100ACFA59 /* Assets.xcassets */; };
 		D98BFF9E2782117100ACFA59 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98BFF9D2782117100ACFA59 /* LoginVC.swift */; };
 		D98BFFA02782118D00ACFA59 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98BFF9F2782118D00ACFA59 /* RegisterVC.swift */; };
+		D9931EFF27BC3B2A00AE6710 /* RoundedButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9931EFE27BC3B2A00AE6710 /* RoundedButtonModel.swift */; };
+		D9931F0127BC3B7500AE6710 /* SubmitButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9931F0027BC3B7500AE6710 /* SubmitButtonModel.swift */; };
+		D9931F0327BC3CEB00AE6710 /* TextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9931F0227BC3CEB00AE6710 /* TextFieldModel.swift */; };
 		D9A0FDAE2781E447009062C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A0FDAD2781E447009062C1 /* AppDelegate.swift */; };
 		D9A0FDB02781E447009062C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A0FDAF2781E447009062C1 /* SceneDelegate.swift */; };
 		D9A0FDB22781E447009062C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A0FDB12781E447009062C1 /* ViewController.swift */; };
@@ -45,6 +48,9 @@
 		D98BFF992781F17100ACFA59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../../Downloads/AppIcons (1)/Assets.xcassets"; sourceTree = "<group>"; };
 		D98BFF9D2782117100ACFA59 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		D98BFF9F2782118D00ACFA59 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		D9931EFE27BC3B2A00AE6710 /* RoundedButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonModel.swift; sourceTree = "<group>"; };
+		D9931F0027BC3B7500AE6710 /* SubmitButtonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtonModel.swift; sourceTree = "<group>"; };
+		D9931F0227BC3CEB00AE6710 /* TextFieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModel.swift; sourceTree = "<group>"; };
 		D9A0FDAA2781E447009062C1 /* MarkMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9A0FDAD2781E447009062C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9A0FDAF2781E447009062C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +114,16 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		D9931EFD27BC3ACF00AE6710 /* Style Models */ = {
+			isa = PBXGroup;
+			children = (
+				D9931EFE27BC3B2A00AE6710 /* RoundedButtonModel.swift */,
+				D9931F0027BC3B7500AE6710 /* SubmitButtonModel.swift */,
+				D9931F0227BC3CEB00AE6710 /* TextFieldModel.swift */,
+			);
+			path = "Style Models";
+			sourceTree = "<group>";
+		};
 		D9A0FDA12781E447009062C1 = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +147,7 @@
 				D9A0FDAD2781E447009062C1 /* AppDelegate.swift */,
 				D9A0FDAF2781E447009062C1 /* SceneDelegate.swift */,
 				D9243A03279DA56500A5A228 /* Extensions.swift */,
+				D9931EFD27BC3ACF00AE6710 /* Style Models */,
 				D98BFF912781E6B100ACFA59 /* Storyboards */,
 				D98BFF962781EA2D00ACFA59 /* View Controllers */,
 				D9243A01279D918600A5A228 /* GoogleService-Info.plist */,
@@ -230,12 +247,15 @@
 				D9A0FDB22781E447009062C1 /* ViewController.swift in Sources */,
 				D9F96EDB27982647005CD268 /* CreateMarkVC.swift in Sources */,
 				D9F96EDD279831B4005CD268 /* ShowMarkVC.swift in Sources */,
+				D9931F0327BC3CEB00AE6710 /* TextFieldModel.swift in Sources */,
 				D94CB1BC2795E5A00045B391 /* HomeVC.swift in Sources */,
 				D9A0FDAE2781E447009062C1 /* AppDelegate.swift in Sources */,
 				D98BFF952781EA1A00ACFA59 /* AuthenticationVC.swift in Sources */,
 				D98BFFA02782118D00ACFA59 /* RegisterVC.swift in Sources */,
 				D9A0FDB02781E447009062C1 /* SceneDelegate.swift in Sources */,
+				D9931EFF27BC3B2A00AE6710 /* RoundedButtonModel.swift in Sources */,
 				D98BFF9E2782117100ACFA59 /* LoginVC.swift in Sources */,
+				D9931F0127BC3B7500AE6710 /* SubmitButtonModel.swift in Sources */,
 				D94CB1C02795E5F30045B391 /* UserVC.swift in Sources */,
 				D94CB1BE2795E5D10045B391 /* MarksVC.swift in Sources */,
 				D9243A04279DA56500A5A228 /* Extensions.swift in Sources */,
