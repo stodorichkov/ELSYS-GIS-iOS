@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class SubmitButtonModel: UIButton {
+class SubmitButton: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = 10

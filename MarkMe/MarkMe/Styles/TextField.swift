@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import AVFoundation
 
-class TextFieldModel: UITextField {
+class TextField: UITextField {
     override func layoutSubviews() {
         super.layoutSubviews()
         // border

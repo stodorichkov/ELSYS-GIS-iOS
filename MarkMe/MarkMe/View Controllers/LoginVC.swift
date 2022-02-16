@@ -22,12 +22,12 @@ class LoginVC: UIViewController {
 
 extension LoginVC {
     @IBAction func signIn(_ sender: UIButton) {
-        // get data from fields
-        guard let username = usernameField.text else { return }
-        guard let password = passwordField.text else { return }
-        
-        // check some fields is empty
-        guard (username.isEmpty || password.isEmpty ) == false else {
+        // get data from fields and check some fields is empty
+        guard let username = usernameField.text,
+            let password = passwordField.text,
+            !username.isEmpty,
+            !password.isEmpty
+        else {
             showAlert(alertMessage: "The form must be completed!", title: "Error")
             return
         }

@@ -86,14 +86,16 @@ extension RegisterVC {
     }
     
     @IBAction func signUp(_ sender: UIButton) {
-        // get data from fields
-        guard let username = usernameField.text else { return }
-        guard let email = emailField.text else { return }
-        guard let password = passwordField.text else { return }
-        guard let confirmPass = confirmPassField.text else { return }
-        
-        // check some fields is empty
-        guard (username.isEmpty || email.isEmpty || password.isEmpty || confirmPass.isEmpty) == false else {
+        // get data from fields and check some field is empty
+        guard let username = usernameField.text,
+            let email = emailField.text,
+            let password = passwordField.text,
+            let confirmPass = confirmPassField.text,
+            !username.isEmpty,
+            !email.isEmpty,
+            !password.isEmpty,
+            !confirmPass.isEmpty
+        else {
             showAlert(alertMessage: "The form must be completed!", title: "Error")
             return
         }
