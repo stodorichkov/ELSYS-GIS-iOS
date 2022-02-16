@@ -309,7 +309,7 @@
                                             <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="signIN:" destination="dAr-SR-Vh4" eventType="touchUpInside" id="rdX-vF-YgF"/>
+                                            <action selector="signIn:" destination="dAr-SR-Vh4" eventType="touchUpInside" id="20i-La-I3S"/>
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ykY-Mi-edM">
