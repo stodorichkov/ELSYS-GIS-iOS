@@ -8,24 +8,18 @@
 import UIKit
 
 class AuthenticationVC: UIViewController {
-    @IBOutlet var buttons: [UIButton]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        for button in buttons {
-            button.layer.borderColor = UIColor.black.cgColor
-            button.layer.borderWidth = 2
-            button.layer.cornerRadius = 5
-        }
     }
     
     @IBAction func goToLogin(_ sender: UIButton) {
-        changeScreen(storyboardName: "Authentication", viewControllerId: "login", transistion: .coverVertical)
+        changeScreen(storyboardName: "Authentication", viewControllerId: "login", transition: .coverVertical)
     }
     
     
     @IBAction func goToRegister(_ sender: UIButton) {
-        changeScreen(storyboardName: "Authentication", viewControllerId: "register", transistion: .coverVertical)
+        changeScreen(storyboardName: "Authentication", viewControllerId: "register", transition: .coverVertical)
     }
     
 }
