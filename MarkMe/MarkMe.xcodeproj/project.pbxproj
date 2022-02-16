@@ -21,6 +21,7 @@
 		D9931EFF27BC3B2A00AE6710 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9931EFE27BC3B2A00AE6710 /* RoundedButton.swift */; };
 		D9931F0127BC3B7500AE6710 /* SubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9931F0027BC3B7500AE6710 /* SubmitButton.swift */; };
 		D9931F0327BC3CEB00AE6710 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9931F0227BC3CEB00AE6710 /* TextField.swift */; };
+		D9931F0527BD4D7200AE6710 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9931F0427BD4D7200AE6710 /* CircleButton.swift */; };
 		D9A0FDAE2781E447009062C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A0FDAD2781E447009062C1 /* AppDelegate.swift */; };
 		D9A0FDB02781E447009062C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A0FDAF2781E447009062C1 /* SceneDelegate.swift */; };
 		D9A0FDB22781E447009062C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A0FDB12781E447009062C1 /* ViewController.swift */; };
@@ -51,6 +52,7 @@
 		D9931EFE27BC3B2A00AE6710 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		D9931F0027BC3B7500AE6710 /* SubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButton.swift; sourceTree = "<group>"; };
 		D9931F0227BC3CEB00AE6710 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		D9931F0427BD4D7200AE6710 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		D9A0FDAA2781E447009062C1 /* MarkMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9A0FDAD2781E447009062C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9A0FDAF2781E447009062C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				D9931EFE27BC3B2A00AE6710 /* RoundedButton.swift */,
 				D9931F0027BC3B7500AE6710 /* SubmitButton.swift */,
 				D9931F0227BC3CEB00AE6710 /* TextField.swift */,
+				D9931F0427BD4D7200AE6710 /* CircleButton.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				D9A0FDB02781E447009062C1 /* SceneDelegate.swift in Sources */,
 				D9931EFF27BC3B2A00AE6710 /* RoundedButton.swift in Sources */,
 				D98BFF9E2782117100ACFA59 /* LoginVC.swift in Sources */,
+				D9931F0527BD4D7200AE6710 /* CircleButton.swift in Sources */,
 				D9931F0127BC3B7500AE6710 /* SubmitButton.swift in Sources */,
 				D94CB1C02795E5F30045B391 /* UserVC.swift in Sources */,
 				D94CB1BE2795E5D10045B391 /* MarksVC.swift in Sources */,

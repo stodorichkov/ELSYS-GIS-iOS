@@ -10,14 +10,8 @@ import FirebaseAuth
 
 class UserVC: UIViewController {
 
-    @IBOutlet private var buttons: [UIButton]!
     override func viewDidLoad() {
         super.viewDidLoad()
-        for button in buttons {
-            button.layer.borderColor = UIColor.black.cgColor
-            button.layer.borderWidth = 2
-            button.layer.cornerRadius = 5
-        }
     }
 
     @IBAction func signOut(_ sender: UIButton) {
