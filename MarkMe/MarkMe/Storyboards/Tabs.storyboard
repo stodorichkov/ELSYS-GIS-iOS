@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gTm-bL-dtf">
-                                <rect key="frame" x="0.0" y="149" width="414" height="664"/>
+                                <rect key="frame" x="0.0" y="95" width="414" height="718"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="8NZ-nP-AfP">
@@ -33,15 +33,15 @@
                                 </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="uzS-eH-Gff">
-                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="51"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vix-V5-lFz"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gTm-bL-dtf" firstAttribute="top" secondItem="uzS-eH-Gff" secondAttribute="bottom" constant="10" id="3N0-ke-ufm"/>
+                            <constraint firstItem="gTm-bL-dtf" firstAttribute="top" secondItem="uzS-eH-Gff" secondAttribute="bottom" id="3N0-ke-ufm"/>
                             <constraint firstItem="vix-V5-lFz" firstAttribute="bottom" secondItem="gTm-bL-dtf" secondAttribute="bottom" id="8xV-n9-yEv"/>
                             <constraint firstItem="uzS-eH-Gff" firstAttribute="leading" secondItem="vix-V5-lFz" secondAttribute="leading" id="HYF-lY-Q8x"/>
                             <constraint firstItem="uzS-eH-Gff" firstAttribute="top" secondItem="vix-V5-lFz" secondAttribute="top" id="PNZ-FA-rc5"/>
@@ -73,25 +73,25 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MjC-Hh-Hll">
-                                        <rect key="frame" x="33" y="54" width="265" height="54"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MjC-Hh-Hll" customClass="RoundedButton" customModule="MarkMe" customModuleProvider="target">
+                                        <rect key="frame" x="16.5" y="54" width="298" height="54"/>
                                         <color key="backgroundColor" systemColor="systemRedColor"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Sign out">
-                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                            <fontDescription key="titleFontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="signOut:" destination="bng-gL-KWJ" eventType="touchUpInside" id="U6W-ZE-Cxb"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ir5-Ap-Ory">
-                                        <rect key="frame" x="33" y="138" width="265" height="54"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ir5-Ap-Ory" customClass="RoundedButton" customModule="MarkMe" customModuleProvider="target">
+                                        <rect key="frame" x="16.5" y="138" width="298" height="54"/>
                                         <color key="backgroundColor" systemColor="systemRedColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Delete user">
-                                            <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                            <fontDescription key="titleFontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -100,13 +100,13 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="MjC-Hh-Hll" firstAttribute="width" secondItem="Lc7-dD-wFK" secondAttribute="width" multiplier="0.8" id="cwh-I1-ryc"/>
-                                    <constraint firstItem="ir5-Ap-Ory" firstAttribute="width" secondItem="Lc7-dD-wFK" secondAttribute="width" multiplier="0.8" id="qPQ-eF-VDp"/>
+                                    <constraint firstItem="MjC-Hh-Hll" firstAttribute="width" secondItem="Lc7-dD-wFK" secondAttribute="width" multiplier="0.9" id="cwh-I1-ryc"/>
+                                    <constraint firstItem="ir5-Ap-Ory" firstAttribute="width" secondItem="Lc7-dD-wFK" secondAttribute="width" multiplier="0.9" id="qPQ-eF-VDp"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XI1-F4-iAs"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Lc7-dD-wFK" firstAttribute="width" secondItem="Ywb-jb-mix" secondAttribute="width" multiplier="0.8" id="Aak-or-ipI"/>
                             <constraint firstItem="ir5-Ap-Ory" firstAttribute="height" secondItem="Ywb-jb-mix" secondAttribute="height" multiplier="0.06" id="BRi-Oo-jXL"/>
@@ -117,9 +117,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="User" image="person.fill" catalog="system" id="T0y-0q-Ivi"/>
                     <connections>
-                        <outlet property="userLabel" destination="yWe-5i-c1R" id="Lfz-eR-i31"/>
-                        <outletCollection property="buttons" destination="MjC-Hh-Hll" collectionClass="NSMutableArray" id="1B5-bF-jjs"/>
-                        <outletCollection property="buttons" destination="ir5-Ap-Ory" collectionClass="NSMutableArray" id="H2I-eC-oTJ"/>
+                        <outlet property="userLabel" destination="yWe-5i-c1R" id="8zu-gI-vFU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j1H-g4-nug" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -137,7 +135,7 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="l0L-3y-Xgn">
                                 <rect key="frame" x="0.0" y="-15" width="414" height="828"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1aH-Kb-Iq5">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1aH-Kb-Iq5" customClass="CircleButton" customModule="MarkMe" customModuleProvider="target">
                                 <rect key="frame" x="344" y="528" width="60" height="60"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <constraints>
@@ -168,9 +166,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ULL-CM-fXf"/>
-                    <connections>
-                        <outlet property="addButton" destination="1aH-Kb-Iq5" id="EIV-jm-Ise"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ml-56-Dia" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -221,11 +216,10 @@
         <!--Marks-->
         <scene sceneID="tqB-qz-v1e">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7mz-2S-c7r" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="7mz-2S-c7r" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Marks" image="bookmark.fill" catalog="system" id="bF5-Nn-Obq"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zRq-NP-s8p">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

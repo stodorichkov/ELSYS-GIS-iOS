@@ -12,17 +12,10 @@ import FirebaseFirestore
 
 class UserVC: UIViewController {
 
-    @IBOutlet var buttons: [UIButton]!
-    
     @IBOutlet weak var userLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        for button in buttons {
-            button.layer.borderColor = UIColor.black.cgColor
-            button.layer.borderWidth = 2
-            button.layer.cornerRadius = 5
-        }
         setUserLable()
     }
 }
@@ -42,7 +35,7 @@ extension UserVC {
             changeScreen(storyboardName: "Authentication", viewControllerId: "login", transition: .crossDissolve)
         }
         catch let error {
-            showAlert(alertMessage: error.localizedDescription)
+            showAlert(alertMessage: error.localizedDescription, title: "Error")
         }
     }
     
@@ -63,11 +56,9 @@ extension UserVC {
                     }
                     else {
                         if querySnapshot!.documents.isEmpty {
-                            self.showAlert(alertMessage: "User is not found!")
+                            self.showAlert(alertMessage: "User is not found!", title: "Error")
                         }
                         else {
-                            print("User")
-                            print(querySnapshot!.documents[0].data())
                             self.userLabel.text = querySnapshot!.documents[0].data()["username"]! as? String
                         }
                     }

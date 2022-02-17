@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CryptoKit
 
 extension UIViewController {
     func changeScreen(storyboardName: String, viewControllerId: String, transition: UIModalTransitionStyle) {
@@ -23,21 +22,11 @@ extension UIViewController {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func showAlert(alertMessage: String) {
-        let alert = UIAlertController(title: "Errror", message: alertMessage, preferredStyle: .alert)
+    func showAlert(alertMessage: String, title: String) {
+        let alert = UIAlertController(title: title, message: alertMessage, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
         alert.view.tintColor = .red
         
         present(alert, animated: true)
     }
 }
-
-extension String {
-    func toHash() -> String {
-        let data = Data(self.utf8)
-        let digest = SHA256.hash(data: data)
-        return digest.compactMap { String(format: "%02x", $0) }.joined()
-    }
-}
-
-
