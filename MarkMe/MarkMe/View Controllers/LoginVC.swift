@@ -47,8 +47,8 @@ extension LoginVC {
                 return
             }
             Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
-                guard error == nil else{
-                    self?.showAlert(alertMessage: error!.localizedDescription, title: "Error")
+                if let error = error {
+                    self?.showAlert(alertMessage: error.localizedDescription, title: "Error")
                     return
                 }
                 self?.changeScreen(storyboardName: "Tabs", viewControllerId: "tabs", transition: .crossDissolve)
@@ -58,27 +58,25 @@ extension LoginVC {
     
     // login with facebook
     @IBAction func loginWithFacebook(_ sender: UIButton) {
-        LoginManager().logIn(permissions: ["public_profile","email"], from: self) { (fbResult, fbError) in
+        LoginManager().logIn(permissions: ["public_profile","email"], from: self) { [weak self] (fbResult, fbError) in
             // check for error
-            if fbError != nil {
-                self.showAlert(alertMessage: fbError!.localizedDescription, title: "Facebook Error")
+            if let fbError = fbError {
+                self?.showAlert(alertMessage: fbError.localizedDescription, title: "Facebook Error")
+                return
             }
-            else {
-                // check for cancle
-                if fbResult!.isCancelled {
+            // check for cancle
+            guard fbResult?.isCancelled == false else {
+                return
+            }
+            // make firebase login
+            let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+            Auth.auth().signIn(with: credential) { [weak self] (result, error) in
+                if let error = error {
+                    self?.showAlert(alertMessage: error.localizedDescription, title: "Error")
                     return
                 }
-                // make firebase login
-                let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
-                Auth.auth().signIn(with: credential) { (result, error) in
-                    if error != nil {
-                        self.showAlert(alertMessage: fbError!.localizedDescription, title: "Error")
-                    }
-                    else {
-                        // success
-                        self.changeScreen(storyboardName: "Tabs", viewControllerId: "tabs", transition: .crossDissolve)
-                    }
-                }
+                // success
+                self?.changeScreen(storyboardName: "Tabs", viewControllerId: "tabs", transition: .crossDissolve)
             }
         }
     }

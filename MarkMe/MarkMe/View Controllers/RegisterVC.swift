@@ -41,8 +41,8 @@ extension RegisterVC {
     func createUser(username: String, email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] (result, err) in
             // check for errors
-            guard err == nil else {
-                self?.showAlert(alertMessage: err!.localizedDescription, title: "Regsitration Error")
+            if let err = err {
+                self?.showAlert(alertMessage: err.localizedDescription, title: "Regsitration Error")
                 return
             }
             // try to save user data in DB
@@ -50,6 +50,7 @@ extension RegisterVC {
                 // check for errors
                 if let error = error {
                     self?.showAlert(alertMessage: error.localizedDescription, title: "Database Error")
+                    return
                 }
             }
             // go to Home screen

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ViewController: UIViewController {
     
@@ -29,7 +30,15 @@ extension ViewController {
             }
         })
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self] (timer) in
-            self?.changeScreen(storyboardName: "Authentication", viewControllerId: "login", transition: .crossDissolve)
+            Auth.auth().addStateDidChangeListener() { [weak self] (auth, user) in
+                if user != nil {
+                    self?.changeScreen(storyboardName: "Tabs", viewControllerId: "tabs", transition: .crossDissolve)
+                }
+                else {
+                    self?.changeScreen(storyboardName: "Authentication", viewControllerId: "login", transition: .crossDissolve)
+                }
+            }
+            
         })
     }
 }
