@@ -16,7 +16,7 @@ class UserVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUserLable()
+        setUserLabel()
     }
 }
 
@@ -25,7 +25,7 @@ extension UserVC {
         do {
             let provider = Auth.auth().currentUser!.providerData[0].providerID
             switch provider {
-            case "facebook.com":
+            case Providers.facebook.rawValue:
                 LoginManager().logOut()
             default:
                 break
@@ -43,13 +43,13 @@ extension UserVC {
         changeScreen(storyboardName: "Authentication", viewControllerId: "login", transition: .crossDissolve)
     }
     
-    func setUserLable() {
+    func setUserLabel() {
         guard let curUser = Auth.auth().currentUser else {
             return
         }
         let provider = curUser.providerData[0].providerID
         
-        if provider == "password" {
+        if provider == Providers.email.rawValue {
             let db = Firestore.firestore()
             let email = curUser.email!
             db.collection("User").whereField("email", isEqualTo: email).getDocuments() { [weak self] (querySnapshot, err) in
@@ -65,4 +65,9 @@ extension UserVC {
             userLabel.text = curUser.displayName
         }
     }
+}
+
+enum Providers: String {
+    case email = "password"
+    case facebook = "facebook.com"
 }
