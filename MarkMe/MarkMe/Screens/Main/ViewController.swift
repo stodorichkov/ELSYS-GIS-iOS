@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import FirebaseAuth
+//import FirebaseAuth
 
 class ViewController: UIViewController {
     
@@ -14,11 +14,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        makeLoad()
+        let viewModel = MainViewModel(root: self, progressBar: progressBar)
+        viewModel.makeLoad()
     }
 }
 
-extension ViewController {
+/*extension ViewController {
     func makeLoad() {
         var progress: Float = 0.0
         progressBar.progress = progress
@@ -41,5 +42,5 @@ extension ViewController {
             
         })
     }
-}
+}*/
 

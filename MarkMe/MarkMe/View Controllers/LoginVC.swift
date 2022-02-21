@@ -16,8 +16,6 @@ class LoginVC: UIViewController {
     @IBOutlet private var usernameField: UITextField!
     @IBOutlet private var passwordField: UITextField!
     
-    @IBOutlet weak var fbButton: FBButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

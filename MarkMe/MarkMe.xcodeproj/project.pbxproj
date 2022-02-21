@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		D9243A02279D918600A5A228 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9243A01279D918600A5A228 /* GoogleService-Info.plist */; };
 		D9243A04279DA56500A5A228 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9243A03279DA56500A5A228 /* Extensions.swift */; };
+		D92EEA6B27C2CA8600DCB38C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EEA6A27C2CA8600DCB38C /* MainViewModel.swift */; };
+		D92EEA6D27C2CB0E00DCB38C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EEA6C27C2CB0E00DCB38C /* Router.swift */; };
+		D92EEA6F27C2CC1B00DCB38C /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EEA6E27C2CC1B00DCB38C /* MainRouter.swift */; };
 		D94CB1BA2795E1020045B391 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D94CB1B92795E1020045B391 /* Tabs.storyboard */; };
 		D94CB1BC2795E5A00045B391 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94CB1BB2795E5A00045B391 /* HomeVC.swift */; };
 		D94CB1BE2795E5D10045B391 /* MarksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94CB1BD2795E5D10045B391 /* MarksVC.swift */; };
@@ -40,6 +43,9 @@
 /* Begin PBXFileReference section */
 		D9243A01279D918600A5A228 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D9243A03279DA56500A5A228 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D92EEA6A27C2CA8600DCB38C /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		D92EEA6C27C2CB0E00DCB38C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		D92EEA6E27C2CC1B00DCB38C /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		D94CB1B92795E1020045B391 /* Tabs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tabs.storyboard; sourceTree = "<group>"; };
 		D94CB1BB2795E5A00045B391 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		D94CB1BD2795E5D10045B391 /* MarksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksVC.swift; sourceTree = "<group>"; };
@@ -88,6 +94,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D92EEA6827C2CA3400DCB38C /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				D92EEA6927C2CA5200DCB38C /* Main */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		D92EEA6927C2CA5200DCB38C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				D9A0FDB12781E447009062C1 /* ViewController.swift */,
+				D92EEA6A27C2CA8600DCB38C /* MainViewModel.swift */,
+				D92EEA6E27C2CC1B00DCB38C /* MainRouter.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		D98BFF912781E6B100ACFA59 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,7 +127,6 @@
 		D98BFF962781EA2D00ACFA59 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D9A0FDB12781E447009062C1 /* ViewController.swift */,
 				D98BFF9D2782117100ACFA59 /* LoginVC.swift */,
 				D98BFF9F2782118D00ACFA59 /* RegisterVC.swift */,
 				D94CB1BB2795E5A00045B391 /* HomeVC.swift */,
@@ -149,7 +172,9 @@
 				D9A0FDAD2781E447009062C1 /* AppDelegate.swift */,
 				D9A0FDAF2781E447009062C1 /* SceneDelegate.swift */,
 				D9243A03279DA56500A5A228 /* Extensions.swift */,
+				D92EEA6C27C2CB0E00DCB38C /* Router.swift */,
 				D9931EFD27BC3ACF00AE6710 /* Styles */,
+				D92EEA6827C2CA3400DCB38C /* Screens */,
 				D98BFF912781E6B100ACFA59 /* Storyboards */,
 				D98BFF962781EA2D00ACFA59 /* View Controllers */,
 				D9243A01279D918600A5A228 /* GoogleService-Info.plist */,
@@ -251,9 +276,11 @@
 				D9F96EDB27982647005CD268 /* CreateMarkVC.swift in Sources */,
 				D9F96EDD279831B4005CD268 /* ShowMarkVC.swift in Sources */,
 				D9931F0327BC3CEB00AE6710 /* TextField.swift in Sources */,
+				D92EEA6D27C2CB0E00DCB38C /* Router.swift in Sources */,
 				D94CB1BC2795E5A00045B391 /* HomeVC.swift in Sources */,
 				D9A0FDAE2781E447009062C1 /* AppDelegate.swift in Sources */,
 				D98BFFA02782118D00ACFA59 /* RegisterVC.swift in Sources */,
+				D92EEA6B27C2CA8600DCB38C /* MainViewModel.swift in Sources */,
 				D9A0FDB02781E447009062C1 /* SceneDelegate.swift in Sources */,
 				D9931EFF27BC3B2A00AE6710 /* RoundedButton.swift in Sources */,
 				D98BFF9E2782117100ACFA59 /* LoginVC.swift in Sources */,
@@ -262,6 +289,7 @@
 				D94CB1C02795E5F30045B391 /* UserVC.swift in Sources */,
 				D94CB1BE2795E5D10045B391 /* MarksVC.swift in Sources */,
 				D9243A04279DA56500A5A228 /* Extensions.swift in Sources */,
+				D92EEA6F27C2CC1B00DCB38C /* MainRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
