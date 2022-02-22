@@ -16,16 +16,18 @@ class UserVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUserLable()
+        setUserLabel()
     }
 }
 
 extension UserVC {
     @IBAction func signOut(_ sender: UIButton) {
         do {
-            let provider = Auth.auth().currentUser!.providerData[0].providerID
+            guard let provider = Auth.auth().currentUser?.providerData[0].providerType else{
+                return
+            }
             switch provider {
-            case "facebook.com":
+            case .facebook:
                 LoginManager().logOut()
             default:
                 break
@@ -43,15 +45,15 @@ extension UserVC {
         changeScreen(storyboardName: "Authentication", viewControllerId: "login", transition: .crossDissolve)
     }
     
-    func setUserLable() {
-        guard let curUser = Auth.auth().currentUser else {
+    func setUserLabel() {
+        guard let curUser = Auth.auth().currentUser, let provider = curUser.providerData[0].providerType  else {
             return
         }
-        let provider = curUser.providerData[0].providerID
-        
-        if provider == "password" {
+        if provider == .email{
             let db = Firestore.firestore()
-            let email = curUser.email!
+            guard let email = curUser.email else{
+                return
+            }
             db.collection("User").whereField("email", isEqualTo: email).getDocuments() { [weak self] (querySnapshot, err) in
                 guard err == nil, querySnapshot?.documents.isEmpty == false else {
                     self?.showAlert(alertMessage: "User is not found!", title: "Error")
