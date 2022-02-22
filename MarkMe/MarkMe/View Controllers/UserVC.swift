@@ -51,7 +51,9 @@ extension UserVC {
         }
         if provider == .email{
             let db = Firestore.firestore()
-            let email = curUser.email!
+            guard let email = curUser.email else{
+                return
+            }
             db.collection("User").whereField("email", isEqualTo: email).getDocuments() { [weak self] (querySnapshot, err) in
                 guard err == nil, querySnapshot?.documents.isEmpty == false else {
                     self?.showAlert(alertMessage: "User is not found!", title: "Error")
