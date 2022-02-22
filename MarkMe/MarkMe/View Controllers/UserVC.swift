@@ -23,9 +23,11 @@ class UserVC: UIViewController {
 extension UserVC {
     @IBAction func signOut(_ sender: UIButton) {
         do {
-            let provider = Auth.auth().currentUser!.providerData[0].providerID
+            guard let provider = Auth.auth().currentUser?.providerData[0].providerType else{
+                return
+            }
             switch provider {
-            case Providers.facebook.rawValue:
+            case .facebook:
                 LoginManager().logOut()
             default:
                 break
@@ -44,12 +46,10 @@ extension UserVC {
     }
     
     func setUserLabel() {
-        guard let curUser = Auth.auth().currentUser else {
+        guard let curUser = Auth.auth().currentUser, let provider = curUser.providerData[0].providerType  else {
             return
         }
-        let provider = curUser.providerData[0].providerID
-        
-        if provider == Providers.email.rawValue {
+        if provider == .email{
             let db = Firestore.firestore()
             let email = curUser.email!
             db.collection("User").whereField("email", isEqualTo: email).getDocuments() { [weak self] (querySnapshot, err) in
@@ -65,9 +65,4 @@ extension UserVC {
             userLabel.text = curUser.displayName
         }
     }
-}
-
-enum Providers: String {
-    case email = "password"
-    case facebook = "facebook.com"
 }
