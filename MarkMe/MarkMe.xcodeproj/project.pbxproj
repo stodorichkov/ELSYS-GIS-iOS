@@ -35,6 +35,7 @@
 		D9AF5EF027A20213001DB5D8 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D9AF5EEF27A20213001DB5D8 /* FirebaseFirestore */; };
 		D9AF5EF227A20279001DB5D8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D9AF5EF127A20279001DB5D8 /* FirebaseAuth */; };
 		D9D905E127A714D800DE1007 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = D9D905E027A714D800DE1007 /* FacebookLogin */; };
+		D9EED01127C6998400233CE3 /* MainViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EED01027C6998400233CE3 /* MainViewModelDelegate.swift */; };
 		D9F96ED927982583005CD268 /* Marks.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9F96ED827982583005CD268 /* Marks.storyboard */; };
 		D9F96EDB27982647005CD268 /* CreateMarkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F96EDA27982647005CD268 /* CreateMarkVC.swift */; };
 		D9F96EDD279831B4005CD268 /* ShowMarkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F96EDC279831B4005CD268 /* ShowMarkVC.swift */; };
@@ -67,6 +68,7 @@
 		D9A0FDB92781E448009062C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D9A0FDBB2781E448009062C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9AC456F27C51E8B00F0720E /* AuthProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProviderType.swift; sourceTree = "<group>"; };
+		D9EED01027C6998400233CE3 /* MainViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelDelegate.swift; sourceTree = "<group>"; };
 		D9F96ED827982583005CD268 /* Marks.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Marks.storyboard; sourceTree = "<group>"; };
 		D9F96EDA27982647005CD268 /* CreateMarkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMarkVC.swift; sourceTree = "<group>"; };
 		D9F96EDC279831B4005CD268 /* ShowMarkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMarkVC.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				D9A0FDB12781E447009062C1 /* ViewController.swift */,
 				D92EEA6A27C2CA8600DCB38C /* MainViewModel.swift */,
 				D92EEA6E27C2CC1B00DCB38C /* MainRouter.swift */,
+				D9EED01027C6998400233CE3 /* MainViewModelDelegate.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -171,11 +174,11 @@
 		D9A0FDAC2781E447009062C1 /* MarkMe */ = {
 			isa = PBXGroup;
 			children = (
-				D9AC456D27C51E3C00F0720E /* Model */,
 				D9A0FDAD2781E447009062C1 /* AppDelegate.swift */,
 				D9A0FDAF2781E447009062C1 /* SceneDelegate.swift */,
 				D9243A03279DA56500A5A228 /* Extensions.swift */,
 				D92EEA6C27C2CB0E00DCB38C /* Router.swift */,
+				D9AC456D27C51E3C00F0720E /* Model */,
 				D9931EFD27BC3ACF00AE6710 /* Styles */,
 				D92EEA6827C2CA3400DCB38C /* Screens */,
 				D98BFF912781E6B100ACFA59 /* Storyboards */,
@@ -305,6 +308,7 @@
 				D9931EFF27BC3B2A00AE6710 /* RoundedButton.swift in Sources */,
 				D98BFF9E2782117100ACFA59 /* LoginVC.swift in Sources */,
 				D9931F0527BD4D7200AE6710 /* CircleButton.swift in Sources */,
+				D9EED01127C6998400233CE3 /* MainViewModelDelegate.swift in Sources */,
 				D9931F0127BC3B7500AE6710 /* SubmitButton.swift in Sources */,
 				D94CB1C02795E5F30045B391 /* UserVC.swift in Sources */,
 				D94CB1BE2795E5D10045B391 /* MarksVC.swift in Sources */,

@@ -14,9 +14,22 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let viewModel = MainViewModel(root: self, progressBar: progressBar)
+        let viewModel = MainViewModel(delegate: self)
         viewModel.makeLoad()
     }
+}
+
+extension ViewController: MainViewModelDelegate{
+    func goToNextScreen(storyboardName: String, storyboardId: String) {
+        let router = MainRouter(root: self)
+        router.goToNextScreen(storyboardName: storyboardName, storyboardId: storyboardId)
+    }
+    
+    func upadeteProgressBar(progress: Float) {
+        progressBar.progress = progress
+    }
+    
+    
 }
 
 /*extension ViewController {
