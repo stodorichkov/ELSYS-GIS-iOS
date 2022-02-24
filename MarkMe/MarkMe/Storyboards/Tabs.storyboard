@@ -124,10 +124,10 @@
             </objects>
             <point key="canvasLocation" x="977" y="301"/>
         </scene>
-        <!--HomeVC-->
+        <!--Home View Controller-->
         <scene sceneID="B9s-gr-DrZ">
             <objects>
-                <viewController storyboardIdentifier="home" id="GRZ-8Y-7AY" customClass="HomeVC" customModule="MarkMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="home" id="GRZ-8Y-7AY" customClass="HomeViewController" customModule="MarkMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1U3-B1-Khu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

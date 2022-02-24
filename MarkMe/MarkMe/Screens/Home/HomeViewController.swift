@@ -7,13 +7,14 @@
 
 import UIKit
 
-class HomeVC: UIViewController {
+class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
     @IBAction func goToCreateMark(_ sender: UIButton) {
-        navigateToScreen(storyboardName: "Marks", viewControllerId: "createMark")
+        let router = HomeRouter(root: self) 
+        router.goToNextScreen(storyboardName: "Marks", storyboardId: "createMark")
     }
 }

@@ -12,8 +12,6 @@ protocol Router {
     var root: UIViewController { get } 
     
     init(root: UIViewController)
-    
-    func goToNextScreen(storyboardName: String, storyboardId: String)
 }
 
 extension Router {
