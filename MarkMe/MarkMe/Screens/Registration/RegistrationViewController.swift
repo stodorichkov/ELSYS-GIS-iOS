@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class RegisterVC: UIViewController {
+class RegistrationViewController: UIViewController {
     
     @IBOutlet private var usernameField: UITextField!
     @IBOutlet private var emailField: UITextField!
@@ -23,7 +23,7 @@ class RegisterVC: UIViewController {
     }
 }
 
-extension RegisterVC {
+extension RegistrationViewController {
     func validateData(email: String ,password: String, confirmPass: String) -> String? {
         let emailPattern = #"^\S+@\S+\.\S+$"#
         guard (email.range(of: emailPattern, options: .regularExpression) != nil) else {

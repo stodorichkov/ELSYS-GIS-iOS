@@ -21,26 +21,27 @@
 			</array>
 		</dict>
 	</dict>
-    <key>CFBundleURLTypes</key>
-    <array>
-          <dict>
-          <key>CFBundleURLSchemes</key>
-          <array>
-              <string>fb324178652792654</string>
-          </array>
-          </dict>
-    </array>
-    <key>FacebookAppID</key>
-    <string>324178652792654</string>
-    <key>FacebookClientToken</key>
-    <string>d2088dd624ea82fa5cbe8d58b2610d4e</string>
-    <key>FacebookDisplayName</key>
-    <string>Mark Me</string>
-    
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-      <string>fbapi</string>
-      <string>fb-messenger-share-api</string>
-    </array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb324178652792654</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>324178652792654</string>
+	<key>FacebookClientToken</key>
+	<string>d2088dd624ea82fa5cbe8d58b2610d4e</string>
+	<key>FacebookDisplayName</key>
+	<string>Mark Me</string>
+    <key>FacebookAutoLogAppEventsEnabled</key>
+    <false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+	</array>
 </dict>
 </plist>

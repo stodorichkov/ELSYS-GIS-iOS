@@ -19,8 +19,8 @@
 		D95A64E827C42DA100188101 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D95A64E727C42DA000188101 /* Assets.xcassets */; };
 		D9770A2E27B589DD00455DC0 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = D9770A2D27B589DD00455DC0 /* FacebookCore */; };
 		D98BFF932781E6D600ACFA59 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D98BFF922781E6D600ACFA59 /* Authentication.storyboard */; };
-		D98BFF9E2782117100ACFA59 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98BFF9D2782117100ACFA59 /* LoginVC.swift */; };
-		D98BFFA02782118D00ACFA59 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98BFF9F2782118D00ACFA59 /* RegisterVC.swift */; };
+		D98BFF9E2782117100ACFA59 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98BFF9D2782117100ACFA59 /* LoginViewController.swift */; };
+		D98BFFA02782118D00ACFA59 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98BFF9F2782118D00ACFA59 /* RegistrationViewController.swift */; };
 		D9931EFF27BC3B2A00AE6710 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9931EFE27BC3B2A00AE6710 /* RoundedButton.swift */; };
 		D9931F0127BC3B7500AE6710 /* SubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9931F0027BC3B7500AE6710 /* SubmitButton.swift */; };
 		D9931F0327BC3CEB00AE6710 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9931F0227BC3CEB00AE6710 /* TextField.swift */; };
@@ -30,6 +30,10 @@
 		D9A0FDB22781E447009062C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A0FDB12781E447009062C1 /* ViewController.swift */; };
 		D9A0FDB52781E447009062C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9A0FDB32781E447009062C1 /* Main.storyboard */; };
 		D9A0FDBA2781E448009062C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9A0FDB82781E448009062C1 /* LaunchScreen.storyboard */; };
+		D9A693BB27C7A70D00A2131D /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A693BA27C7A70D00A2131D /* LoginRouter.swift */; };
+		D9A693BD27C7A7DF00A2131D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A693BC27C7A7DF00A2131D /* LoginViewModel.swift */; };
+		D9A693C027C7E53400A2131D /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A693BF27C7E53400A2131D /* RegistrationViewModel.swift */; };
+		D9A693C227C7E54400A2131D /* RegistrationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A693C127C7E54400A2131D /* RegistrationRouter.swift */; };
 		D9AC457027C51E8B00F0720E /* AuthProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AC456F27C51E8B00F0720E /* AuthProviderType.swift */; };
 		D9AF5EEC27A20213001DB5D8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D9AF5EEB27A20213001DB5D8 /* FirebaseAnalytics */; };
 		D9AF5EF027A20213001DB5D8 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D9AF5EEF27A20213001DB5D8 /* FirebaseFirestore */; };
@@ -54,8 +58,8 @@
 		D95A64E327C42D0F00188101 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "MarkMe/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D95A64E727C42DA000188101 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D98BFF922781E6D600ACFA59 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
-		D98BFF9D2782117100ACFA59 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		D98BFF9F2782118D00ACFA59 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		D98BFF9D2782117100ACFA59 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D98BFF9F2782118D00ACFA59 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		D9931EFE27BC3B2A00AE6710 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		D9931F0027BC3B7500AE6710 /* SubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButton.swift; sourceTree = "<group>"; };
 		D9931F0227BC3CEB00AE6710 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
@@ -67,6 +71,10 @@
 		D9A0FDB42781E447009062C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D9A0FDB92781E448009062C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D9A0FDBB2781E448009062C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9A693BA27C7A70D00A2131D /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		D9A693BC27C7A7DF00A2131D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		D9A693BF27C7E53400A2131D /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		D9A693C127C7E54400A2131D /* RegistrationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
 		D9AC456F27C51E8B00F0720E /* AuthProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProviderType.swift; sourceTree = "<group>"; };
 		D9EED01027C6998400233CE3 /* MainViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelDelegate.swift; sourceTree = "<group>"; };
 		D9F96ED827982583005CD268 /* Marks.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Marks.storyboard; sourceTree = "<group>"; };
@@ -102,6 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				D92EEA6927C2CA5200DCB38C /* Main */,
+				D9A693B927C7A65600A2131D /* Login */,
+				D9A693BE27C7E49400A2131D /* Registration */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -111,8 +121,8 @@
 			children = (
 				D9A0FDB12781E447009062C1 /* ViewController.swift */,
 				D92EEA6A27C2CA8600DCB38C /* MainViewModel.swift */,
-				D92EEA6E27C2CC1B00DCB38C /* MainRouter.swift */,
 				D9EED01027C6998400233CE3 /* MainViewModelDelegate.swift */,
+				D92EEA6E27C2CC1B00DCB38C /* MainRouter.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -132,8 +142,6 @@
 		D98BFF962781EA2D00ACFA59 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D98BFF9D2782117100ACFA59 /* LoginVC.swift */,
-				D98BFF9F2782118D00ACFA59 /* RegisterVC.swift */,
 				D94CB1BB2795E5A00045B391 /* HomeVC.swift */,
 				D94CB1BD2795E5D10045B391 /* MarksVC.swift */,
 				D94CB1BF2795E5F30045B391 /* UserVC.swift */,
@@ -188,6 +196,26 @@
 				D95A64E727C42DA000188101 /* Assets.xcassets */,
 			);
 			path = MarkMe;
+			sourceTree = "<group>";
+		};
+		D9A693B927C7A65600A2131D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D98BFF9D2782117100ACFA59 /* LoginViewController.swift */,
+				D9A693BC27C7A7DF00A2131D /* LoginViewModel.swift */,
+				D9A693BA27C7A70D00A2131D /* LoginRouter.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		D9A693BE27C7E49400A2131D /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				D98BFF9F2782118D00ACFA59 /* RegistrationViewController.swift */,
+				D9A693BF27C7E53400A2131D /* RegistrationViewModel.swift */,
+				D9A693C127C7E54400A2131D /* RegistrationRouter.swift */,
+			);
+			path = Registration;
 			sourceTree = "<group>";
 		};
 		D9AC456D27C51E3C00F0720E /* Model */ = {
@@ -296,17 +324,20 @@
 			files = (
 				D9AC457027C51E8B00F0720E /* AuthProviderType.swift in Sources */,
 				D9A0FDB22781E447009062C1 /* ViewController.swift in Sources */,
+				D9A693BD27C7A7DF00A2131D /* LoginViewModel.swift in Sources */,
 				D9F96EDB27982647005CD268 /* CreateMarkVC.swift in Sources */,
 				D9F96EDD279831B4005CD268 /* ShowMarkVC.swift in Sources */,
 				D9931F0327BC3CEB00AE6710 /* TextField.swift in Sources */,
+				D9A693BB27C7A70D00A2131D /* LoginRouter.swift in Sources */,
 				D92EEA6D27C2CB0E00DCB38C /* Router.swift in Sources */,
 				D94CB1BC2795E5A00045B391 /* HomeVC.swift in Sources */,
 				D9A0FDAE2781E447009062C1 /* AppDelegate.swift in Sources */,
-				D98BFFA02782118D00ACFA59 /* RegisterVC.swift in Sources */,
+				D98BFFA02782118D00ACFA59 /* RegistrationViewController.swift in Sources */,
 				D92EEA6B27C2CA8600DCB38C /* MainViewModel.swift in Sources */,
 				D9A0FDB02781E447009062C1 /* SceneDelegate.swift in Sources */,
+				D9A693C027C7E53400A2131D /* RegistrationViewModel.swift in Sources */,
 				D9931EFF27BC3B2A00AE6710 /* RoundedButton.swift in Sources */,
-				D98BFF9E2782117100ACFA59 /* LoginVC.swift in Sources */,
+				D98BFF9E2782117100ACFA59 /* LoginViewController.swift in Sources */,
 				D9931F0527BD4D7200AE6710 /* CircleButton.swift in Sources */,
 				D9EED01127C6998400233CE3 /* MainViewModelDelegate.swift in Sources */,
 				D9931F0127BC3B7500AE6710 /* SubmitButton.swift in Sources */,
@@ -314,6 +345,7 @@
 				D94CB1BE2795E5D10045B391 /* MarksVC.swift in Sources */,
 				D9243A04279DA56500A5A228 /* Extensions.swift in Sources */,
 				D92EEA6F27C2CC1B00DCB38C /* MainRouter.swift in Sources */,
+				D9A693C227C7E54400A2131D /* RegistrationRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
