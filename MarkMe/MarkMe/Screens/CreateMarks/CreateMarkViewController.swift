@@ -7,18 +7,24 @@
 
 import UIKit
 
-class CreateMarkVC: UIViewController {
+class CreateMarkViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+}
+
+extension CreateMarkViewController {
     @IBAction func backToHome(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)
+        goBack()
     }
     
     @IBAction func createNewMark(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)
+        goBack()
     }
     
+    func goBack() {
+        let router = CreateMarkRouter(root: self)
+        router.dismiss()
+    }
 }

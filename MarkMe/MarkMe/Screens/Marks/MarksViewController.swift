@@ -7,10 +7,9 @@
 
 import UIKit
 
-class MarksVC: UIViewController {
+class MarksViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
 }
