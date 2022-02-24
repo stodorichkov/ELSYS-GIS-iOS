@@ -24,7 +24,7 @@ class LoginViewModel {
         let db = Firestore.firestore()
         db.collection("User").whereField("username", isEqualTo: username).getDocuments() { (querySnapshot, err) in
             guard err == nil, querySnapshot?.documents.isEmpty == false else {
-                completion(["type": "alert", "alertTitle": "Error", "alertMessage": "User is not found!"])
+                completion(["type": "alert", "alertTitle": "Login Error", "alertMessage": "User is not found!"])
                 return
             }
             guard let email = querySnapshot?.documents[0].data()["email"] as? String else {
@@ -33,7 +33,7 @@ class LoginViewModel {
             // sign in user
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 if let error = error {
-                    completion(["type": "alert", "alertTitle": "Error", "alertMessage": error.localizedDescription])
+                    completion(["type": "alert", "alertTitle": "Login Error", "alertMessage": error.localizedDescription])
                     return
                 }
                 completion(["storyboardName": "Tabs", "viewControllerId": "tabs"])
@@ -46,7 +46,7 @@ class LoginViewModel {
             return ["username": username, "password": password]
         }
         else {
-            return ["type": "alert", "alertTitle": "Error", "alertMessage": "The form must be completed!"]
+            return ["type": "alert", "alertTitle": "Validation Error", "alertMessage": "The form must be completed!"]
         }
     }
     
