@@ -11,7 +11,7 @@ import FacebookLogin
 import FirebaseFirestore
 
 class UserViewModel {
-    func signOut(completion: ([String: String]) -> ()) {
+    func signOut(completion: (Result<ScreenInfo, AlertError>) -> ()) {
         do {
             guard let provider = Auth.auth().currentUser?.providerData[0].providerType else{
                 return
@@ -24,14 +24,14 @@ class UserViewModel {
             }
             
             try Auth.auth().signOut()
-            completion(["storyboardName": "Authentication", "viewControllerId": "login"])
+            completion(.success(ScreenInfo(storyboardName: "Authentication", storyboardId: "login")))
         }
         catch let error {
-            completion(["type": "alert", "alertTitle": "Error", "alertMessage": error.localizedDescription])
+            completion(.failure(AlertError(title: "Logout Error", message: error.localizedDescription)))
         }
     }
     
-    func setUserLabel(completion: @escaping ([String: String]) -> ()) {
+    func setUserLabel(completion: @escaping (Result<String, AlertError>) -> ()) {
         guard let curUser = Auth.auth().currentUser, let provider = curUser.providerData[0].providerType  else {
             return
         }
@@ -42,20 +42,20 @@ class UserViewModel {
             }
             db.collection("User").whereField("email", isEqualTo: email).getDocuments() { (querySnapshot, err) in
                 guard err == nil, querySnapshot?.documents.isEmpty == false else {
-                    completion(["type": "alert", "alertTitle": "Error", "alertMessage": "User is not found!"])
+                    completion(.failure(AlertError(title: "Database Error", message: "User is not found!")))
                     return
                 }
                 guard let userLable = querySnapshot?.documents[0].data()["username"] as? String else {
                     return
                 }
-                completion(["userLable": userLable])
+                completion(.success(userLable))
             }
         }
         else {
             guard let userLable = curUser.displayName else {
                 return
             }
-            completion(["userLable": userLable])
+            completion(.success(userLable))
         }
     }
 }

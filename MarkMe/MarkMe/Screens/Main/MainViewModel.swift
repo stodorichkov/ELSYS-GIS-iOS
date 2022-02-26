@@ -15,7 +15,7 @@ class MainViewModel {
         self.mainViewModelDelegate = delegate
     }
 
-    func makeLoad() {
+    func makeLoad(completion: @escaping (ScreenInfo) -> ()) {
         var progress: Float = 0.0
         mainViewModelDelegate?.upadeteProgressBar(progress: progress)
         Timer.scheduledTimer(withTimeInterval: 0.07, repeats: true, block: { (timer) in
@@ -25,13 +25,13 @@ class MainViewModel {
                 timer.invalidate()
             }
         })
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self] (timer) in
-            Auth.auth().addStateDidChangeListener() { [weak self] (auth, user) in
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (timer) in
+            Auth.auth().addStateDidChangeListener() { (auth, user) in
                 if user != nil {
-                    self?.mainViewModelDelegate?.goToNextScreen(storyboardName: "Tabs", storyboardId: "tabs")
+                    completion(ScreenInfo(storyboardName: "Tabs", storyboardId: "tabs"))
                 }
                 else {
-                    self?.mainViewModelDelegate?.goToNextScreen(storyboardName: "Authentication", storyboardId: "login")
+                    completion(ScreenInfo(storyboardName: "Authentication", storyboardId: "login"))
                 }
             }
         })

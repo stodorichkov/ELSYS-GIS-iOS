@@ -12,11 +12,16 @@ import FacebookLogin
 import UIKit
 
 class LoginViewModel {
-    func loginWithUsername(usernameField: String?, passwordField: String?, completion: @escaping ([String: String]) -> ()) {
+    func loginWithUsername(usernameField: String?, passwordField: String?, completion: @escaping (Result<ScreenInfo, AlertError>) -> ()) {
         // validate form
-        let vaidationDict = validateData(usernameField: usernameField, passwordField: passwordField)
-        guard let username = vaidationDict["username"], let password = vaidationDict["password"] else {
-            completion(vaidationDict)
+        let vaidationResult = validateData(usernameField: usernameField, passwordField: passwordField)
+        var username, password: String
+        switch vaidationResult {
+        case .success(let user):
+            username = user.username
+            password = user.password
+        case .failure(let alert):
+            completion(.failure(alert))
             return
         }
 
@@ -24,7 +29,7 @@ class LoginViewModel {
         let db = Firestore.firestore()
         db.collection("User").whereField("username", isEqualTo: username).getDocuments() { (querySnapshot, err) in
             guard err == nil, querySnapshot?.documents.isEmpty == false else {
-                completion(["type": "alert", "alertTitle": "Login Error", "alertMessage": "User is not found!"])
+                completion(.failure(AlertError(title: "Login Error", message: "User is not found!")))
                 return
             }
             guard let email = querySnapshot?.documents[0].data()["email"] as? String else {
@@ -33,28 +38,28 @@ class LoginViewModel {
             // sign in user
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 if let error = error {
-                    completion(["type": "alert", "alertTitle": "Login Error", "alertMessage": error.localizedDescription])
+                    completion(.failure(AlertError(title: "Login Error", message: error.localizedDescription)))
                     return
                 }
-                completion(["storyboardName": "Tabs", "viewControllerId": "tabs"])
+                completion(.success(ScreenInfo(storyboardName: "Tabs", storyboardId: "tabs")))
             }
         }
     }
     
-    func validateData(usernameField: String?, passwordField: String?) -> [String:String] {
+    func validateData(usernameField: String?, passwordField: String?) -> Result<User, AlertError> {
         if let username = usernameField, let password = passwordField, !username.isEmpty, !password.isEmpty {
-            return ["username": username, "password": password]
+            return .success(User(username: username, password: password))
         }
         else {
-            return ["type": "alert", "alertTitle": "Validation Error", "alertMessage": "The form must be completed!"]
+            return .failure(AlertError(title: "Validation Error", message: "The form must be completed!"))
         }
     }
     
-    func loginWithFacebook(view: UIViewController, completion: @escaping ([String: String]) -> ()) {
+    func loginWithFacebook(view: UIViewController, completion: @escaping (Result<ScreenInfo, AlertError>) -> ()) {
         LoginManager().logIn(permissions: ["public_profile","email"], from: view) { (fbResult, fbError) in
             // check for error
             if let fbError = fbError {
-                completion(["type": "alert", "alertTitle": "Facebook Error", "alertMessage": fbError.localizedDescription])
+                completion(.failure(AlertError(title: "Facebook Error", message: fbError.localizedDescription)))
                 return
             }
             // check for cancle
@@ -65,11 +70,11 @@ class LoginViewModel {
             let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
             Auth.auth().signIn(with: credential) { (result, error) in
                 if let error = error {
-                    completion(["type": "alert", "alertTitle": "Facebook Error", "alertMessage": error.localizedDescription])
+                    completion(.failure(AlertError(title: "Facebook Error", message: error.localizedDescription)))
                     return
                 }
                 // success
-                completion(["storyboardName": "Tabs", "viewControllerId": "tabs"])
+                completion(.success(ScreenInfo(storyboardName: "Tabs", storyboardId: "tabs")))
             }
         }
     }

@@ -8,5 +8,4 @@
 import Foundation
 protocol MainViewModelDelegate {
     func upadeteProgressBar(progress: Float)
-    func goToNextScreen(storyboardName: String, storyboardId: String)
 }

@@ -21,39 +21,35 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController{
+    // login with username and password
     @IBAction func signIn(_ sender: UIButton) {
         viewModel.loginWithUsername(usernameField: usernameField.text, passwordField: passwordField.text) {[weak self] (result) in
-            self?.processResult(result: result)
+            self?.processResult(result: result, transition: .crossDissolve)
         }
     }
     
     // login with facebook
     @IBAction func loginWithFacebook(_ sender: UIButton) {
         viewModel.loginWithFacebook(view: self) { [weak self] (result) in
-            self?.processResult(result: result)
+            self?.processResult(result: result, transition: .crossDissolve)
         }
     }
 
-    // registattion button
+    // go to registation screen
     @IBAction func goToRegister(_ sender: UIButton) {
-        let router = LoginRouter(root: self)
-        router.transition = .flipHorizontal
-        router.goToNextScreen(storyboardName: "Authentication", storyboardId: "register")
+        let screen = ScreenInfo(storyboardName: "Authentication", storyboardId: "register")
+        self.processResult(result: .success(screen), transition: .flipHorizontal)
     }
     
-    func processResult(result: [String:String]) {
+    // process result
+    func processResult(result: Result<ScreenInfo, AlertError>, transition: UIModalTransitionStyle) {
         let router = LoginRouter(root: self)
-        if result["type"] == "alert" {
-            guard let title = result["alertTitle"], let message = result["alertMessage"] else {
-                return
-            }
-            self.showAlert(alertMessage: message , title: title)
-        }
-        else {
-            guard let storyboardName = result["storyboardName"], let viewControllerId = result["viewControllerId"] else {
-                return
-            }
-            router.goToNextScreen(storyboardName: storyboardName, storyboardId: viewControllerId)
+        router.transition = transition
+        switch result {
+        case .success(let screen):
+            router.goToNextScreen(storyboardName: screen.storyboardName, storyboardId: screen.storyboardId)
+        case .failure(let alert):
+            self.showAlert(title: alert.title, alertMessage: alert.message)
         }
     }
 }

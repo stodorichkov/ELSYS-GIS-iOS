@@ -14,7 +14,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let viewModel = MainViewModel(delegate: self)
-        viewModel.makeLoad()
+        let router = MainRouter(root: self)
+        viewModel.makeLoad() { result in
+            router.goToNextScreen(storyboardName: result.storyboardName, storyboardId: result.storyboardId)
+        }
     }
 }
 

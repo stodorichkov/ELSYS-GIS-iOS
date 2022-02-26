@@ -18,15 +18,12 @@ class UserViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.setUserLabel() { (result) in
-            if result["type"] == "alert" {
-                guard let title = result["alertTitle"], let message = result["alertMessage"] else {
-                    return
-                }
-                self.showAlert(alertMessage: message , title: title)
-            }
-            else {
-                self.userLabel.text = result["userLable"]
+        viewModel.setUserLabel() { [weak self] (result) in
+            switch result {
+            case .success(let userLable):
+                self?.userLabel.text = userLable
+            case .failure(let alert):
+                self?.showAlert(title: alert.title, alertMessage: alert.message)
             }
         }
     }
@@ -36,17 +33,11 @@ extension UserViewController {
     @IBAction func signOut(_ sender: UIButton) {
         let router = UserRouter(root: self)
         viewModel.signOut() { [weak self] (result) in
-            if result["type"] == "alert" {
-                guard let title = result["alertTitle"], let message = result["alertMessage"] else {
-                    return
-                }
-                self?.showAlert(alertMessage: message , title: title)
-            }
-            else {
-                guard let storyboardName = result["storyboardName"], let viewControllerId = result["viewControllerId"] else {
-                    return
-                }
-                router.goToNextScreen(storyboardName: storyboardName, storyboardId: viewControllerId)
+            switch result {
+            case .success(let screen):
+                router.goToNextScreen(storyboardName: screen.storyboardName, storyboardId: screen.storyboardId)
+            case .failure(let alert):
+                self?.showAlert(title: alert.title, alertMessage: alert.message)
             }
         }
     }

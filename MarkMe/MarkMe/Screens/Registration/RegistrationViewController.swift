@@ -24,18 +24,12 @@ class RegistrationViewController: UIViewController {
 extension RegistrationViewController {
     @IBAction func signUp(_ sender: UIButton) {
         let router = RegistrationRouter(root: self)
-        viewModel.RegisterUser(usernameField: usernameField.text, emailField: emailField.text, passwordField: passwordField.text, confirmPassField: confirmPassField.text) { (result) in
-            if result["type"] == "alert" {
-                guard let title = result["alertTitle"], let message = result["alertMessage"] else {
-                    return
-                }
-                self.showAlert(alertMessage: message , title: title)
-            }
-            else {
-                guard let storyboardName = result["storyboardName"], let viewControllerId = result["viewControllerId"] else {
-                    return
-                }
-                router.goToNextScreen(storyboardName: storyboardName, storyboardId: viewControllerId)
+        viewModel.RegisterUser(usernameField: usernameField.text, emailField: emailField.text, passwordField: passwordField.text, confirmPassField: confirmPassField.text) { [weak self] (result) in
+            switch result {
+            case .success(let screen):
+                router.goToNextScreen(storyboardName: screen.storyboardName, storyboardId: screen.storyboardId)
+            case .failure(let alert):
+                self?.showAlert(title: alert.title, alertMessage: alert.message)
             }
         }
     }
