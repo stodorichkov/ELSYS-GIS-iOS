@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string></string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -36,8 +38,8 @@
 	<string>d2088dd624ea82fa5cbe8d58b2610d4e</string>
 	<key>FacebookDisplayName</key>
 	<string>Mark Me</string>
-    <key>FacebookAutoLogAppEventsEnabled</key>
-    <false/>
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
