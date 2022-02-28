@@ -9,7 +9,6 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 import FacebookLogin
-import UIKit
 
 class LoginViewModel {
     func loginWithUsername(usernameField: String?, passwordField: String?, completion: @escaping (Result<ScreenInfo, AlertError>) -> ()) {

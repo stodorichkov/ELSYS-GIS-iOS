@@ -18,10 +18,6 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="cQd-XE-UtB">
                                 <rect key="frame" x="15" y="100" width="290" height="178"/>
                             </imageView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gVf-GQ-cI1">
-                                <rect key="frame" x="35" y="353" width="250" height="4"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by Stelian Todorichkov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ai-2P-L53">
                                 <rect key="frame" x="74" y="497" width="172" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -33,19 +29,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="7Ai-2P-L53" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="7Qc-34-bQb"/>
-                            <constraint firstItem="gVf-GQ-cI1" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.46875" constant="100" id="CTr-pc-4Wx"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7Ai-2P-L53" secondAttribute="bottom" constant="50" id="KZt-fx-drh"/>
-                            <constraint firstItem="gVf-GQ-cI1" firstAttribute="top" secondItem="cQd-XE-UtB" secondAttribute="bottom" constant="75" id="TSa-tq-5gq"/>
                             <constraint firstItem="cQd-XE-UtB" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" constant="50" id="Vgt-UW-Blp"/>
                             <constraint firstItem="cQd-XE-UtB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="WrV-Io-Tzb"/>
-                            <constraint firstItem="gVf-GQ-cI1" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="arO-KW-SPu"/>
                             <constraint firstItem="cQd-XE-UtB" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.225352" constant="50" id="fTP-fu-kv4"/>
                             <constraint firstItem="cQd-XE-UtB" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="zey-Ky-RIC"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="progressBar" destination="gVf-GQ-cI1" id="EFP-GJ-laL"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -53,6 +43,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="512" height="512"/>
+        <image name="logo" width="1024" height="1024"/>
     </resources>
 </document>
