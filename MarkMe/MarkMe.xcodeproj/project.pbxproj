@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D907A08527CD272800064EC3 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D907A08427CD272800064EC3 /* TextView.swift */; };
 		D9243A04279DA56500A5A228 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9243A03279DA56500A5A228 /* Extensions.swift */; };
 		D92EEA6B27C2CA8600DCB38C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EEA6A27C2CA8600DCB38C /* MainViewModel.swift */; };
 		D92EEA6D27C2CB0E00DCB38C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EEA6C27C2CB0E00DCB38C /* Router.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D907A08427CD272800064EC3 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		D9243A03279DA56500A5A228 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D92EEA6A27C2CA8600DCB38C /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		D92EEA6C27C2CB0E00DCB38C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				D9931F0027BC3B7500AE6710 /* SubmitButton.swift */,
 				D9931F0227BC3CEB00AE6710 /* TextField.swift */,
 				D9931F0427BD4D7200AE6710 /* CircleButton.swift */,
+				D907A08427CD272800064EC3 /* TextView.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				D92EEA6D27C2CB0E00DCB38C /* Router.swift in Sources */,
 				D94CB1BC2795E5A00045B391 /* HomeViewController.swift in Sources */,
 				D9A0FDAE2781E447009062C1 /* AppDelegate.swift in Sources */,
+				D907A08527CD272800064EC3 /* TextView.swift in Sources */,
 				D9A693D127CA310400A2131D /* ScreenInfo.swift in Sources */,
 				D98BFFA02782118D00ACFA59 /* RegistrationViewController.swift in Sources */,
 				D9A693CF27C827E700A2131D /* UserRouter.swift in Sources */,

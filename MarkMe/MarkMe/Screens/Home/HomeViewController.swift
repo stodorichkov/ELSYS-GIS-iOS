@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var map: MKMapView!
     let locationMenager = CLLocationManager()
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewWillAppear(true)
         checkLocationServices()
     }
     

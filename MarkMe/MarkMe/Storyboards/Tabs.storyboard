@@ -184,6 +184,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" systemColor="opaqueSeparatorColor"/>
                         <color key="selectedImageTintColor" systemColor="systemGreenColor"/>
+                        <tabBarAppearance key="scrollEdgeAppearance"/>
                     </tabBar>
                     <connections>
                         <segue destination="S0i-et-AQs" kind="relationship" relationship="viewControllers" id="kO9-CY-Bh1"/>
