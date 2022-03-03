@@ -50,34 +50,34 @@
                                 <rect key="frame" x="0.0" y="96" width="414" height="800"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UFX-KE-oek">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1400"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1250"/>
                                         <subviews>
                                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="bPe-CJ-bFU">
-                                                <rect key="frame" x="20" y="0.0" width="374" height="45"/>
+                                                <rect key="frame" x="20" y="0.0" width="374" height="62.5"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </searchBar>
                                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="KVa-DX-MAF">
-                                                <rect key="frame" x="20" y="45" width="374" height="627"/>
+                                                <rect key="frame" x="20" y="62.5" width="374" height="627.5"/>
                                             </mapView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="C4F-Ee-oRR">
-                                                <rect key="frame" x="20" y="722" width="374" height="578"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="C4F-Ee-oRR">
+                                                <rect key="frame" x="20" y="740" width="374" height="473.5"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cGB-VI-bqm" customClass="TextField" customModule="MarkMe" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="45"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="44.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LOI-ZW-b15">
-                                                        <rect key="frame" x="0.0" y="95" width="374" height="198.5"/>
+                                                        <rect key="frame" x="0.0" y="84.5" width="374" height="134.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzv-vd-IIn">
-                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="44.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="45"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="c29-B7-Rx5" customClass="TextView" customModule="MarkMe" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="44.5" width="374" height="154"/>
+                                                                <rect key="frame" x="0.0" y="45" width="374" height="89.5"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <color key="textColor" systemColor="labelColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -90,12 +90,12 @@
                                                         </constraints>
                                                     </stackView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zvv-Yg-hBB" customClass="TextField" customModule="MarkMe" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="343.5" width="374" height="45"/>
+                                                        <rect key="frame" x="0.0" y="259" width="374" height="45"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jfK-DQ-lxG" customClass="RoundedButton" customModule="MarkMe" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="438.5" width="374" height="44.5"/>
+                                                        <rect key="frame" x="0.0" y="344" width="374" height="44.5"/>
                                                         <color key="backgroundColor" red="0.047058823530000002" green="0.52941176469999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
@@ -104,7 +104,7 @@
                                                         </buttonConfiguration>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3v-NM-8AK" customClass="SubmitButton" customModule="MarkMe" customModuleProvider="target">
-                                                        <rect key="frame" x="75" y="533" width="224" height="45"/>
+                                                        <rect key="frame" x="75" y="428.5" width="224" height="45"/>
                                                         <color key="backgroundColor" systemColor="systemRedColor"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
@@ -131,13 +131,12 @@
                                             <constraint firstItem="bPe-CJ-bFU" firstAttribute="leading" secondItem="UFX-KE-oek" secondAttribute="leading" constant="20" id="QKd-zc-T86"/>
                                             <constraint firstItem="KVa-DX-MAF" firstAttribute="top" secondItem="bPe-CJ-bFU" secondAttribute="bottom" id="ViW-Kd-b9t"/>
                                             <constraint firstItem="bPe-CJ-bFU" firstAttribute="top" secondItem="UFX-KE-oek" secondAttribute="top" id="Wzp-kC-S9k"/>
-                                            <constraint firstItem="C4F-Ee-oRR" firstAttribute="top" secondItem="KVa-DX-MAF" secondAttribute="bottom" constant="50" id="XCJ-wE-3Cl"/>
                                             <constraint firstAttribute="trailing" secondItem="C4F-Ee-oRR" secondAttribute="trailing" constant="20" id="diS-6B-HV2"/>
-                                            <constraint firstAttribute="height" constant="1400" id="f7U-S4-Xe0"/>
+                                            <constraint firstAttribute="height" constant="1250" id="f7U-S4-Xe0"/>
                                             <constraint firstAttribute="trailing" secondItem="bPe-CJ-bFU" secondAttribute="trailing" constant="20" id="g2g-Yt-ejJ"/>
-                                            <constraint firstAttribute="bottom" secondItem="C4F-Ee-oRR" secondAttribute="bottom" constant="100" id="iQJ-4A-HDY"/>
                                             <constraint firstItem="C4F-Ee-oRR" firstAttribute="leading" secondItem="UFX-KE-oek" secondAttribute="leading" constant="20" id="jpi-yS-Bir"/>
                                             <constraint firstAttribute="trailing" secondItem="KVa-DX-MAF" secondAttribute="trailing" constant="20" id="mKR-6l-lwE"/>
+                                            <constraint firstItem="C4F-Ee-oRR" firstAttribute="top" secondItem="KVa-DX-MAF" secondAttribute="bottom" constant="50" id="pSZ-0H-26F"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -162,7 +161,8 @@
                             <constraint firstItem="KVa-DX-MAF" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.7" id="ImJ-8d-rdQ"/>
                             <constraint firstItem="Wo9-kC-2gf" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Jg8-0s-cJi"/>
                             <constraint firstItem="UFX-KE-oek" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" id="PMB-C0-Q0z"/>
-                            <constraint firstItem="bPe-CJ-bFU" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.05" id="QC2-2w-exm"/>
+                            <constraint firstItem="bPe-CJ-bFU" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.07" id="QC2-2w-exm"/>
+                            <constraint firstItem="c29-B7-Rx5" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.1" id="RYa-Ap-ZZh"/>
                             <constraint firstItem="ws9-Zz-Vgq" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Zel-cu-yXy"/>
                             <constraint firstItem="cGB-VI-bqm" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.05" id="bcW-hV-TPb"/>
                             <constraint firstItem="n3v-NM-8AK" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.05" id="ibX-QC-tM6"/>
@@ -172,6 +172,7 @@
                     </view>
                     <connections>
                         <outlet property="map" destination="KVa-DX-MAF" id="rAa-Pm-svo"/>
+                        <outlet property="typeTextField" destination="Zvv-Yg-hBB" id="EZ4-sX-RFL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
