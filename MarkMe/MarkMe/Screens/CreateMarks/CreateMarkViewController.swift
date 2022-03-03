@@ -11,9 +11,10 @@ import CoreLocation
 
 class CreateMarkViewController: UIViewController {
 
-    @IBOutlet weak var map: MKMapView!
+    @IBOutlet private var searchBar: UISearchBar!
+    @IBOutlet private var map: MKMapView!
     
-    @IBOutlet weak var typeTextField: TextField!
+    @IBOutlet private var typeTextField: TextField!
     
     let viewModel = CreateMarkViewModel()
     var markTypes = [MarkType]()
@@ -23,10 +24,7 @@ class CreateMarkViewController: UIViewController {
         super.viewDidLoad()
         centerOnUserLocation()
         getMarkTypes()
-        pickerView.delegate = self
-        pickerView.dataSource = self
-        typeTextField.inputView = pickerView
-        
+        setupPicker()
     }
 }
 
@@ -38,13 +36,46 @@ extension CreateMarkViewController: CLLocationManagerDelegate {
         locationMenager.desiredAccuracy = kCLLocationAccuracyBest
         map.showsUserLocation = true
         if let location = locationMenager.location?.coordinate {
-           let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 1000, longitudinalMeters: 1000)
+           let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 200, longitudinalMeters: 200)
             map.setRegion(region, animated: true)
         }
     }
+    
+    @IBAction func newPin(_ sender: UILongPressGestureRecognizer) {
+        let location = sender.location(in: map)
+        let cord = map.convert(location, toCoordinateFrom: map)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = cord
+        
+        viewModel.getAdress(coordinates: cord) { [weak self] (address) in
+            self?.searchBar.text = address
+        }
+        
+        map.removeAnnotations(map.annotations)
+        map.addAnnotation(annotation)
+    }
 }
 
+// mark types picker
 extension CreateMarkViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func setupPicker() {
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        typeTextField.inputView = pickerView
+    }
+    
+    func getMarkTypes() {
+        viewModel.getMarkTypes() { [weak self] (result) in
+            switch result {
+            case .success(let markTypes):
+                self?.markTypes = markTypes
+            case .failure(let alert):
+                self?.showAlert(title: alert.title, alertMessage: alert.message)
+            }
+        }
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -60,22 +91,6 @@ extension CreateMarkViewController: UIPickerViewDelegate, UIPickerViewDataSource
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         typeTextField.text = markTypes[row].type
         typeTextField.resignFirstResponder()
-    }
-    
-    
-}
-
-// mark types
-extension CreateMarkViewController {
-    func getMarkTypes() {
-        viewModel.getMarkTypes() { [weak self] (result) in
-            switch result {
-            case .success(let markTypes):
-                self?.markTypes = markTypes
-            case .failure(let alert):
-                self?.showAlert(title: alert.title, alertMessage: alert.message)
-            }
-        }
     }
 }
 

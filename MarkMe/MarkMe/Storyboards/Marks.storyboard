@@ -52,12 +52,16 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UFX-KE-oek">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1250"/>
                                         <subviews>
-                                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="bPe-CJ-bFU">
+                                            <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="bPe-CJ-bFU">
                                                 <rect key="frame" x="20" y="0.0" width="374" height="62.5"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </searchBar>
                                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="KVa-DX-MAF">
                                                 <rect key="frame" x="20" y="62.5" width="374" height="627.5"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="Jwq-Ux-eHe" appends="YES" id="hKb-HH-Nup"/>
+                                                </connections>
                                             </mapView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="C4F-Ee-oRR">
                                                 <rect key="frame" x="20" y="740" width="374" height="473.5"/>
@@ -172,10 +176,16 @@
                     </view>
                     <connections>
                         <outlet property="map" destination="KVa-DX-MAF" id="rAa-Pm-svo"/>
+                        <outlet property="searchBar" destination="bPe-CJ-bFU" id="bts-js-cGN"/>
                         <outlet property="typeTextField" destination="Zvv-Yg-hBB" id="EZ4-sX-RFL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Jwq-Ux-eHe">
+                    <connections>
+                        <action selector="newPin:" destination="Y6W-OH-hqX" id="kdz-Di-ItA"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="117.39130434782609" y="101.78571428571428"/>
         </scene>
