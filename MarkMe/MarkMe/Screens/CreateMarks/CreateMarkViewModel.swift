@@ -52,7 +52,6 @@ class CreateMarkViewModel {
                 return
             }
             completion(.success(location))
-            
         }
     }
 }

@@ -136,7 +136,7 @@
                                 <rect key="frame" x="0.0" y="-15" width="414" height="828"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1aH-Kb-Iq5" customClass="CircleButton" customModule="MarkMe" customModuleProvider="target">
-                                <rect key="frame" x="344" y="528" width="60" height="60"/>
+                                <rect key="frame" x="344" y="369" width="60" height="60"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="FaQ-3f-KfJ"/>
@@ -154,7 +154,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UaM-iY-e1G" customClass="CircleButton" customModule="MarkMe" customModuleProvider="target">
-                                <rect key="frame" x="344" y="608" width="60" height="60"/>
+                                <rect key="frame" x="344" y="449" width="60" height="60"/>
                                 <color key="backgroundColor" systemColor="linkColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="X8s-Mg-TOr"/>
@@ -175,7 +175,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="l0L-3y-Xgn" firstAttribute="leading" secondItem="h4n-PB-bw6" secondAttribute="leading" id="8Ct-m9-0yB"/>
-                            <constraint firstItem="h4n-PB-bw6" firstAttribute="bottom" secondItem="1aH-Kb-Iq5" secondAttribute="bottom" constant="225" id="Hy3-Q4-QPr"/>
+                            <constraint firstItem="1aH-Kb-Iq5" firstAttribute="centerY" secondItem="l0L-3y-Xgn" secondAttribute="centerY" id="NSC-ks-t1y"/>
                             <constraint firstItem="h4n-PB-bw6" firstAttribute="trailing" secondItem="1aH-Kb-Iq5" secondAttribute="trailing" constant="10" id="O8i-VA-gxK"/>
                             <constraint firstItem="h4n-PB-bw6" firstAttribute="bottom" secondItem="l0L-3y-Xgn" secondAttribute="bottom" id="PBj-MP-Vdk"/>
                             <constraint firstItem="h4n-PB-bw6" firstAttribute="trailing" secondItem="UaM-iY-e1G" secondAttribute="trailing" constant="10" id="QzH-wD-A7f"/>

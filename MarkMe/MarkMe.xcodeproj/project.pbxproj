@@ -22,6 +22,7 @@
 		D95A64E427C42D0F00188101 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D95A64E327C42D0F00188101 /* GoogleService-Info.plist */; };
 		D95A64E827C42DA100188101 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D95A64E727C42DA000188101 /* Assets.xcassets */; };
 		D95EB3DC27D4C9E800C68BC8 /* CustomSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EB3DB27D4C9E800C68BC8 /* CustomSearch.swift */; };
+		D95EB3DE27D4E69F00C68BC8 /* Mark.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EB3DD27D4E69F00C68BC8 /* Mark.swift */; };
 		D9770A2E27B589DD00455DC0 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = D9770A2D27B589DD00455DC0 /* FacebookCore */; };
 		D98BFF932781E6D600ACFA59 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D98BFF922781E6D600ACFA59 /* Authentication.storyboard */; };
 		D98BFF9E2782117100ACFA59 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98BFF9D2782117100ACFA59 /* LoginViewController.swift */; };
@@ -72,6 +73,7 @@
 		D95A64E327C42D0F00188101 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "MarkMe/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D95A64E727C42DA000188101 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D95EB3DB27D4C9E800C68BC8 /* CustomSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearch.swift; sourceTree = "<group>"; };
+		D95EB3DD27D4E69F00C68BC8 /* Mark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mark.swift; sourceTree = "<group>"; };
 		D98BFF922781E6D600ACFA59 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		D98BFF9D2782117100ACFA59 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D98BFF9F2782118D00ACFA59 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				D9A693D227CA32EC00A2131D /* AlertError.swift */,
 				D9A693D427CA3DB800A2131D /* User.swift */,
 				D907A08827CD697700064EC3 /* MarkType.swift */,
+				D95EB3DD27D4E69F00C68BC8 /* Mark.swift */,
 				D9AC456E27C51E4D00F0720E /* Networking */,
 			);
 			path = Model;
@@ -411,6 +414,7 @@
 				D9931EFF27BC3B2A00AE6710 /* RoundedButton.swift in Sources */,
 				D98BFF9E2782117100ACFA59 /* LoginViewController.swift in Sources */,
 				D9931F0527BD4D7200AE6710 /* CircleButton.swift in Sources */,
+				D95EB3DE27D4E69F00C68BC8 /* Mark.swift in Sources */,
 				D9A693C927C824F500A2131D /* CreateMarkRouter.swift in Sources */,
 				D9931F0127BC3B7500AE6710 /* SubmitButton.swift in Sources */,
 				D94CB1C02795E5F30045B391 /* UserViewController.swift in Sources */,

@@ -8,6 +8,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import SwiftUI
 
 class CreateMarkViewController: UIViewController {
 
@@ -21,6 +22,7 @@ class CreateMarkViewController: UIViewController {
     let viewModel = CreateMarkViewModel()
     var markTypes = [MarkType]()
     var pickerView = UIPickerView()
+    var image: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +30,6 @@ class CreateMarkViewController: UIViewController {
         centerOnUserLocation()
         setupPicker()
     }
-    
 }
 
 // map
@@ -77,6 +78,7 @@ extension CreateMarkViewController: CLLocationManagerDelegate {
             case .failure(let alert):
                 self?.showAlert(title: alert.title, alertMessage: alert.message)
                 self?.findAdressTextField.text = ""
+                self?.centerOnUserLocation()
             }
         }
     }
@@ -117,6 +119,29 @@ extension CreateMarkViewController: UIPickerViewDelegate, UIPickerViewDataSource
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         typeTextField.text = markTypes[row].type
         typeTextField.resignFirstResponder()
+    }
+}
+
+// image picker
+extension CreateMarkViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    @IBAction func didPickImage(_ sender: UIButton) {
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let editImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage else {
+            return
+        }
+        self.image = editImage
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
 }
 
