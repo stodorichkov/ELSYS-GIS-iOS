@@ -13,16 +13,20 @@ import SwiftUI
 class CreateMarkViewController: UIViewController {
 
     @IBOutlet private var map: MKMapView!
-    
     @IBOutlet weak var findAdressTextField: UITextField!
+    
+    @IBOutlet weak var titleTextField: TextField!
     @IBOutlet private var typeTextField: TextField!
+    @IBOutlet weak var descriptionField: TextView!
+    var image: UIImage?
+    var geoLocation = CLLocationCoordinate2D()
+    
     
     let locationMenager = CLLocationManager()
-    
     let viewModel = CreateMarkViewModel()
     var markTypes = [MarkType]()
     var pickerView = UIPickerView()
-    var image: UIImage?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +46,7 @@ extension CreateMarkViewController: CLLocationManagerDelegate {
     func centerOnUserLocation() {
         map.showsUserLocation = true
         if let location = locationMenager.location?.coordinate {
+            geoLocation = location
             centerOnLocation(location: location)
         }
     }
@@ -58,6 +63,7 @@ extension CreateMarkViewController: CLLocationManagerDelegate {
     @IBAction func newPin(_ sender: UILongPressGestureRecognizer) {
         let location = sender.location(in: map)
         let cord = map.convert(location, toCoordinateFrom: map)
+        self.geoLocation = cord
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = cord
@@ -71,6 +77,7 @@ extension CreateMarkViewController: CLLocationManagerDelegate {
         viewModel.findAddress(address: findAdressTextField.text) { [weak self] (result) in
             switch result {
             case .success(let location):
+                self?.geoLocation = location
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = location
                 self?.map.addAnnotation(annotation)
@@ -133,7 +140,7 @@ extension CreateMarkViewController: UIImagePickerControllerDelegate, UINavigatio
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let editImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage else {
+        guard let editImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
             return
         }
         self.image = editImage
@@ -152,7 +159,15 @@ extension CreateMarkViewController {
     }
     
     @IBAction func createNewMark(_ sender: UIButton) {
-        goBack()
+        //goBack()
+        viewModel.createMark(title: titleTextField.text, description: descriptionField.text, type: typeTextField.text, location: geoLocation, image: image) { [weak self] (result) in
+                switch result {
+                case .success(()):
+                    self?.goBack()
+                case .failure(let alert):
+                    self?.showAlert(title: alert.title, alertMessage: alert.message)
+            }
+        }
     }
     
     func goBack() {

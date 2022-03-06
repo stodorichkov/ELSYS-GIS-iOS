@@ -213,8 +213,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="descriptionField" destination="c29-B7-Rx5" id="Av7-zv-AuJ"/>
                         <outlet property="findAdressTextField" destination="WWj-4n-C4Q" id="T36-IC-54V"/>
                         <outlet property="map" destination="KVa-DX-MAF" id="rAa-Pm-svo"/>
+                        <outlet property="titleTextField" destination="cGB-VI-bqm" id="E2v-ir-vbw"/>
                         <outlet property="typeTextField" destination="Zvv-Yg-hBB" id="EZ4-sX-RFL"/>
                     </connections>
                 </viewController>

@@ -23,6 +23,7 @@
 		D95A64E827C42DA100188101 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D95A64E727C42DA000188101 /* Assets.xcassets */; };
 		D95EB3DC27D4C9E800C68BC8 /* CustomSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EB3DB27D4C9E800C68BC8 /* CustomSearch.swift */; };
 		D95EB3DE27D4E69F00C68BC8 /* Mark.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EB3DD27D4E69F00C68BC8 /* Mark.swift */; };
+		D95EB3E027D4EBAE00C68BC8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D95EB3DF27D4EBAE00C68BC8 /* FirebaseStorage */; };
 		D9770A2E27B589DD00455DC0 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = D9770A2D27B589DD00455DC0 /* FacebookCore */; };
 		D98BFF932781E6D600ACFA59 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D98BFF922781E6D600ACFA59 /* Authentication.storyboard */; };
 		D98BFF9E2782117100ACFA59 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98BFF9D2782117100ACFA59 /* LoginViewController.swift */; };
@@ -115,6 +116,7 @@
 				D907A08B27CD6C7F00064EC3 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				D9AF5EEC27A20213001DB5D8 /* FirebaseAnalytics in Frameworks */,
 				D9AF5EF027A20213001DB5D8 /* FirebaseFirestore in Frameworks */,
+				D95EB3E027D4EBAE00C68BC8 /* FirebaseStorage in Frameworks */,
 				D9F96EF1279D8C99005CD268 /* GoogleSignIn in Frameworks */,
 				D9AF5EF227A20279001DB5D8 /* FirebaseAuth in Frameworks */,
 			);
@@ -325,6 +327,7 @@
 				D9D905E027A714D800DE1007 /* FacebookLogin */,
 				D9770A2D27B589DD00455DC0 /* FacebookCore */,
 				D907A08A27CD6C7F00064EC3 /* FirebaseFirestoreSwift-Beta */,
+				D95EB3DF27D4EBAE00C68BC8 /* FirebaseStorage */,
 			);
 			productName = MarkMe;
 			productReference = D9A0FDAA2781E447009062C1 /* MarkMe.app */;
@@ -675,6 +678,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D9AF5EEA27A20213001DB5D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreSwift-Beta";
+		};
+		D95EB3DF27D4EBAE00C68BC8 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9AF5EEA27A20213001DB5D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 		D9770A2D27B589DD00455DC0 /* FacebookCore */ = {
 			isa = XCSwiftPackageProductDependency;
