@@ -36,46 +36,22 @@ class CreateMarkViewModel {
         }
     }
     
-    func getAdress(coordinates: CLLocationCoordinate2D, completion: @escaping (String) -> ()) {
-        let clLocation = CLLocation.init(latitude: coordinates.latitude, longitude: coordinates.longitude)
-        var address = ""
-        geoCodder.reverseGeocodeLocation(clLocation, completionHandler: { (placemark, error) in
-            if let error = error {
-                print(error)
-                completion(address)
-                return
-            }
-            guard let placemark = placemark?[0] else {
-                return
-            }
-            if let thoroughfare = placemark.thoroughfare {
-                address += thoroughfare + ", "
-            }
-            if let subThoroughfare = placemark.subThoroughfare {
-                address += subThoroughfare + ", "
-            }
-            if let city = placemark.locality {
-                address += city + ", "
-            }
-            if let country = placemark.country {
-                address += country
-            }
-            completion(address)
-        })
-    }
-    
-    func findAddress(address: String) {
+    func findAddress(address: String?, completion: @escaping (Result<CLLocationCoordinate2D, AlertError>)->()) {
+        guard let address = address, !address.isEmpty else {
+            completion(.failure(AlertError(title: "Validation Error", message: "Search field is epmty")))
+            return
+        }
+
         geoCodder.geocodeAddressString(address) { (placemark, error) in
             if let error = error {
                 print(error)
-                //completion(address)
+                completion(.failure(AlertError(title: "Adress error", message: "Adress not found")))
                 return
             }
-            guard let placemark = placemark?[0] else {
+            guard let placemark = placemark?[0], let location = placemark.location?.coordinate else {
                 return
             }
-            
-            print(placemark.location?.coordinate)
+            completion(.success(location))
             
         }
     }

@@ -17,7 +17,10 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(true)
         checkLocationServices()
     }
-    
+}
+
+//map
+extension HomeViewController {
     func setupLocationMenager() {
         locationMenager.delegate = self
         locationMenager.desiredAccuracy = kCLLocationAccuracyBest
@@ -63,14 +66,19 @@ class HomeViewController: UIViewController {
             break
         }
     }
-    
 }
 
+// buttons
 extension HomeViewController {
     @IBAction func goToCreateMark(_ sender: UIButton) {
         let router = HomeRouter(root: self)
         router.goToNextScreen(storyboardName: "Marks", storyboardId: "createMark")
     }
+    
+    @IBAction func didCenter(_ sender: UIButton) {
+        centerOnUserLocation()
+    }
+    
 }
 
 extension HomeViewController: CLLocationManagerDelegate {

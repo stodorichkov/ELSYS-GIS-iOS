@@ -5,7 +5,6 @@
 //  Created by Stelian Todorichkov on 28.02.22.
 //
 
-import Foundation
 import UIKit
 
 class TextView: UITextView {
@@ -19,3 +18,5 @@ class TextView: UITextView {
         backgroundColor = UIColor.white
     }
 }
+
+

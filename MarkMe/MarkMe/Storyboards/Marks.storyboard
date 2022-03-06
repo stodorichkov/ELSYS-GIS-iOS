@@ -52,27 +52,46 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UFX-KE-oek">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1250"/>
                                         <subviews>
-                                            <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="bPe-CJ-bFU">
-                                                <rect key="frame" x="20" y="0.0" width="374" height="62.5"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </searchBar>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPV-IA-Mfo" customClass="CustomSearch" customModule="MarkMe" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="0.0" width="374" height="37.5"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Find adress" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WWj-4n-C4Q">
+                                                        <rect key="frame" x="0.0" y="0.0" width="336.5" height="37.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqc-Ba-p85">
+                                                        <rect key="frame" x="336.5" y="0.0" width="37.5" height="37.5"/>
+                                                        <color key="backgroundColor" red="0.047058823530000002" green="0.52941176469999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="findAdrees:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="cBv-i0-ye6"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="WWj-4n-C4Q" firstAttribute="width" secondItem="gPV-IA-Mfo" secondAttribute="width" multiplier="0.9" id="lIg-jx-MOT"/>
+                                                </constraints>
+                                            </stackView>
                                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="KVa-DX-MAF">
-                                                <rect key="frame" x="20" y="62.5" width="374" height="627.5"/>
+                                                <rect key="frame" x="20" y="39.5" width="374" height="627"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="Jwq-Ux-eHe" appends="YES" id="hKb-HH-Nup"/>
                                                 </connections>
                                             </mapView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="C4F-Ee-oRR">
-                                                <rect key="frame" x="20" y="740" width="374" height="473.5"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="C4F-Ee-oRR">
+                                                <rect key="frame" x="20" y="716.5" width="374" height="454"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cGB-VI-bqm" customClass="TextField" customModule="MarkMe" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="44.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="45"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LOI-ZW-b15">
-                                                        <rect key="frame" x="0.0" y="84.5" width="374" height="134.5"/>
+                                                        <rect key="frame" x="0.0" y="80" width="374" height="134.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzv-vd-IIn">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="45"/>
@@ -94,12 +113,12 @@
                                                         </constraints>
                                                     </stackView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zvv-Yg-hBB" customClass="TextField" customModule="MarkMe" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="259" width="374" height="45"/>
+                                                        <rect key="frame" x="0.0" y="249.5" width="374" height="44.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jfK-DQ-lxG" customClass="RoundedButton" customModule="MarkMe" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="344" width="374" height="44.5"/>
+                                                        <rect key="frame" x="0.0" y="329" width="374" height="45"/>
                                                         <color key="backgroundColor" red="0.047058823530000002" green="0.52941176469999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
@@ -108,7 +127,7 @@
                                                         </buttonConfiguration>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3v-NM-8AK" customClass="SubmitButton" customModule="MarkMe" customModuleProvider="target">
-                                                        <rect key="frame" x="75" y="428.5" width="224" height="45"/>
+                                                        <rect key="frame" x="75" y="409" width="224" height="45"/>
                                                         <color key="backgroundColor" systemColor="systemRedColor"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
@@ -128,19 +147,36 @@
                                                     <constraint firstItem="n3v-NM-8AK" firstAttribute="width" secondItem="C4F-Ee-oRR" secondAttribute="width" multiplier="0.6" id="wDq-Ie-190"/>
                                                 </constraints>
                                             </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCP-9i-tiG" customClass="CircleButton" customModule="MarkMe" customModuleProvider="target">
+                                                <rect key="frame" x="329" y="440" width="60" height="60"/>
+                                                <color key="backgroundColor" systemColor="linkColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="aeB-dR-FeE"/>
+                                                    <constraint firstAttribute="width" constant="60" id="kHb-hq-LCC"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="location.fill" catalog="system"/>
+                                                <connections>
+                                                    <action selector="pressToCenter:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="VwV-6q-tMV"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="gPV-IA-Mfo" firstAttribute="centerX" secondItem="UFX-KE-oek" secondAttribute="centerX" id="0S5-Md-XGf"/>
+                                            <constraint firstItem="OCP-9i-tiG" firstAttribute="top" secondItem="gPV-IA-Mfo" secondAttribute="bottom" constant="402.5" id="3l8-Pj-jzV"/>
+                                            <constraint firstItem="WWj-4n-C4Q" firstAttribute="height" secondItem="UFX-KE-oek" secondAttribute="height" multiplier="0.03" id="4J5-vP-4Ue"/>
                                             <constraint firstItem="KVa-DX-MAF" firstAttribute="leading" secondItem="UFX-KE-oek" secondAttribute="leading" constant="20" id="CN0-vz-RdU"/>
-                                            <constraint firstItem="bPe-CJ-bFU" firstAttribute="leading" secondItem="UFX-KE-oek" secondAttribute="leading" constant="20" id="QKd-zc-T86"/>
-                                            <constraint firstItem="KVa-DX-MAF" firstAttribute="top" secondItem="bPe-CJ-bFU" secondAttribute="bottom" id="ViW-Kd-b9t"/>
-                                            <constraint firstItem="bPe-CJ-bFU" firstAttribute="top" secondItem="UFX-KE-oek" secondAttribute="top" id="Wzp-kC-S9k"/>
+                                            <constraint firstItem="gPV-IA-Mfo" firstAttribute="width" secondItem="KVa-DX-MAF" secondAttribute="width" id="GOj-qk-fyC"/>
+                                            <constraint firstItem="KVa-DX-MAF" firstAttribute="top" secondItem="gPV-IA-Mfo" secondAttribute="bottom" constant="2" id="LSs-2m-Tqt"/>
                                             <constraint firstAttribute="trailing" secondItem="C4F-Ee-oRR" secondAttribute="trailing" constant="20" id="diS-6B-HV2"/>
                                             <constraint firstAttribute="height" constant="1250" id="f7U-S4-Xe0"/>
-                                            <constraint firstAttribute="trailing" secondItem="bPe-CJ-bFU" secondAttribute="trailing" constant="20" id="g2g-Yt-ejJ"/>
                                             <constraint firstItem="C4F-Ee-oRR" firstAttribute="leading" secondItem="UFX-KE-oek" secondAttribute="leading" constant="20" id="jpi-yS-Bir"/>
+                                            <constraint firstItem="gPV-IA-Mfo" firstAttribute="top" secondItem="UFX-KE-oek" secondAttribute="top" id="kuV-M0-go0"/>
                                             <constraint firstAttribute="trailing" secondItem="KVa-DX-MAF" secondAttribute="trailing" constant="20" id="mKR-6l-lwE"/>
                                             <constraint firstItem="C4F-Ee-oRR" firstAttribute="top" secondItem="KVa-DX-MAF" secondAttribute="bottom" constant="50" id="pSZ-0H-26F"/>
+                                            <constraint firstAttribute="trailing" secondItem="OCP-9i-tiG" secondAttribute="trailing" constant="25" id="y5B-Sq-UPF"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -165,7 +201,6 @@
                             <constraint firstItem="KVa-DX-MAF" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.7" id="ImJ-8d-rdQ"/>
                             <constraint firstItem="Wo9-kC-2gf" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Jg8-0s-cJi"/>
                             <constraint firstItem="UFX-KE-oek" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" id="PMB-C0-Q0z"/>
-                            <constraint firstItem="bPe-CJ-bFU" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.07" id="QC2-2w-exm"/>
                             <constraint firstItem="c29-B7-Rx5" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.1" id="RYa-Ap-ZZh"/>
                             <constraint firstItem="ws9-Zz-Vgq" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Zel-cu-yXy"/>
                             <constraint firstItem="cGB-VI-bqm" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.05" id="bcW-hV-TPb"/>
@@ -175,8 +210,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="findAdressTextField" destination="WWj-4n-C4Q" id="T36-IC-54V"/>
                         <outlet property="map" destination="KVa-DX-MAF" id="rAa-Pm-svo"/>
-                        <outlet property="searchBar" destination="bPe-CJ-bFU" id="bts-js-cGN"/>
                         <outlet property="typeTextField" destination="Zvv-Yg-hBB" id="EZ4-sX-RFL"/>
                     </connections>
                 </viewController>
@@ -235,9 +270,14 @@
     </scenes>
     <resources>
         <image name="camera.fill" catalog="system" width="128" height="94"/>
+        <image name="location.fill" catalog="system" width="128" height="121"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

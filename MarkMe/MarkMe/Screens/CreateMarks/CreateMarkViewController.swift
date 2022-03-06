@@ -11,10 +11,12 @@ import CoreLocation
 
 class CreateMarkViewController: UIViewController {
 
-    @IBOutlet private var searchBar: UISearchBar!
     @IBOutlet private var map: MKMapView!
     
+    @IBOutlet weak var findAdressTextField: UITextField!
     @IBOutlet private var typeTextField: TextField!
+    
+    let locationMenager = CLLocationManager()
     
     let viewModel = CreateMarkViewModel()
     var markTypes = [MarkType]()
@@ -22,23 +24,34 @@ class CreateMarkViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupLocationMenager()
         centerOnUserLocation()
-        getMarkTypes()
         setupPicker()
     }
+    
 }
 
 // map
 extension CreateMarkViewController: CLLocationManagerDelegate {
-    func centerOnUserLocation() {
-        let locationMenager = CLLocationManager()
+    func setupLocationMenager() {
         locationMenager.delegate = self
         locationMenager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    func centerOnUserLocation() {
         map.showsUserLocation = true
         if let location = locationMenager.location?.coordinate {
-           let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 200, longitudinalMeters: 200)
-            map.setRegion(region, animated: true)
+            centerOnLocation(location: location)
         }
+    }
+    
+    func centerOnLocation(location: CLLocationCoordinate2D) {
+        let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 200, longitudinalMeters: 200)
+        map.setRegion(region, animated: true)
+    }
+    
+    @IBAction func pressToCenter(_ sender: UIButton) {
+        centerOnUserLocation()
     }
     
     @IBAction func newPin(_ sender: UILongPressGestureRecognizer) {
@@ -48,18 +61,31 @@ extension CreateMarkViewController: CLLocationManagerDelegate {
         let annotation = MKPointAnnotation()
         annotation.coordinate = cord
         
-        viewModel.getAdress(coordinates: cord) { [weak self] (address) in
-            self?.searchBar.text = address
-        }
-        
         map.removeAnnotations(map.annotations)
         map.addAnnotation(annotation)
+    }
+    
+    @IBAction func findAdrees(_ sender: UIButton) {
+        map.removeAnnotations(map.annotations)
+        viewModel.findAddress(address: findAdressTextField.text) { [weak self] (result) in
+            switch result {
+            case .success(let location):
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = location
+                self?.map.addAnnotation(annotation)
+                self?.centerOnLocation(location: location)
+            case .failure(let alert):
+                self?.showAlert(title: alert.title, alertMessage: alert.message)
+                self?.findAdressTextField.text = ""
+            }
+        }
     }
 }
 
 // mark types picker
 extension CreateMarkViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func setupPicker() {
+        getMarkTypes()
         pickerView.delegate = self
         pickerView.dataSource = self
         typeTextField.inputView = pickerView
