@@ -19,9 +19,9 @@ class CreateMarkViewModel {
     let geoCodder = CLGeocoder()
     
     func getMarkTypes(completion: @escaping (Result<[MarkType], AlertError>) -> ()) {
-        db.collection("MarkType").getDocuments() { (querySnapshot, err) in
+        db.collection("MarkType").addSnapshotListener { (querySnapshot, err) in
             guard err == nil, querySnapshot?.documents.isEmpty == false, let documents = querySnapshot?.documents else {
-                completion(.failure(AlertError(title: "Database Error", message: "User is not found!")))
+                completion(.failure(AlertError(title: "Database Error", message: "Mark types are not found!")))
                 return
             }
             var markTypes = [MarkType]()

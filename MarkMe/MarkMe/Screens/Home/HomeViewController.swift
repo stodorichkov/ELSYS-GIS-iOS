@@ -13,9 +13,12 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var map: MKMapView!
     let locationMenager = CLLocationManager()
+    let viewModel = HomeViewModel()
+    
     override func viewDidLoad() {
         super.viewWillAppear(true)
         checkLocationServices()
+        showMarks()
     }
 }
 
@@ -66,6 +69,25 @@ extension HomeViewController {
             break
         }
     }
+    
+    func showMarks() {
+        viewModel.getAllMarks() { [weak self] (result) in
+            switch result {
+            case .success(let marks):
+                guard let annotations = self?.map.annotations else {
+                    return
+                }
+                self?.map.removeAnnotations(annotations)
+                for mark in marks {
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = CLLocationCoordinate2D(latitude: mark.geolocation.latitude, longitude: mark.geolocation.longitude)
+                    self?.map.addAnnotation(annotation)
+                }
+            case .failure(let alert):
+                self?.showAlert(title: alert.title, alertMessage: alert.message)
+            }
+        }
+    }
 }
 
 // buttons
@@ -94,5 +116,4 @@ extension HomeViewController: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkLocationAuthorization()
     }
-    
 }
