@@ -80,6 +80,7 @@ extension HomeViewController {
                 self?.map.removeAnnotations(annotations)
                 for mark in marks {
                     let annotation = MKPointAnnotation()
+                    annotation.title = mark.title
                     annotation.coordinate = CLLocationCoordinate2D(latitude: mark.geolocation.latitude, longitude: mark.geolocation.longitude)
                     self?.map.addAnnotation(annotation)
                 }

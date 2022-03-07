@@ -25,16 +25,8 @@ class CreateMarkViewModel {
                 return
             }
             var markTypes = [MarkType]()
-            for document in documents {
-                do {
-                    guard let markType = try document.data(as: MarkType.self) else{
-                        return
-                    }
-                    markTypes.append(markType)
-                }
-                catch {
-                    print(error)
-                }
+            markTypes = documents.compactMap { (document) -> MarkType? in
+                return try? document.data(as: MarkType.self)
             }
             completion(.success(markTypes))
         }
@@ -59,6 +51,21 @@ class CreateMarkViewModel {
         }
     }
     
+    func getCreator(uid: String, completion: @escaping (String) -> ()) {
+        if Auth.auth().currentUser!.providerData[0].providerType == .email {
+            db.collection("User").whereField("uid", isEqualTo: uid).getDocuments() { (querySnapshot, err) in
+                guard err == nil, let documents = querySnapshot?.documents else {
+                    return
+                }
+                completion(documents[0].data()["username"] as! String)
+            }
+        }
+        else {
+            completion(Auth.auth().currentUser!.displayName!)
+        }
+        
+    }
+    
     func validateData(title: String?,description: String?, type: String?, location: CLLocationCoordinate2D) -> Result<Mark, AlertError> {
         // check form is completed
         guard  let title = title,
@@ -70,17 +77,24 @@ class CreateMarkViewModel {
         else {
             return .failure(AlertError(title: "Validation Error", message: "The form must be completed!"))
         }
+        
+        // set creator
         return .success(Mark(title: title, description: description, geolocation: GeoPoint(latitude: location.latitude, longitude: location.longitude), type: type, creator: Auth.auth().currentUser!.uid))
     }
     
-    func addMark(mark: Mark) -> Result<Void, AlertError> {
-        do {
-            let _ = try db.collection("Mark").addDocument(from: mark)
+    func addMark(mark: Mark, completion: @escaping (Result<Void, AlertError>) -> ()) {
+        getCreator(uid: mark.creator) { [weak self] (creator) in
+            var newMark = mark
+            newMark.creator = creator
+            do {
+                let _ = try self?.db.collection("Mark").addDocument(from: newMark)
+            }
+            catch {
+                completion(.failure(AlertError(title: "Database Erroe", message: error.localizedDescription)))
+            }
+            completion(.success(()))
         }
-        catch {
-            return .failure(AlertError(title: "Database Erroe", message: error.localizedDescription))
-        }
-        return .success(())
+        
     }
     
     
@@ -95,6 +109,8 @@ class CreateMarkViewModel {
             completion(.failure(alert))
             return
         }
+        
+        
         
         // check mark type is valid
         db.collection("MarkType").whereField("type", isEqualTo: newMark.type).getDocuments() { [weak self] (querySnapshot, err) in
@@ -125,28 +141,26 @@ class CreateMarkViewModel {
                         }
                         newMark.imgPath = urlString
                         // try to save mark in db
-                        let dbResult = self?.addMark(mark: newMark)
-                        switch dbResult {
-                        case .success(()):
-                            completion(.success(()))
-                        case .failure(let alert):
-                            completion(.failure(alert))
-                        case .none:
-                            break
+                        self?.addMark(mark: newMark) { (result) in
+                            switch result {
+                            case .success(()):
+                                completion(.success(()))
+                            case .failure(let alert):
+                                completion(.failure(alert))
+                            }
                         }
                     }
                 }
             }
             else {
                 // try to save mark in db
-                let dbResult = self?.addMark(mark: newMark)
-                switch dbResult {
-                case .success(()):
-                    completion(.success(()))
-                case .failure(let alert):
-                    completion(.failure(alert))
-                case .none:
-                    break
+                self?.addMark(mark: newMark) { (result) in
+                    switch result {
+                    case .success(()):
+                        completion(.success(()))
+                    case .failure(let alert):
+                        completion(.failure(alert))
+                    }
                 }
             }
         }

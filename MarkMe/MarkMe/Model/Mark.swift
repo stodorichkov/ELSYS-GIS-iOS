@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestoreSwift
 import FirebaseFirestore
 
-struct Mark: Codable {
+struct Mark: Codable, Identifiable {
     @DocumentID var id: String? = UUID().uuidString
     var title: String
     var description: String
