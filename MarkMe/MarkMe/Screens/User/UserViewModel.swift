@@ -11,7 +11,7 @@ import FacebookLogin
 import FirebaseFirestore
 
 class UserViewModel {
-    func signOut(completion: (Result<ScreenInfo, AlertError>) -> ()) {
+    func signOut(completion: (Result<Void, AlertError>) -> ()) {
         do {
             guard let provider = Auth.auth().currentUser?.providerData[0].providerType else{
                 return
@@ -24,7 +24,7 @@ class UserViewModel {
             }
             
             try Auth.auth().signOut()
-            completion(.success(ScreenInfo(storyboardName: "Authentication", storyboardId: "login")))
+            completion(.success(()))
         }
         catch let error {
             completion(.failure(AlertError(title: ErrorTitle.logout.rawValue, message: error.localizedDescription)))

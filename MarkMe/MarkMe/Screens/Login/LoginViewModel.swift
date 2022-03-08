@@ -11,7 +11,17 @@ import FirebaseFirestore
 import FacebookLogin
 
 class LoginViewModel {
-    func loginWithUsername(usernameField: String?, passwordField: String?, completion: @escaping (Result<ScreenInfo, AlertError>) -> ()) {
+    
+    func validateData(usernameField: String?, passwordField: String?) -> Result<User, AlertError> {
+        if let username = usernameField, let password = passwordField, !username.isEmpty, !password.isEmpty {
+            return .success(User(username: username, password: password))
+        }
+        else {
+            return .failure(AlertError(title: ErrorTitle.validation.rawValue, message: "The form must be completed!"))
+        }
+    }
+    
+    func loginWithUsername(usernameField: String?, passwordField: String?, completion: @escaping (Result<Void, AlertError>) -> ()) {
         // validate form
         let vaidationResult = validateData(usernameField: usernameField, passwordField: passwordField)
         var username, password: String
@@ -40,21 +50,12 @@ class LoginViewModel {
                     completion(.failure(AlertError(title: ErrorTitle.login.rawValue, message: error.localizedDescription)))
                     return
                 }
-                completion(.success(ScreenInfo(storyboardName: "Tabs", storyboardId: "tabs")))
+                completion(.success(()))
             }
         }
     }
     
-    func validateData(usernameField: String?, passwordField: String?) -> Result<User, AlertError> {
-        if let username = usernameField, let password = passwordField, !username.isEmpty, !password.isEmpty {
-            return .success(User(username: username, password: password))
-        }
-        else {
-            return .failure(AlertError(title: ErrorTitle.validation.rawValue, message: "The form must be completed!"))
-        }
-    }
-    
-    func loginWithFacebook(view: UIViewController, completion: @escaping (Result<ScreenInfo, AlertError>) -> ()) {
+    func loginWithFacebook(view: UIViewController, completion: @escaping (Result<Void, AlertError>) -> ()) {
         LoginManager().logIn(permissions: ["public_profile","email"], from: view) { (fbResult, fbError) in
             // check for error
             if let fbError = fbError {
@@ -73,7 +74,7 @@ class LoginViewModel {
                     return
                 }
                 // success
-                completion(.success(ScreenInfo(storyboardName: "Tabs", storyboardId: "tabs")))
+                completion(.success(()))
             }
         }
     }

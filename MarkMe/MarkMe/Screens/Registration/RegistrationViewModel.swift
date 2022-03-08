@@ -12,8 +12,34 @@ import FirebaseFirestore
 class RegistrationViewModel {
     let db = Firestore.firestore()
     
-    func RegisterUser(usernameField: String?, emailField: String? ,passwordField: String?, confirmPassField: String?,
-                      completion: @escaping (Result<ScreenInfo, AlertError>) -> ()) {
+    func validateData(usernameField: String?, emailField: String? ,passwordField: String?, confirmPassField: String?) -> Result<User, AlertError> {
+        guard let username = usernameField,
+            let email = emailField,
+            let password = passwordField,
+            let confirmPass = confirmPassField,
+            !username.isEmpty,
+            !email.isEmpty,
+            !password.isEmpty,
+            !confirmPass.isEmpty
+        else {
+            return .failure(AlertError(title: ErrorTitle.validation.rawValue, message: "The form must be completed!"))
+        }
+        
+        let emailPattern = #"^\S+@\S+\.\S+$"#
+        guard (email.range(of: emailPattern, options: .regularExpression) != nil) else {
+            return .failure(AlertError(title: ErrorTitle.validation.rawValue, message: "Email is not valid"))
+        }
+        if password.count < 8 {
+            return .failure(AlertError(title: ErrorTitle.validation.rawValue, message: "Password must be 8 or more charecters!"))
+        }
+        if password != confirmPass {
+            return .failure(AlertError(title: ErrorTitle.validation.rawValue, message: "Password not confirmed"))
+        }
+        return .success(User(username: username, email: email, password: password))
+    }
+    
+    func registerUser(usernameField: String?, emailField: String? ,passwordField: String?, confirmPassField: String?,
+                      completion: @escaping (Result<Void, AlertError>) -> ()) {
         // validate data
         let vaidationResult = validateData(usernameField: usernameField, emailField: emailField, passwordField: passwordField, confirmPassField: confirmPassField)
         var username, email, password: String
@@ -53,35 +79,8 @@ class RegistrationViewModel {
                     }
                 }
                 // go to Home screen
-                completion(.success(ScreenInfo(storyboardName: "Tabs", storyboardId: "tabs")))
+                completion(.success(()))
             }
         }
     }
-    
-    func validateData(usernameField: String?, emailField: String? ,passwordField: String?, confirmPassField: String?) -> Result<User, AlertError> {
-        guard let username = usernameField,
-            let email = emailField,
-            let password = passwordField,
-            let confirmPass = confirmPassField,
-            !username.isEmpty,
-            !email.isEmpty,
-            !password.isEmpty,
-            !confirmPass.isEmpty
-        else {
-            return .failure(AlertError(title: ErrorTitle.validation.rawValue, message: "The form must be completed!"))
-        }
-        
-        let emailPattern = #"^\S+@\S+\.\S+$"#
-        guard (email.range(of: emailPattern, options: .regularExpression) != nil) else {
-            return .failure(AlertError(title: ErrorTitle.validation.rawValue, message: "Email is not valid"))
-        }
-        if password.count < 8 {
-            return .failure(AlertError(title: ErrorTitle.validation.rawValue, message: "Password must be 8 or more charecters!"))
-        }
-        if password != confirmPass {
-            return .failure(AlertError(title: ErrorTitle.validation.rawValue, message: "Password not confirmed"))
-        }
-        return .success(User(username: username, email: email, password: password))
-    }
-    
 }

@@ -10,17 +10,24 @@ import UIKit
 
 class LoginRouter: Router {
     var root: UIViewController
-    var transition: UIModalTransitionStyle
     
     required init(root: UIViewController) {
         self.root = root
-        transition = .crossDissolve
     }
     
-    func goToNextScreen(storyboardName: String, storyboardId: String) {
-        let target = findViewController(storyboardName: storyboardName, storyboardId: storyboardId)
+    func goTo(target: UIViewController, transition: UIModalTransitionStyle) {
         target.modalPresentationStyle = .fullScreen
         target.modalTransitionStyle = transition
         root.present(target, animated: true)
+    }
+    
+    func goToRegistration() {
+        let target = findViewController(storyboardName: "Authentication", storyboardId: "register")
+        goTo(target: target, transition: .flipHorizontal)
+    }
+    
+    func goToTabs() {
+        let target = findViewController(storyboardName: "Tabs", storyboardId: "tabs")
+        goTo(target: target, transition: .crossDissolve)
     }
 }

@@ -11,8 +11,10 @@ import CoreLocation
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet weak var map: MKMapView!
+    @IBOutlet private var map: MKMapView!
     let locationMenager = CLLocationManager()
+    let regionMeters: Double = 1000
+    
     override func viewDidLoad() {
         super.viewWillAppear(true)
         checkLocationServices()
@@ -28,9 +30,16 @@ extension HomeViewController {
     
     func centerOnUserLocation() {
         if let location = locationMenager.location?.coordinate {
-           let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 1000, longitudinalMeters: 1000)
+           let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionMeters, longitudinalMeters: regionMeters )
             map.setRegion(region, animated: true)
         }
+    }
+    
+    func showSettingsAlert(alert: UIAlertController) {
+        alert.addAction(UIAlertAction(title: "Go to settings", style: .default) { (action) in
+            UIApplication.shared.open(URL.init(string: UIApplication.openSettingsURLString)!)
+        })
+        present(alert, animated: true)
     }
     
     func checkLocationServices() {
@@ -40,10 +49,7 @@ extension HomeViewController {
         }
         else {
             let alert = UIAlertController(title: "", message: "Turn on Location Services to Allow 'MarkMe' to Determine Your Location", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Go to settings", style: .default) { (action) in
-                UIApplication.shared.open(URL.init(string: UIApplication.openSettingsURLString)!)
-            })
-            present(alert, animated: true)
+            showSettingsAlert(alert: alert)
         }
     }
     
@@ -58,10 +64,7 @@ extension HomeViewController {
             locationMenager.startUpdatingLocation()
         case .denied:
             let alert = UIAlertController(title: "Access to location denied", message: "Allow acces to the location services!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Go to settings", style: .default) { (action) in
-                UIApplication.shared.open(URL.init(string: UIApplication.openSettingsURLString)!)
-            })
-            present(alert, animated: true)
+            showSettingsAlert(alert: alert)
         default:
             break
         }
@@ -72,8 +75,7 @@ extension HomeViewController {
 extension HomeViewController {
     @IBAction func goToCreateMark(_ sender: UIButton) {
         let router = HomeRouter(root: self)
-        router.goToNextScreen(storyboardName: "Marks", storyboardId: "createMark")
-    }
+        router.goToCreateMark()    }
     
     @IBAction func didCenter(_ sender: UIButton) {
         centerOnUserLocation()
@@ -87,12 +89,11 @@ extension HomeViewController: CLLocationManagerDelegate {
             return
         }
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionMeters , longitudinalMeters: regionMeters )
         map.setRegion(region, animated: true)
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkLocationAuthorization()
     }
-    
 }
