@@ -27,7 +27,7 @@ class UserViewModel {
             completion(.success(ScreenInfo(storyboardName: "Authentication", storyboardId: "login")))
         }
         catch let error {
-            completion(.failure(AlertError(title: "Logout Error", message: error.localizedDescription)))
+            completion(.failure(AlertError(title: ErrorTitle.logout.rawValue, message: error.localizedDescription)))
         }
     }
     
@@ -42,7 +42,7 @@ class UserViewModel {
             }
             db.collection("User").whereField("email", isEqualTo: email).getDocuments() { (querySnapshot, err) in
                 guard err == nil, querySnapshot?.documents.isEmpty == false else {
-                    completion(.failure(AlertError(title: "Database Error", message: "User is not found!")))
+                    completion(.failure(AlertError(title: ErrorTitle.db.rawValue, message: "User is not found!")))
                     return
                 }
                 guard let userLable = querySnapshot?.documents[0].data()["username"] as? String else {

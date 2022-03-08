@@ -19,4 +19,8 @@ struct Mark: Codable {
     var creator: String
     var likes: Int = 0
     var solved: Int = 0
+    
+    mutating func setImgPath(imgPath: String) {
+        self.imgPath = imgPath
+    }
 }

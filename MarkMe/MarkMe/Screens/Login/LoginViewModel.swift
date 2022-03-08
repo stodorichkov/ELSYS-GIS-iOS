@@ -28,7 +28,7 @@ class LoginViewModel {
         let db = Firestore.firestore()
         db.collection("User").whereField("username", isEqualTo: username).getDocuments() { (querySnapshot, err) in
             guard err == nil, querySnapshot?.documents.isEmpty == false else {
-                completion(.failure(AlertError(title: "Login Error", message: "User is not found!")))
+                completion(.failure(AlertError(title: ErrorTitle.login.rawValue, message: "User is not found!")))
                 return
             }
             guard let email = querySnapshot?.documents[0].data()["email"] as? String else {
@@ -37,7 +37,7 @@ class LoginViewModel {
             // sign in user
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 if let error = error {
-                    completion(.failure(AlertError(title: "Login Error", message: error.localizedDescription)))
+                    completion(.failure(AlertError(title: ErrorTitle.login.rawValue, message: error.localizedDescription)))
                     return
                 }
                 completion(.success(ScreenInfo(storyboardName: "Tabs", storyboardId: "tabs")))
@@ -50,7 +50,7 @@ class LoginViewModel {
             return .success(User(username: username, password: password))
         }
         else {
-            return .failure(AlertError(title: "Validation Error", message: "The form must be completed!"))
+            return .failure(AlertError(title: ErrorTitle.validation.rawValue, message: "The form must be completed!"))
         }
     }
     
@@ -58,7 +58,7 @@ class LoginViewModel {
         LoginManager().logIn(permissions: ["public_profile","email"], from: view) { (fbResult, fbError) in
             // check for error
             if let fbError = fbError {
-                completion(.failure(AlertError(title: "Facebook Error", message: fbError.localizedDescription)))
+                completion(.failure(AlertError(title: ErrorTitle.facebook.rawValue, message: fbError.localizedDescription)))
                 return
             }
             // check for cancle
@@ -69,7 +69,7 @@ class LoginViewModel {
             let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
             Auth.auth().signIn(with: credential) { (result, error) in
                 if let error = error {
-                    completion(.failure(AlertError(title: "Facebook Error", message: error.localizedDescription)))
+                    completion(.failure(AlertError(title: ErrorTitle.facebook.rawValue, message: error.localizedDescription)))
                     return
                 }
                 // success
