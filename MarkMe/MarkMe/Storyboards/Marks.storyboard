@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Create MarkVC-->
+        <!--Create Mark View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="createMark" id="Y6W-OH-hqX" customClass="CreateMarkVC" customModule="MarkMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createMark" id="Y6W-OH-hqX" customClass="CreateMarkViewController" customModule="MarkMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -45,7 +45,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="hTu-CC-PGs" firstAttribute="centerY" secondItem="vDu-zF-Fre" secondAttribute="centerY" id="GNK-lN-g6B"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="gkf-3X-n5s" secondAttribute="trailing" constant="15" id="Vmw-3O-xia"/>
@@ -58,10 +58,10 @@
             </objects>
             <point key="canvasLocation" x="122" y="104"/>
         </scene>
-        <!--Show MarkVC-->
+        <!--Show Mark View Controller-->
         <scene sceneID="Rv3-3m-Oh4">
             <objects>
-                <viewController storyboardIdentifier="showMark" id="8Nu-yt-tXq" customClass="ShowMarkVC" customModule="MarkMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="showMark" id="8Nu-yt-tXq" customClass="ShowMarkViewController" customModule="MarkMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bJt-Y5-fxW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -88,7 +88,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4SG-m9-w8M"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="tMT-E5-uxR" firstAttribute="top" secondItem="4SG-m9-w8M" secondAttribute="top" constant="15" id="PkQ-xL-rb5"/>
                             <constraint firstItem="4SG-m9-w8M" firstAttribute="trailing" secondItem="tMT-E5-uxR" secondAttribute="trailing" constant="15" id="aTW-iS-q53"/>
@@ -104,9 +104,6 @@
     </scenes>
     <resources>
         <image name="xmark" catalog="system" width="128" height="113"/>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

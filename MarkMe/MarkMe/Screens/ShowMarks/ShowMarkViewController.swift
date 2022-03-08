@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ShowMarkVC: UIViewController {
+class ShowMarkViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
