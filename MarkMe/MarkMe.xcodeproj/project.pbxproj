@@ -45,7 +45,6 @@
 		D9A693C927C824F500A2131D /* CreateMarkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A693C827C824F500A2131D /* CreateMarkRouter.swift */; };
 		D9A693CD27C827B500A2131D /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A693CC27C827B500A2131D /* UserViewModel.swift */; };
 		D9A693CF27C827E700A2131D /* UserRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A693CE27C827E700A2131D /* UserRouter.swift */; };
-		D9A693D127CA310400A2131D /* ScreenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A693D027CA310400A2131D /* ScreenInfo.swift */; };
 		D9A693D327CA32EC00A2131D /* AlertError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A693D227CA32EC00A2131D /* AlertError.swift */; };
 		D9A693D527CA3DB800A2131D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A693D427CA3DB800A2131D /* User.swift */; };
 		D9AC457027C51E8B00F0720E /* AuthProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AC456F27C51E8B00F0720E /* AuthProviderType.swift */; };
@@ -97,7 +96,6 @@
 		D9A693C827C824F500A2131D /* CreateMarkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMarkRouter.swift; sourceTree = "<group>"; };
 		D9A693CC27C827B500A2131D /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		D9A693CE27C827E700A2131D /* UserRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRouter.swift; sourceTree = "<group>"; };
-		D9A693D027CA310400A2131D /* ScreenInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenInfo.swift; sourceTree = "<group>"; };
 		D9A693D227CA32EC00A2131D /* AlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertError.swift; sourceTree = "<group>"; };
 		D9A693D427CA3DB800A2131D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D9AC456F27C51E8B00F0720E /* AuthProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProviderType.swift; sourceTree = "<group>"; };
@@ -285,7 +283,6 @@
 			isa = PBXGroup;
 			children = (
 				D92EEA6C27C2CB0E00DCB38C /* Router.swift */,
-				D9A693D027CA310400A2131D /* ScreenInfo.swift */,
 				D9A693D227CA32EC00A2131D /* AlertError.swift */,
 				D9A693D427CA3DB800A2131D /* User.swift */,
 				D907A08827CD697700064EC3 /* MarkType.swift */,
@@ -406,7 +403,6 @@
 				D94CB1BC2795E5A00045B391 /* HomeViewController.swift in Sources */,
 				D9A0FDAE2781E447009062C1 /* AppDelegate.swift in Sources */,
 				D907A08527CD272800064EC3 /* TextView.swift in Sources */,
-				D9A693D127CA310400A2131D /* ScreenInfo.swift in Sources */,
 				D98BFFA02782118D00ACFA59 /* RegistrationViewController.swift in Sources */,
 				D9A693CF27C827E700A2131D /* UserRouter.swift in Sources */,
 				D95EB3DC27D4C9E800C68BC8 /* CustomSearch.swift in Sources */,

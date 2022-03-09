@@ -9,8 +9,8 @@ import Foundation
 import FirebaseFirestoreSwift
 import FirebaseFirestore
 
-struct Mark: Codable {
-    @DocumentID var id: String? = UUID().uuidString
+struct Mark: Codable, Identifiable  {
+    @DocumentID var id: String?
     var title: String
     var description: String
     var geolocation: GeoPoint
@@ -19,8 +19,4 @@ struct Mark: Codable {
     var creator: String
     var likes: Int = 0
     var solved: Int = 0
-    
-    mutating func setImgPath(imgPath: String) {
-        self.imgPath = imgPath
-    }
 }

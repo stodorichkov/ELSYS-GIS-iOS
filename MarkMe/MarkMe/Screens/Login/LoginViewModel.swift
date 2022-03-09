@@ -42,6 +42,7 @@ class LoginViewModel {
                 return
             }
             guard let email = querySnapshot?.documents[0].data()["email"] as? String else {
+                completion(.failure(AlertError(title: ErrorTitle.login.rawValue, message: "Cant get email")))
                 return
             }
             // sign in user

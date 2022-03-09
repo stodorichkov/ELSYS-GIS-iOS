@@ -5,7 +5,6 @@
 //  Created by Stelian Todorichkov on 20.02.22.
 //
 
-import Foundation
 import UIKit
 
 class MainRouter: Router {
@@ -15,11 +14,19 @@ class MainRouter: Router {
         self.root = root
     }
     
-    func goToNextScreen(storyboardName: String, storyboardId: String) {
-        let target = findViewController(storyboardName: storyboardName, storyboardId: storyboardId)
+    func goTo(target: UIViewController) {
         target.modalPresentationStyle = .fullScreen
         target.modalTransitionStyle = .crossDissolve
         root.present(target, animated: true)
     }
     
+    func goToLogin() {
+        let target = findViewController(storyboardName: "Authentication", storyboardId: "login")
+        goTo(target: target)
+    }
+    
+    func goToTabs() {
+        let target = findViewController(storyboardName: "Tabs", storyboardId: "tabs")
+        goTo(target: target)
+    }
 }

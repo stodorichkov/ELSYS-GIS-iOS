@@ -38,48 +38,78 @@ class RegistrationViewModel {
         return .success(User(username: username, email: email, password: password))
     }
     
+    func checkUserExist(username: String, completion: @escaping (AlertError?) -> ()) {
+        db.collection("User").whereField("username", isEqualTo: username).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                completion(AlertError(title: ErrorTitle.db.rawValue, message: err.localizedDescription))
+            }
+            guard querySnapshot?.documents.isEmpty == true else {
+                completion(AlertError(title: ErrorTitle.registration.rawValue, message: "Username is already used!"))
+                return
+            }
+            completion(nil)
+        }
+    }
+    
+    func authUser(user: User, completion: @escaping (Result<String, AlertError>) -> ()) {
+        Auth.auth().createUser(withEmail: user.email, password: user.password) { (result, err) in
+            // check for errors
+            if let err = err{
+                completion(.failure(AlertError(title: ErrorTitle.registration.rawValue, message: err.localizedDescription)))
+                return
+            }
+            guard let uid = result?.user.uid else {
+                completion(.failure(AlertError(title: ErrorTitle.registration.rawValue, message: "Can't get uid")))
+                return
+            }
+            completion(.success(uid))
+        }
+    }
+    
+    func addUser(user: User) -> AlertError? {
+        do {
+            let _ = try db.collection("User").addDocument(from: user)
+            return nil
+        }
+        catch {
+            return AlertError(title: ErrorTitle.db.rawValue, message: error.localizedDescription)
+        }
+    }
+    
     func registerUser(usernameField: String?, emailField: String? ,passwordField: String?, confirmPassField: String?,
                       completion: @escaping (Result<Void, AlertError>) -> ()) {
         // validate data
         let vaidationResult = validateData(usernameField: usernameField, emailField: emailField, passwordField: passwordField, confirmPassField: confirmPassField)
-        var username, email, password: String
+        var newUser: User
         switch vaidationResult {
         case .success(let user):
-            username = user.username
-            email = user.email
-            password = user.password
-            
+            newUser = user
         case .failure(let alert):
             completion(.failure(alert))
             return
         }
         
         // check user with this username exist
-        db.collection("User").whereField("username", isEqualTo: username).getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            }
-            guard querySnapshot?.documents.isEmpty == true else {
-                completion(.failure(AlertError(title: ErrorTitle.registration.rawValue, message: "Username is already used!")))
+        checkUserExist(username: newUser.username) { [weak self] (alert) in
+            if let alert = alert {
+                completion(.failure(alert))
                 return
             }
-            // try to create user
-            Auth.auth().createUser(withEmail: email, password: password) { [weak self] (result, err) in
-                // check for errors
-                if let err = err {
-                    completion(.failure(AlertError(title: ErrorTitle.registration.rawValue, message: err.localizedDescription)))
-                    return
-                }
-                // try to save user data in DB
-                self?.db.collection("User").document(username).setData(["username": username, "uid": result!.user.uid, "email": email]) { (error) in
-                    // check for errors
-                    if let error = error {
-                        completion(.failure(AlertError(title: ErrorTitle.db.rawValue, message: error.localizedDescription)))
+            // authenticate user
+            self?.authUser(user: newUser) { (result) in
+                switch result {
+                case .success(let uid):
+                    // add user in db
+                    newUser.uid = uid
+                    if let dbResult = self?.addUser(user: newUser) {
+                        completion(.failure(dbResult))
                         return
                     }
+                    completion(.success(()))
+                case .failure(let alert):
+                    completion(.failure(alert))
+                    return
                 }
-                // go to Home screen
-                completion(.success(()))
             }
         }
     }

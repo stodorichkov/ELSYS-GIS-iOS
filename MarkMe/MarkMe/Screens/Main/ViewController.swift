@@ -13,8 +13,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         let router = MainRouter(root: self)
         let viewModel = MainViewModel()
-        viewModel.makeLoad() { result in
-            router.goToNextScreen(storyboardName: result.storyboardName, storyboardId: result.storyboardId)
+        viewModel.makeLoad() { (result) in
+            switch result {
+            case true:
+                router.goToTabs()
+            case false:
+                router.goToLogin()
+            }
         }
     }
 }

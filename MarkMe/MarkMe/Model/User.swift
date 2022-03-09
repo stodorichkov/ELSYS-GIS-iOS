@@ -6,11 +6,19 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-struct User {
-    var username: String
-    var email: String
-    var password: String
+struct User: Codable, Identifiable {
+    @DocumentID var id: String?
+    var uid: String = ""
+    var username: String = ""
+    var email: String = ""
+    var password: String = ""
+    
+    init(username: String, password: String) {
+        self.username = username
+        self.password = password
+    }
     
     init(username: String, email: String, password: String) {
         self.username = username
@@ -18,9 +26,11 @@ struct User {
         self.password = password
     }
     
-    init(username: String, password: String) {
-        self.username = username
-        self.password = password
-        self.email = ""
+    
+    enum CodingKeys: String, CodingKey {
+        case username
+        case uid
+        case email
     }
 }
+

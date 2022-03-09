@@ -18,24 +18,47 @@ class CreateMarkViewModel {
     let storage = Storage.storage().reference()
     let geoCodder = CLGeocoder()
     var markTypes = [MarkType]()
+    var creator = ""
     
     init() {
-        getMarkTypes() { [weak self] (result) in
-            self?.markTypes = result
-        }
+        getMarkTypes()
+        getCreator()
     }
     
-    func getMarkTypes(completion: @escaping ([MarkType]) -> ()) {
-        db.collection("MarkType").addSnapshotListener { (querySnapshot, err) in
+    func getMarkTypes() {
+        db.collection("MarkType").addSnapshotListener { [weak self] (querySnapshot, err) in
             guard err == nil, querySnapshot?.documents.isEmpty == false, let documents = querySnapshot?.documents else {
                 print(err.debugDescription)
                 return
             }
-            var markTypes = [MarkType]()
-            markTypes = documents.compactMap { (document) -> MarkType? in
+            self?.markTypes = documents.compactMap { (document) -> MarkType? in
                 return try? document.data(as: MarkType.self)
             }
-            completion(markTypes)
+        }
+    }
+    
+    func getCreator() {
+        guard let curUser = Auth.auth().currentUser else{
+            return
+        }
+
+        if curUser.providerData[0].providerType == .email {
+            db.collection("User").getDocuments() { [weak self] (querySnapshot, err) in
+                guard err == nil, querySnapshot?.documents.isEmpty == false, let documents = querySnapshot?.documents else {
+                    print(err.debugDescription)
+                    return
+                }
+                let users = documents.compactMap { (document) -> User? in
+                    return try? document.data(as: User.self)
+                }
+                self?.creator = users.filter({ $0.uid == curUser.uid }).map({ $0.username })[0]
+            }
+        }
+        else {
+            guard let name = curUser.displayName else {
+                return
+            }
+            self.creator = name
         }
     }
     
@@ -65,14 +88,15 @@ class CreateMarkViewModel {
         else {
             return nil
         }
-        return Mark(title: title, description: description, geolocation: GeoPoint(latitude: location.latitude, longitude: location.longitude), type: type, creator: Auth.auth().currentUser!.uid)
+        return Mark(title: title, description: description, geolocation: GeoPoint(latitude: location.latitude, longitude: location.longitude), type: type, creator: creator)
     }
     
-    func validateMarkType(type: String) -> AlertError? {
+    func validateMarkType(type: String, completion: (AlertError?) -> ()){
         if markTypes.contains(where: { $0.type == type }) {
-            return nil
+            completion(nil)
+            return
         }
-        return AlertError(title: ErrorTitle.validation.rawValue, message: "Mark type is invalid!")
+        completion(AlertError(title: ErrorTitle.validation.rawValue, message: "Mark type is invalid!"))
     }
     
     func addMark(mark: Mark) -> AlertError? {
@@ -98,6 +122,7 @@ class CreateMarkViewModel {
                     return
                 }
                 guard let urlString = url?.absoluteString else {
+                    completion(.failure(AlertError(title: ErrorTitle.storage.rawValue, message: "Can't get url")))
                     return
                 }
                 completion(.success(urlString))
@@ -115,38 +140,41 @@ class CreateMarkViewModel {
         var newMark = vaidationResult
         
         // check mark type is valid
-        if let markAlert = validateMarkType(type: newMark.type) {
-            completion(.failure(markAlert))
-        }
-        
-        // check for image
-        if let image = image {
-            // set path for image
-            let path = "images/" + newMark.creator + "/" + newMark.title + ".png"
-            
-            // try to sava image in storage
-            saveImageInStorage(path: path, image: image) { [weak self] (result) in
-                switch result {
-                case .success(let urlString):
-                    newMark.imgPath = urlString
-                    // try to save mark in db
-                    if let dbResult = self?.addMark(mark: newMark) {
-                        completion(.failure(dbResult))
-                        return
-                    }
-                    completion(.success(()))
-                case .failure(let alert):
-                    completion(.failure(alert))
-                }
-            }
-        }
-        else {
-            // try to save mark in db
-            if let dbResult = addMark(mark: newMark) {
-                completion(.failure(dbResult))
+        validateMarkType(type: newMark.type) { (markAlert) in
+            if let markAlert = markAlert {
+                completion(.failure(markAlert))
                 return
             }
-            completion(.success(()))
+            
+            // check for image
+            if let image = image {
+                // set path for image
+                let path = "images/" + newMark.creator + "/" + newMark.title + ".png"
+                
+                // try to sava image in storage
+                saveImageInStorage(path: path, image: image) { [weak self] (result) in
+                    switch result {
+                    case .success(let urlString):
+                        newMark.imgPath = urlString
+                        // try to save mark in db
+                        if let dbResult = self?.addMark(mark: newMark) {
+                            completion(.failure(dbResult))
+                            return
+                        }
+                        completion(.success(()))
+                    case .failure(let alert):
+                        completion(.failure(alert))
+                    }
+                }
+            }
+            else {
+                // try to save mark in db
+                if let dbResult = addMark(mark: newMark) {
+                    completion(.failure(dbResult))
+                    return
+                }
+                completion(.success(()))
+            }
         }
     }
 }

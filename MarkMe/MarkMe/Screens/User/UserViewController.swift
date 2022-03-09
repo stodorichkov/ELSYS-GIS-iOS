@@ -12,7 +12,7 @@ import FirebaseFirestore
 
 class UserViewController: UIViewController {
 
-    @IBOutlet weak var userLabel: UILabel!
+    @IBOutlet private var userLabel: UILabel!
     
     let viewModel = UserViewModel()
     var router: UserRouter?

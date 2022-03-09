@@ -10,14 +10,14 @@ import FirebaseAuth
 
 class MainViewModel {
 
-    func makeLoad(completion: @escaping (ScreenInfo) -> ()) {
+    func makeLoad(completion: @escaping (Bool) -> ()) {
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (timer) in
             Auth.auth().addStateDidChangeListener() { (auth, user) in
                 if user != nil {
-                    completion(ScreenInfo(storyboardName: "Tabs", storyboardId: "tabs"))
+                    completion(true)
                 }
                 else {
-                    completion(ScreenInfo(storyboardName: "Authentication", storyboardId: "login"))
+                    completion(false)
                 }
             }
         })
