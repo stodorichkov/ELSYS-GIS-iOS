@@ -7,23 +7,25 @@
 
 import Foundation
 import FirebaseFirestoreSwift
+import FirebaseAuth
 
-struct User: Codable, Identifiable {
-    @DocumentID var id: String?
-    var uid: String = ""
+struct EmailUser: Codable, Identifiable {
+    @DocumentID var id: String? = ""
+    var uid: String
     var username: String = ""
-    var email: String = ""
+    var email: String
     var password: String = ""
     
     init(username: String, password: String) {
         self.username = username
         self.password = password
+        self.email = ""
+        self.uid = ""
     }
     
-    init(username: String, email: String, password: String) {
-        self.username = username
+    init(username: String, password: String, email: String) {
+        self.init(username: username, password: password)
         self.email = email
-        self.password = password
     }
     
     

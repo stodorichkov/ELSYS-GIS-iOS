@@ -14,10 +14,10 @@ class ViewController: UIViewController {
         let router = MainRouter(root: self)
         let viewModel = MainViewModel()
         viewModel.makeLoad() { (result) in
-            switch result {
-            case true:
+            if result {
                 router.goToTabs()
-            case false:
+            }
+            else {
                 router.goToLogin()
             }
         }

@@ -25,7 +25,7 @@ class UserViewController: UIViewController {
             case .success(let userLable):
                 self?.userLabel.text = userLable
             case .failure(let alert):
-                self?.showAlert(title: alert.title, alertMessage: alert.message)
+                self?.showAlert(title: alert.title, alertMessage: alert.errorDescription)
             }
         }
     }
@@ -38,7 +38,7 @@ extension UserViewController {
             case .success(_):
                 self?.router?.goToLogin()
             case .failure(let alert):
-                self?.showAlert(title: alert.title, alertMessage: alert.message)
+                self?.showAlert(title: alert.title, alertMessage: alert.errorDescription)
             }
         }
     }

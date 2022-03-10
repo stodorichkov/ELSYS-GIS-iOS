@@ -14,19 +14,13 @@ class MainRouter: Router {
         self.root = root
     }
     
-    func goTo(target: UIViewController) {
-        target.modalPresentationStyle = .fullScreen
-        target.modalTransitionStyle = .crossDissolve
-        root.present(target, animated: true)
-    }
-    
     func goToLogin() {
         let target = findViewController(storyboardName: "Authentication", storyboardId: "login")
-        goTo(target: target)
+        presentTarget(target: target, transition: .crossDissolve)
     }
     
     func goToTabs() {
         let target = findViewController(storyboardName: "Tabs", storyboardId: "tabs")
-        goTo(target: target)
+        presentTarget(target: target, transition: .crossDissolve)
     }
 }

@@ -30,7 +30,7 @@ extension RegistrationViewController {
             case .success(_):
                 self?.router?.goToTabs()
             case .failure(let alert):
-                self?.showAlert(title: alert.title, alertMessage: alert.message)
+                self?.showAlert(title: alert.title, alertMessage: alert.errorDescription)
             }
         }
     }

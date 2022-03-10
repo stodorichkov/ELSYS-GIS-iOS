@@ -16,8 +16,6 @@ class UserRouter: Router {
     
     func goToLogin() {
         let target = findViewController(storyboardName: "Authentication", storyboardId: "login")
-        target.modalPresentationStyle = .fullScreen
-        target.modalTransitionStyle = .crossDissolve
-        root.present(target, animated: true)
+        presentTarget(target: target, transition: .crossDissolve)
     }
 }

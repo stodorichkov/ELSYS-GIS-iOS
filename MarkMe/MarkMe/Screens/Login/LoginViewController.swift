@@ -48,7 +48,7 @@ extension LoginViewController{
         case .success(_):
             router?.goToTabs()
         case .failure(let alert):
-            self.showAlert(title: alert.title, alertMessage: alert.message)
+            self.showAlert(title: alert.title, alertMessage: alert.errorDescription)
         }
     }
 }

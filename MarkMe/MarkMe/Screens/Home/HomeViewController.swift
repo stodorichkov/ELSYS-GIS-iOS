@@ -12,8 +12,8 @@ import CoreLocation
 class HomeViewController: UIViewController {
 
     @IBOutlet private var map: MKMapView!
-    let locationMenager = CLLocationManager()
-    let regionMeters: Double = 1000
+    private let locationMenager = CLLocationManager()
+    private let regionMeters: Double = 1000
     
     override func viewDidLoad() {
         super.viewWillAppear(true)
@@ -35,7 +35,8 @@ extension HomeViewController {
         }
     }
     
-    func showSettingsAlert(alert: UIAlertController) {
+    func showSettingsAlert(title: String ,message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Go to settings", style: .default) { (action) in
             UIApplication.shared.open(URL.init(string: UIApplication.openSettingsURLString)!)
         })
@@ -48,8 +49,7 @@ extension HomeViewController {
             checkLocationAuthorization()
         }
         else {
-            let alert = UIAlertController(title: "", message: "Turn on Location Services to Allow 'MarkMe' to Determine Your Location", preferredStyle: .alert)
-            showSettingsAlert(alert: alert)
+            showSettingsAlert(title: "",message: "Turn on Location Services to Allow 'MarkMe' to Determine Your Location")
         }
     }
     
@@ -63,8 +63,7 @@ extension HomeViewController {
             centerOnUserLocation()
             locationMenager.startUpdatingLocation()
         case .denied:
-            let alert = UIAlertController(title: "Access to location denied", message: "Allow acces to the location services!", preferredStyle: .alert)
-            showSettingsAlert(alert: alert)
+            showSettingsAlert(title: "Access to location denied", message: "Allow acces to the location services!")
         default:
             break
         }
@@ -75,7 +74,8 @@ extension HomeViewController {
 extension HomeViewController {
     @IBAction func goToCreateMark(_ sender: UIButton) {
         let router = HomeRouter(root: self)
-        router.goToCreateMark()    }
+        router.goToCreateMark()
+    }
     
     @IBAction func didCenter(_ sender: UIButton) {
         centerOnUserLocation()

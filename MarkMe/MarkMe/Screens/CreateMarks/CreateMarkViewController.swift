@@ -81,7 +81,7 @@ extension CreateMarkViewController: CLLocationManagerDelegate {
                 self?.map.addAnnotation(annotation)
                 self?.centerOnLocation(location: location)
             case .failure(let alert):
-                self?.showAlert(title: alert.title, alertMessage: alert.message)
+                self?.showAlert(title: alert.title, alertMessage: alert.errorDescription)
                 self?.findAdressTextField.text = ""
                 self?.centerOnUserLocation()
             }
@@ -151,7 +151,7 @@ extension CreateMarkViewController {
                 case .success(()):
                     self?.goBack()
                 case .failure(let alert):
-                    self?.showAlert(title: alert.title, alertMessage: alert.message)
+                    self?.showAlert(title: alert.title, alertMessage: alert.errorDescription)
             }
         }
     }

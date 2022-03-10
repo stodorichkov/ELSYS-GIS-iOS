@@ -22,11 +22,11 @@ class LoginRouter: Router {
     
     func goToRegistration() {
         let target = findViewController(storyboardName: "Authentication", storyboardId: "register")
-        goTo(target: target, transition: .flipHorizontal)
+        presentTarget(target: target, transition: .flipHorizontal)
     }
     
     func goToTabs() {
         let target = findViewController(storyboardName: "Tabs", storyboardId: "tabs")
-        goTo(target: target, transition: .crossDissolve)
+        presentTarget(target: target, transition: .crossDissolve)
     }
 }

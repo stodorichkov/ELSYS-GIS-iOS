@@ -14,11 +14,11 @@ import FirebaseStorage
 
 
 class CreateMarkViewModel {
-    let db = Firestore.firestore()
-    let storage = Storage.storage().reference()
-    let geoCodder = CLGeocoder()
+    private let db = Firestore.firestore()
+    private let storage = Storage.storage().reference()
+    private let geoCodder = CLGeocoder()
     var markTypes = [MarkType]()
-    var creator = ""
+    private var creator = ""
     
     init() {
         getMarkTypes()
@@ -48,8 +48,8 @@ class CreateMarkViewModel {
                     print(err.debugDescription)
                     return
                 }
-                let users = documents.compactMap { (document) -> User? in
-                    return try? document.data(as: User.self)
+                let users = documents.compactMap { (document) -> EmailUser? in
+                    return try? document.data(as: EmailUser.self)
                 }
                 self?.creator = users.filter({ $0.uid == curUser.uid }).map({ $0.username })[0]
             }
@@ -64,13 +64,13 @@ class CreateMarkViewModel {
     
     func findAddress(address: String?, completion: @escaping (Result<CLLocationCoordinate2D, AlertError>)->()) {
         guard let address = address, !address.isEmpty else {
-            completion(.failure(AlertError(title: ErrorTitle.validation.rawValue, message: "Search field is epmty")))
+            completion(.failure(AlertError.validation("Search field is empty")))
             return
         }
 
         geoCodder.geocodeAddressString(address) { (placemark, error) in
             guard error == nil, let location = placemark?[0].location?.coordinate else {
-                completion(.failure(AlertError(title: ErrorTitle.address.rawValue, message: "Address not found")))
+                completion(.failure(AlertError.address("Address not found")))
                 return
             }
             completion(.success(location))
@@ -96,7 +96,7 @@ class CreateMarkViewModel {
             completion(nil)
             return
         }
-        completion(AlertError(title: ErrorTitle.validation.rawValue, message: "Mark type is invalid!"))
+        completion(AlertError.validation("Mark type is invalid!"))
     }
     
     func addMark(mark: Mark) -> AlertError? {
@@ -105,7 +105,7 @@ class CreateMarkViewModel {
             return nil
         }
         catch {
-            return AlertError(title: ErrorTitle.db.rawValue, message: error.localizedDescription)
+            return AlertError.db(error.localizedDescription)
         }
     }
     
@@ -113,16 +113,16 @@ class CreateMarkViewModel {
         let ref = self.storage.child(path)
         ref.putData(image.pngData()!, metadata: nil) { (metadata, error) in
             if let error = error {
-                completion(.failure(AlertError(title: ErrorTitle.storage.rawValue, message: error.localizedDescription)))
+                completion(.failure(AlertError.storage(error.localizedDescription)))
                 return
             }
             ref.downloadURL() { (url, error) in
                 if let error = error {
-                    completion(.failure(AlertError(title: ErrorTitle.storage.rawValue, message: error.localizedDescription)))
+                    completion(.failure(AlertError.storage(error.localizedDescription)))
                     return
                 }
                 guard let urlString = url?.absoluteString else {
-                    completion(.failure(AlertError(title: ErrorTitle.storage.rawValue, message: "Can't get url")))
+                    completion(.failure(AlertError.storage("Can't get url")))
                     return
                 }
                 completion(.success(urlString))
@@ -134,7 +134,7 @@ class CreateMarkViewModel {
     func createMark(title: String?,description: String?, type: String?, location: CLLocationCoordinate2D, image: UIImage?, completion: @escaping (Result<Void, AlertError>) -> ()) {
         // validate form
         guard let vaidationResult = validateData(title: title, description: description, type: type, location: location) else {
-            completion(.failure(AlertError(title: ErrorTitle.validation.rawValue, message: "The form must be completed!")))
+            completion(.failure(AlertError.validation("The form must be completed!")))
             return
         }
         var newMark = vaidationResult
