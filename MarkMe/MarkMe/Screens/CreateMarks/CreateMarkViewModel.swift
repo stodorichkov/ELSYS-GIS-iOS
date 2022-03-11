@@ -43,22 +43,24 @@ class CreateMarkViewModel {
         }
 
         if curUser.providerData[0].providerType == .email {
-            db.collection("User").getDocuments() { [weak self] (querySnapshot, err) in
-                guard err == nil, querySnapshot?.documents.isEmpty == false, let documents = querySnapshot?.documents else {
+            db.collection("User").document(curUser.uid).getDocument() { (document, err) in
+                guard err == nil,
+                      let document = document,
+                      document.exists,
+                      let data = document.data(),
+                      let creator = data["creator"] as? String
+                else {
                     print(err.debugDescription)
                     return
                 }
-                let users = documents.compactMap { (document) -> EmailUser? in
-                    return try? document.data(as: EmailUser.self)
-                }
-                self?.creator = users.filter({ $0.uid == curUser.uid }).map({ $0.username })[0]
+                self.creator = creator
             }
         }
         else {
-            guard let name = curUser.displayName else {
+            guard let creator = curUser.displayName else {
                 return
             }
-            self.creator = name
+            self.creator = creator
         }
     }
     

@@ -66,9 +66,9 @@ class RegistrationViewModel {
         }
     }
     
-    func addUser(user: EmailUser) -> AlertError? {
+    func addUser(uid: String, user: EmailUser) -> AlertError? {
         do {
-            let _ = try db.collection("User").addDocument(from: user)
+            let _ = try db.collection("User").document(uid).setData(from: user)
             return nil
         }
         catch {
@@ -80,7 +80,7 @@ class RegistrationViewModel {
                       completion: @escaping (Result<Void, AlertError>) -> ()) {
         // validate data
         do {
-            var newUser = try validateData(usernameField: usernameField, emailField: emailField, passwordField: passwordField, confirmPassField: confirmPassField)
+            let newUser = try validateData(usernameField: usernameField, emailField: emailField, passwordField: passwordField, confirmPassField: confirmPassField)
             
             // check user with this username exist
             checkUserExist(username: newUser.username) { [weak self] (alert) in
@@ -93,8 +93,7 @@ class RegistrationViewModel {
                     switch result {
                     case .success(let uid):
                         // add user in db
-                        newUser.uid = uid
-                        if let dbResult = self?.addUser(user: newUser) {
+                        if let dbResult = self?.addUser(uid: uid ,user: newUser) {
                             completion(.failure(dbResult))
                             return
                         }

@@ -10,8 +10,7 @@ import FirebaseFirestoreSwift
 import FirebaseAuth
 
 struct EmailUser: Codable, Identifiable {
-    @DocumentID var id: String? = ""
-    var uid: String
+    @DocumentID var id: String?
     var username: String = ""
     var email: String
     var password: String = ""
@@ -20,7 +19,6 @@ struct EmailUser: Codable, Identifiable {
         self.username = username
         self.password = password
         self.email = ""
-        self.uid = ""
     }
     
     init(username: String, password: String, email: String) {
@@ -31,7 +29,6 @@ struct EmailUser: Codable, Identifiable {
     
     enum CodingKeys: String, CodingKey {
         case username
-        case uid
         case email
     }
 }

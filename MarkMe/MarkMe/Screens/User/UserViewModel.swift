@@ -31,21 +31,20 @@ class UserViewModel {
         }
     }
     
-    func setUserLabel(completion: @escaping (Result<String, AlertError>) -> ()) {
+    func setUserLabel(completion: @escaping (Result<String, AlertError>) -> ()){
         guard let curUser = Auth.auth().currentUser, let provider = curUser.providerData[0].providerType  else {
             return
         }
         if provider == .email{
             let db = Firestore.firestore()
-            guard let email = curUser.email else{
-                return
-            }
-            db.collection("User").whereField("email", isEqualTo: email).getDocuments() { (querySnapshot, err) in
-                guard err == nil, querySnapshot?.documents.isEmpty == false else {
+            db.collection("User").document(curUser.uid).addSnapshotListener() { (document, err) in
+                guard err == nil,
+                      let document = document,
+                      document.exists,
+                      let data = document.data(),
+                      let userLable = data["username"] as? String
+                else {
                     completion(.failure(AlertError.logout("User is not found!")))
-                    return
-                }
-                guard let userLable = querySnapshot?.documents[0].data()["username"] as? String else {
                     return
                 }
                 completion(.success(userLable))
