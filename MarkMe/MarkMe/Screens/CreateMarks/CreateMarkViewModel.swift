@@ -18,11 +18,11 @@ class CreateMarkViewModel {
     private let storage = Storage.storage().reference()
     private let geoCodder = CLGeocoder()
     var markTypes = [MarkType]()
-    private var creator = ""
+    private var creator: DocumentReference!
     
     init() {
+        setCreator()
         getMarkTypes()
-        getCreator()
     }
     
     func getMarkTypes() {
@@ -37,31 +37,11 @@ class CreateMarkViewModel {
         }
     }
     
-    func getCreator() {
+    func setCreator() {
         guard let curUser = Auth.auth().currentUser else{
             return
         }
-
-        if curUser.providerData[0].providerType == .email {
-            db.collection("User").document(curUser.uid).getDocument() { (document, err) in
-                guard err == nil,
-                      let document = document,
-                      document.exists,
-                      let data = document.data(),
-                      let creator = data["creator"] as? String
-                else {
-                    print(err.debugDescription)
-                    return
-                }
-                self.creator = creator
-            }
-        }
-        else {
-            guard let creator = curUser.displayName else {
-                return
-            }
-            self.creator = creator
-        }
+        self.creator = db.collection("User").document(curUser.uid)
     }
     
     func findAddress(address: String?, completion: @escaping (Result<CLLocationCoordinate2D, AlertError>)->()) {
@@ -151,7 +131,7 @@ class CreateMarkViewModel {
             // check for image
             if let image = image {
                 // set path for image
-                let path = "images/" + newMark.creator + "/" + newMark.title + ".png"
+                let path = "images/" + newMark.creator.documentID + "/" + newMark.title + ".png"
                 
                 // try to sava image in storage
                 saveImageInStorage(path: path, image: image) { [weak self] (result) in

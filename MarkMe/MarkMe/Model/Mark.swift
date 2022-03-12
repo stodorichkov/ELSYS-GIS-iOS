@@ -16,7 +16,7 @@ struct Mark: Codable, Identifiable  {
     var geolocation: GeoPoint
     var imgPath: String = ""
     var type: String
-    var creator: String
+    var creator: DocumentReference
     var likes: Int = 0
     var solved: Int = 0
 }

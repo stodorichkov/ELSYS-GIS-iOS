@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestoreSwift
 import FirebaseAuth
 
-struct EmailUser: Codable, Identifiable {
+struct DBUser: Codable, Identifiable {
     @DocumentID var id: String?
     var username: String = ""
     var email: String

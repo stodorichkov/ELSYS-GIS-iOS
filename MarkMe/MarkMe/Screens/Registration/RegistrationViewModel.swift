@@ -12,7 +12,7 @@ import FirebaseFirestore
 class RegistrationViewModel {
     let db = Firestore.firestore()
     
-    func validateData(usernameField: String?, emailField: String? ,passwordField: String?, confirmPassField: String?) throws -> EmailUser {
+    func validateData(usernameField: String?, emailField: String? ,passwordField: String?, confirmPassField: String?) throws -> DBUser {
         guard let username = usernameField,
             let email = emailField,
             let password = passwordField,
@@ -35,7 +35,7 @@ class RegistrationViewModel {
         if password != confirmPass {
             throw AlertError.validation("Password not confirmed")
         }
-        return EmailUser(username: username, password: password, email: email)
+        return DBUser(username: username, password: password, email: email)
     }
     
     func checkUserExist(username: String, completion: @escaping (AlertError?) -> ()) {
@@ -51,7 +51,7 @@ class RegistrationViewModel {
         }
     }
     
-    func authUser(user: EmailUser, completion: @escaping (Result<String, AlertError>) -> ()) {
+    func authUser(user: DBUser, completion: @escaping (Result<String, AlertError>) -> ()) {
         Auth.auth().createUser(withEmail: user.email, password: user.password) { (result, err) in
             // check for errors
             if let err = err{
@@ -66,9 +66,9 @@ class RegistrationViewModel {
         }
     }
     
-    func addUser(uid: String, user: EmailUser) -> AlertError? {
+    func addUser(uid: String, user: DBUser) -> AlertError? {
         do {
-            let _ = try db.collection("User").document(uid).setData(from: user)
+            try db.collection("User").document(uid).setData(from: user)
             return nil
         }
         catch {
