@@ -6,21 +6,30 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
+import FirebaseAuth
 
-struct User {
-    var username: String
+struct DBUser: Codable, Identifiable {
+    @DocumentID var id: String?
+    var username: String = ""
     var email: String
-    var password: String
-    
-    init(username: String, email: String, password: String) {
-        self.username = username
-        self.email = email
-        self.password = password
-    }
+    var password: String = ""
     
     init(username: String, password: String) {
         self.username = username
         self.password = password
         self.email = ""
     }
+    
+    init(username: String, password: String, email: String) {
+        self.init(username: username, password: password)
+        self.email = email
+    }
+    
+    
+    enum CodingKeys: String, CodingKey {
+        case username
+        case email
+    }
 }
+

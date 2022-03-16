@@ -8,28 +8,25 @@
 import UIKit
 import MapKit
 import CoreLocation
-import SwiftUI
 
 class CreateMarkViewController: UIViewController {
 
     @IBOutlet private var map: MKMapView!
-    @IBOutlet weak var findAdressTextField: UITextField!
+    @IBOutlet private var findAdressTextField: UITextField!
     
-    @IBOutlet weak var titleTextField: TextField!
+    @IBOutlet private var titleTextField: TextField!
     @IBOutlet private var typeTextField: TextField!
-    @IBOutlet weak var descriptionField: TextView!
-    var image: UIImage?
-    var geoLocation = CLLocationCoordinate2D()
-    
-    let locationMenager = CLLocationManager()
-    let viewModel = CreateMarkViewModel()
-    var markTypes = [MarkType]()
-    var pickerView = UIPickerView()
+    @IBOutlet private var descriptionField: TextView!
+    private var image: UIImage?
+    private var geoLocation = CLLocationCoordinate2D()
+    private let locationManager = CLLocationManager()
+    private let viewModel = CreateMarkViewModel()
+    private var pickerView = UIPickerView()
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLocationMenager()
+        setupLocationManager()
         centerOnUserLocation()
         setupPicker()
     }
@@ -37,14 +34,14 @@ class CreateMarkViewController: UIViewController {
 
 // map
 extension CreateMarkViewController: CLLocationManagerDelegate {
-    func setupLocationMenager() {
-        locationMenager.delegate = self
-        locationMenager.desiredAccuracy = kCLLocationAccuracyBest
+    func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
     func centerOnUserLocation() {
         map.showsUserLocation = true
-        if let location = locationMenager.location?.coordinate {
+        if let location = locationManager.location?.coordinate {
             geoLocation = location
             centerOnLocation(location: location)
         }
@@ -82,7 +79,7 @@ extension CreateMarkViewController: CLLocationManagerDelegate {
                 self?.map.addAnnotation(annotation)
                 self?.centerOnLocation(location: location)
             case .failure(let alert):
-                self?.showAlert(title: alert.title, alertMessage: alert.message)
+                self?.showAlert(title: alert.title, alertMessage: alert.errorDescription)
                 self?.findAdressTextField.text = ""
                 self?.centerOnUserLocation()
             }
@@ -93,21 +90,9 @@ extension CreateMarkViewController: CLLocationManagerDelegate {
 // mark types picker
 extension CreateMarkViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func setupPicker() {
-        getMarkTypes()
         pickerView.delegate = self
         pickerView.dataSource = self
         typeTextField.inputView = pickerView
-    }
-    
-    func getMarkTypes() {
-        viewModel.getMarkTypes() { [weak self] (result) in
-            switch result {
-            case .success(let markTypes):
-                self?.markTypes = markTypes
-            case .failure(let alert):
-                self?.showAlert(title: alert.title, alertMessage: alert.message)
-            }
-        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -115,15 +100,15 @@ extension CreateMarkViewController: UIPickerViewDelegate, UIPickerViewDataSource
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return markTypes.count
+        return viewModel.markTypes.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return markTypes[row].type
+        return viewModel.markTypes[row].type
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        typeTextField.text = markTypes[row].type
+        typeTextField.text = viewModel.markTypes[row].type
         typeTextField.resignFirstResponder()
     }
 }
@@ -163,7 +148,7 @@ extension CreateMarkViewController {
                 case .success(()):
                     self?.goBack()
                 case .failure(let alert):
-                    self?.showAlert(title: alert.title, alertMessage: alert.message)
+                    self?.showAlert(title: alert.title, alertMessage: alert.errorDescription)
             }
         }
     }

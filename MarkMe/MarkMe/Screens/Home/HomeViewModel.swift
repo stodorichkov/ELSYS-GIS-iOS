@@ -7,7 +7,6 @@
 
 import Foundation
 import FirebaseFirestore
-import FirebaseFirestoreSwift
 
 class HomeViewModel {
     let db = Firestore.firestore()
@@ -15,7 +14,7 @@ class HomeViewModel {
     func getAllMarks(completion: @escaping (Result<[Mark], AlertError>) -> ()) {
         db.collection("Mark").addSnapshotListener { (querySnapshot, err) in
             guard err == nil, let documents = querySnapshot?.documents else {
-                completion(.failure(AlertError(title: "Database Error", message: "Marks are not found!")))
+                completion(.failure(AlertError.db("Marks are not found!")))
                 return
             }
             var marks = [Mark]()
@@ -23,6 +22,21 @@ class HomeViewModel {
                 return try? document.data(as: Mark.self)
             }
             completion(.success(marks))
+        }
+    }
+    
+    func getCreatorName(documentRef: DocumentReference, completion: @escaping (String) -> ()) {
+        documentRef.addSnapshotListener() { (document, err) in
+            guard err == nil,
+                  let document = document,
+                  document.exists,
+                  let data = document.data(),
+                  let username = data["username"] as? String
+            else {
+                completion("")
+                return
+            }
+            completion(username)
         }
     }
 }

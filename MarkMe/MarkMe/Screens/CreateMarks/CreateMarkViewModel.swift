@@ -5,7 +5,7 @@
 //  Created by Stelian Todorichkov on 28.02.22.
 //
 
-import UIKit
+import UIKit.UIImage
 import CoreLocation
 import FirebaseAuth
 import FirebaseFirestore
@@ -14,59 +14,52 @@ import FirebaseStorage
 
 
 class CreateMarkViewModel {
-    let db = Firestore.firestore()
-    let storage = Storage.storage().reference()
-    let geoCodder = CLGeocoder()
+    private let db = Firestore.firestore()
+    private let storage = Storage.storage().reference()
+    private let geoCodder = CLGeocoder()
+    var markTypes = [MarkType]()
+    private var creator: DocumentReference!
+
+    init() {
+        setCreator()
+        getMarkTypes()
+    }
     
-    func getMarkTypes(completion: @escaping (Result<[MarkType], AlertError>) -> ()) {
-        db.collection("MarkType").addSnapshotListener { (querySnapshot, err) in
+    func getMarkTypes() {
+        db.collection("MarkType").addSnapshotListener { [weak self] (querySnapshot, err) in
             guard err == nil, querySnapshot?.documents.isEmpty == false, let documents = querySnapshot?.documents else {
-                completion(.failure(AlertError(title: "Database Error", message: "Mark types are not found!")))
+                print(err.debugDescription)
                 return
             }
-            var markTypes = [MarkType]()
-            markTypes = documents.compactMap { (document) -> MarkType? in
+            self?.markTypes = documents.compactMap { (document) -> MarkType? in
                 return try? document.data(as: MarkType.self)
             }
-            completion(.success(markTypes))
         }
+    }
+    
+    func setCreator() {
+        guard let curUser = Auth.auth().currentUser else{
+            return
+        }
+        self.creator = db.collection("User").document(curUser.uid)
     }
     
     func findAddress(address: String?, completion: @escaping (Result<CLLocationCoordinate2D, AlertError>)->()) {
         guard let address = address, !address.isEmpty else {
-            completion(.failure(AlertError(title: "Validation Error", message: "Search field is epmty")))
+            completion(.failure(AlertError.validation("Search field is empty")))
             return
         }
 
         geoCodder.geocodeAddressString(address) { (placemark, error) in
-            if let error = error {
-                print(error)
-                completion(.failure(AlertError(title: "Adress error", message: "Adress not found")))
-                return
-            }
-            guard let placemark = placemark?[0], let location = placemark.location?.coordinate else {
+            guard error == nil, let location = placemark?[0].location?.coordinate else {
+                completion(.failure(AlertError.address("Address not found")))
                 return
             }
             completion(.success(location))
         }
     }
     
-    func getCreator(uid: String, completion: @escaping (String) -> ()) {
-        if Auth.auth().currentUser!.providerData[0].providerType == .email {
-            db.collection("User").whereField("uid", isEqualTo: uid).getDocuments() { (querySnapshot, err) in
-                guard err == nil, let documents = querySnapshot?.documents else {
-                    return
-                }
-                completion(documents[0].data()["username"] as! String)
-            }
-        }
-        else {
-            completion(Auth.auth().currentUser!.displayName!)
-        }
-        
-    }
-    
-    func validateData(title: String?,description: String?, type: String?, location: CLLocationCoordinate2D) -> Result<Mark, AlertError> {
+    func validateData(title: String?,description: String?, type: String?, location: CLLocationCoordinate2D) -> Mark? {
         // check form is completed
         guard  let title = title,
                let description = description,
@@ -75,93 +68,96 @@ class CreateMarkViewModel {
                !description.isEmpty,
                !type.isEmpty
         else {
-            return .failure(AlertError(title: "Validation Error", message: "The form must be completed!"))
+            return nil
         }
-        
-        // set creator
-        return .success(Mark(title: title, description: description, geolocation: GeoPoint(latitude: location.latitude, longitude: location.longitude), type: type, creator: Auth.auth().currentUser!.uid))
+        return Mark(title: title, description: description, geolocation: GeoPoint(latitude: location.latitude, longitude: location.longitude), type: type, creator: creator)
     }
     
-    func addMark(mark: Mark, completion: @escaping (Result<Void, AlertError>) -> ()) {
-        getCreator(uid: mark.creator) { [weak self] (creator) in
-            var newMark = mark
-            newMark.creator = creator
-            do {
-                let _ = try self?.db.collection("Mark").addDocument(from: newMark)
-            }
-            catch {
-                completion(.failure(AlertError(title: "Database Erroe", message: error.localizedDescription)))
-            }
-            completion(.success(()))
-        }
-        
-    }
-    
-    
-    func createMark(title: String?,description: String?, type: String?, location: CLLocationCoordinate2D, image: UIImage?, completion: @escaping (Result<Void, AlertError>)->()) {
-        // validate form
-        let vaidationResult = validateData(title: title, description: description, type: type, location: location)
-        var newMark: Mark
-        switch vaidationResult {
-        case .success(let mark):
-            newMark = mark
-        case .failure(let alert):
-            completion(.failure(alert))
+    func validateMarkType(type: String, completion: (AlertError?) -> ()){
+        if markTypes.contains(where: { $0.type == type }) {
+            completion(nil)
             return
         }
+        completion(AlertError.validation("Mark type is invalid!"))
+    }
+    
+    func addMark(mark: Mark) -> AlertError? {
+        do {
+            let _ = try db.collection("Mark").addDocument(from: mark)
+            return nil
+        }
+        catch {
+            return AlertError.db(error.localizedDescription)
+        }
+    }
+    
+    func saveImageInStorage(path: String, image: UIImage, completion: @escaping (Result<String, AlertError>) -> ()) {
+        let ref = self.storage.child(path)
+        ref.putData(image.pngData()!, metadata: nil) { (metadata, error) in
+            if let error = error {
+                completion(.failure(AlertError.storage(error.localizedDescription)))
+                return
+            }
+            ref.downloadURL() { (url, error) in
+                if let error = error {
+                    completion(.failure(AlertError.storage(error.localizedDescription)))
+                    return
+                }
+                guard let urlString = url?.absoluteString else {
+                    completion(.failure(AlertError.storage("Can't get url")))
+                    return
+                }
+                completion(.success(urlString))
+            }
+        }
+    }
+    
+    
+    func createMark(title: String?,description: String?, type: String?, location: CLLocationCoordinate2D, image: UIImage?, completion: @escaping (Result<Void, AlertError>) -> ()) {
+        // validate form
+        guard let vaidationResult = validateData(title: title, description: description, type: type, location: location) else {
+            completion(.failure(AlertError.validation("The form must be completed!")))
+            return
+        }
+        var newMark = vaidationResult
         
         
         
         // check mark type is valid
-        db.collection("MarkType").whereField("type", isEqualTo: newMark.type).getDocuments() { [weak self] (querySnapshot, err) in
-            guard err == nil, querySnapshot?.documents.isEmpty == false else {
-                completion(.failure(AlertError(title: "Validation Error", message: "Mark type is invalid!")))
+        validateMarkType(type: newMark.type) { (markAlert) in
+            if let markAlert = markAlert {
+                completion(.failure(markAlert))
                 return
             }
+            
             // check for image
             if let image = image {
                 // set path for image
-                let path = "images/" + newMark.creator + "/" + newMark.title + ".png"
-                guard let ref = self?.storage.child(path) else{
-                    return
-                }
+                let path = "images/" + newMark.creator.documentID + "/" + newMark.title + ".png"
+                
                 // try to sava image in storage
-                ref.putData(image.pngData()!, metadata: nil) { (metadata, error) in
-                    if let error = error {
-                        completion(.failure(AlertError(title: "Storage Error", message: error.localizedDescription)))
-                        return
-                    }
-                    ref.downloadURL() { (url, error) in
-                        if let error = error {
-                            completion(.failure(AlertError(title: "Storage Error", message: error.localizedDescription)))
-                            return
-                        }
-                        guard let urlString = url?.absoluteString else {
-                            return
-                        }
+                saveImageInStorage(path: path, image: image) { [weak self] (result) in
+                    switch result {
+                    case .success(let urlString):
                         newMark.imgPath = urlString
                         // try to save mark in db
-                        self?.addMark(mark: newMark) { (result) in
-                            switch result {
-                            case .success(()):
-                                completion(.success(()))
-                            case .failure(let alert):
-                                completion(.failure(alert))
-                            }
+                        if let dbResult = self?.addMark(mark: newMark) {
+                            completion(.failure(dbResult))
+                            return
                         }
-                    }
-                }
-            }
-            else {
-                // try to save mark in db
-                self?.addMark(mark: newMark) { (result) in
-                    switch result {
-                    case .success(()):
                         completion(.success(()))
                     case .failure(let alert):
                         completion(.failure(alert))
                     }
                 }
+            }
+            else {
+                // try to save mark in db
+                if let dbResult = addMark(mark: newMark) {
+                    completion(.failure(dbResult))
+                    return
+                }
+                completion(.success(()))
             }
         }
     }

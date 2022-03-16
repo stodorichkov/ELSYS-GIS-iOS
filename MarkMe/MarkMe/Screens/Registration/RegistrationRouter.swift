@@ -14,11 +14,9 @@ class RegistrationRouter: Router {
         self.root = root
     }
     
-    func goToNextScreen(storyboardName: String, storyboardId: String) {
-        let target = findViewController(storyboardName: storyboardName, storyboardId: storyboardId)
-        target.modalPresentationStyle = .fullScreen
-        target.modalTransitionStyle = .crossDissolve
-        root.present(target, animated: true)
+    func goToTabs() {
+        let target = findViewController(storyboardName: "Tabs", storyboardId: "tabs")
+        presentTarget(target: target, transition: .crossDissolve)
     }
     
     func dismiss() {

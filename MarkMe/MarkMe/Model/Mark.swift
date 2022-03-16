@@ -8,15 +8,27 @@
 import Foundation
 import FirebaseFirestoreSwift
 import FirebaseFirestore
+import MapKit
 
 struct Mark: Codable, Identifiable {
-    @DocumentID var id: String? = UUID().uuidString
+    @DocumentID var id: String?
     var title: String
     var description: String
     var geolocation: GeoPoint
     var imgPath: String = ""
     var type: String
-    var creator: String
+    var creator: DocumentReference
     var likes: Int = 0
     var solved: Int = 0
 }
+
+class CustomAnnotation: MKPointAnnotation {
+    var markInfo: Mark
+    
+    init(markInfo: Mark) {
+        self.markInfo = markInfo
+        super.init()
+    }
+}
+
+
