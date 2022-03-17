@@ -14,9 +14,11 @@ class HomeViewController: UIViewController {
     private let locationMenager = CLLocationManager()
     private let regionMeters: Double = 750
     private let viewModel = HomeViewModel()
+    private var router: HomeRouter?
     
     override func viewDidLoad() {
         super.viewWillAppear(true)
+        router = HomeRouter(root: self)
         map.delegate = self
         checkLocationServices()
         showMarks()
@@ -83,12 +85,15 @@ extension HomeViewController: MKMapViewDelegate {
                     
                     // set annotation title
                     annotation.title = annotation.markInfo.title
+                    
                     // set mark subtitle
                     self?.viewModel.getCreatorName(documentRef: annotation.markInfo.creator) { (result) in
                         annotation.subtitle = "by " + result
                     }
+                    
                     // set annotation coordinates
                     annotation.coordinate = CLLocationCoordinate2D(latitude: mark.geolocation.latitude, longitude: mark.geolocation.longitude)
+                    
                     // add annotation on map
                     self?.map.addAnnotation(annotation)
                 }
@@ -97,15 +102,15 @@ extension HomeViewController: MKMapViewDelegate {
             }
         }
     }
-    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "my") as? MKMarkerAnnotationView
-        
         guard annotation is CustomAnnotation else {
             return nil
         }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "customAnnotation") as? MKMarkerAnnotationView
+        
         if annotationView == nil {
-            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "my")
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "customAnnotation")
             annotationView?.canShowCallout = true
             annotationView?.titleVisibility = .hidden
             
@@ -122,46 +127,23 @@ extension HomeViewController: MKMapViewDelegate {
         }
         
         // set glyphyImage dependin on mark type
-        var image = UIImage(systemName: "smallcircle.filled.circle.fill")
-        switch annotation.markInfo.type {
-        case "Ecology":
-            image = UIImage(systemName: "leaf.fill")
-        case "Water":
-            image = UIImage(systemName: "drop.fill")
-        case "Electricity":
-            image = UIImage(systemName: "bolt.fill")
-        case "Destruction":
-            image = UIImage(systemName: "burst.fill")
-        case "Car":
-            image = UIImage(systemName: "car.fill")
-        default:
-            break
-        }
-        annotationView?.glyphImage = image
+        annotationView?.glyphImage = viewModel.getImageForMarkType(type: annotation.markInfo.type)
         
         // set annotation color depend on mark solved
-        var color = UIColor()
-        switch annotation.markInfo.solved {
-        case 0..<5:
-            color = UIColor.systemRed
-        case 5..<10:
-            color = UIColor.systemYellow
-        case 10...:
-            color = UIColor.systemGreen
-        default:
-            break
-        }
-        annotationView?.markerTintColor = color
+        annotationView?.markerTintColor = viewModel.getColorForSolvedNumber(solved: annotation.markInfo.solved.count)
         
         return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        router?.goToMarkInfo()
     }
 }
 
 // buttons
 extension HomeViewController {
     @IBAction func goToCreateMark(_ sender: UIButton) {
-        let router = HomeRouter(root: self)
-        router.goToCreateMark()
+        router?.goToCreateMark()
     }
     
     @IBAction func didCenter(_ sender: UIButton) {

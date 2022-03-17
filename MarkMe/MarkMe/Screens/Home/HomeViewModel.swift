@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseFirestore
+import UIKit
 
 class HomeViewModel {
     let db = Firestore.firestore()
@@ -37,6 +38,36 @@ class HomeViewModel {
                 return
             }
             completion(username)
+        }
+    }
+    
+    func getImageForMarkType(type: String) -> UIImage?{
+        switch type {
+        case "Ecology":
+            return UIImage(systemName: "leaf.fill")
+        case "Water":
+            return UIImage(systemName: "drop.fill")
+        case "Electricity":
+            return UIImage(systemName: "bolt.fill")
+        case "Destruction":
+            return UIImage(systemName: "burst.fill")
+        case "Car":
+            return UIImage(systemName: "car.fill")
+        default:
+            return UIImage(systemName: "smallcircle.filled.circle.fill")
+        }
+    }
+    
+    func getColorForSolvedNumber(solved: Int) -> UIColor? {
+        switch solved {
+        case ..<5:
+            return UIColor.systemRed
+        case 5..<10:
+            return UIColor.systemYellow
+        case 10...:
+            return UIColor.systemGreen
+        default:
+            return nil
         }
     }
 }

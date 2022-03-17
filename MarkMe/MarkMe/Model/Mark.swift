@@ -18,8 +18,8 @@ struct Mark: Codable, Identifiable {
     var imgPath: String = ""
     var type: String
     var creator: DocumentReference
-    var likes: Int = 0
-    var solved: Int = 0
+    var likes = Set<String>()
+    var solved = Set<String>()
 }
 
 class CustomAnnotation: MKPointAnnotation {
