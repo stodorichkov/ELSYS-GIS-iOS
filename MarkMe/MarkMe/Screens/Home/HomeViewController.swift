@@ -136,7 +136,10 @@ extension HomeViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        router?.goToMarkInfo()
+        guard let annotation = view.annotation as? CustomAnnotation, let id = annotation.markInfo.id else {
+            return
+        }
+        router?.goToMarkInfo(markID: id)
     }
 }
 
