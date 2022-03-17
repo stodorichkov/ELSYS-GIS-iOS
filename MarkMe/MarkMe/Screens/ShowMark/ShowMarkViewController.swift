@@ -29,7 +29,10 @@ class ShowMarkViewController: UIViewController {
         router = ShowMarkRouter(root: self)
         setMark()
     }
-    
+}
+
+// set data
+extension ShowMarkViewController {
     func setMark() {
         viewModel.getMarkInfo(markID: markID) { [weak self] (mark) in
             guard let mark = mark else {
@@ -46,16 +49,24 @@ class ShowMarkViewController: UIViewController {
         guard let mark = mark else {
             return
         }
-        // get text information (title, description, type)
+        // set text information (title, description, type)
         markTitle.text = mark.title
         type.text = mark.type
         markDescription.text = mark.description
-        // get count of likes
-        likes.text = String(mark.likes.count)
-        // get creator
+        
+        // format like to replace 1000 with K
+        var likeCount = String(mark.likes.count)
+        if mark.likes.count >= 1000 {
+            likeCount = String(mark.likes.count / 1000) + "K"
+        }
+        // set count of likes
+        likes.text = likeCount
+        
+        // set creator
         viewModel.getCreatorName(creator: mark.creator) { [weak self] (creatorName) in
             self?.creator.text = creatorName
         }
+        
         // get image
         viewModel.setImage(imageView: image, imgPath: mark.imgPath)
     }
@@ -93,7 +104,10 @@ class ShowMarkViewController: UIViewController {
             break
         }
     }
-    
+}
+
+// buttons
+extension ShowMarkViewController {
     @IBAction func backToHome(_ sender: UIButton) {
         router?.dismiss()
     }

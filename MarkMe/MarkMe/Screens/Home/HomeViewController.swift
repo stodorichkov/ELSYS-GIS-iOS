@@ -11,8 +11,10 @@ import CoreLocation
 
 class HomeViewController: UIViewController {
     @IBOutlet private var map: MKMapView!
+    
     private let locationMenager = CLLocationManager()
     private let regionMeters: Double = 750
+    
     private let viewModel = HomeViewModel()
     private var router: HomeRouter?
     

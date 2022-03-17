@@ -50,7 +50,7 @@ class ShowMarkViewModel {
     }
     
     func setImage(imageView: UIImageView, imgPath: String) {
-        if imgPath != ""{
+        if imgPath != "" {
             let storage = Storage.storage()
             let ref = storage.reference(forURL: imgPath)
             imageView.sd_setImage(with: ref, placeholderImage: UIImage(systemName: "photo"))
