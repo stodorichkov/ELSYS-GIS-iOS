@@ -11,7 +11,7 @@ import FacebookLogin
 import FirebaseFirestore
 
 class UserViewModel {
-    func signOut(completion: (Result<ScreenInfo, AlertError>) -> ()) {
+    func signOut(completion: (Result<Void, AlertError>) -> ()) {
         do {
             guard let provider = Auth.auth().currentUser?.providerData[0].providerType else{
                 return
@@ -24,28 +24,27 @@ class UserViewModel {
             }
             
             try Auth.auth().signOut()
-            completion(.success(ScreenInfo(storyboardName: "Authentication", storyboardId: "login")))
+            completion(.success(()))
         }
         catch let error {
-            completion(.failure(AlertError(title: "Logout Error", message: error.localizedDescription)))
+            completion(.failure(AlertError.logout(error.localizedDescription)))
         }
     }
     
-    func setUserLabel(completion: @escaping (Result<String, AlertError>) -> ()) {
+    func setUserLabel(completion: @escaping (Result<String, AlertError>) -> ()){
         guard let curUser = Auth.auth().currentUser, let provider = curUser.providerData[0].providerType  else {
             return
         }
         if provider == .email{
             let db = Firestore.firestore()
-            guard let email = curUser.email else{
-                return
-            }
-            db.collection("User").whereField("email", isEqualTo: email).getDocuments() { (querySnapshot, err) in
-                guard err == nil, querySnapshot?.documents.isEmpty == false else {
-                    completion(.failure(AlertError(title: "Database Error", message: "User is not found!")))
-                    return
-                }
-                guard let userLable = querySnapshot?.documents[0].data()["username"] as? String else {
+            db.collection("User").document(curUser.uid).addSnapshotListener() { (document, err) in
+                guard err == nil,
+                      let document = document,
+                      document.exists,
+                      let data = document.data(),
+                      let userLable = data["username"] as? String
+                else {
+                    completion(.failure(AlertError.logout("User is not found!")))
                     return
                 }
                 completion(.success(userLable))

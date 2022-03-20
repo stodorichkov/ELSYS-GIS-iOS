@@ -12,53 +12,7 @@ import FirebaseFirestore
 class RegistrationViewModel {
     let db = Firestore.firestore()
     
-    func RegisterUser(usernameField: String?, emailField: String? ,passwordField: String?, confirmPassField: String?,
-                      completion: @escaping (Result<ScreenInfo, AlertError>) -> ()) {
-        // validate data
-        let vaidationResult = validateData(usernameField: usernameField, emailField: emailField, passwordField: passwordField, confirmPassField: confirmPassField)
-        var username, email, password: String
-        switch vaidationResult {
-        case .success(let user):
-            username = user.username
-            email = user.email
-            password = user.password
-            
-        case .failure(let alert):
-            completion(.failure(alert))
-            return
-        }
-        
-        // check user with this username exist
-        db.collection("User").whereField("username", isEqualTo: username).getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            }
-            guard querySnapshot?.documents.isEmpty == true else {
-                completion(.failure(AlertError(title: "Regsitration Error", message: "Username is already used!")))
-                return
-            }
-            // try to create user
-            Auth.auth().createUser(withEmail: email, password: password) { [weak self] (result, err) in
-                // check for errors
-                if let err = err {
-                    completion(.failure(AlertError(title: "Regsitration Error", message: err.localizedDescription)))
-                    return
-                }
-                // try to save user data in DB
-                self?.db.collection("User").document(username).setData(["username": username, "uid": result!.user.uid, "email": email]) { (error) in
-                    // check for errors
-                    if let error = error {
-                        completion(.failure(AlertError(title: "Database Error", message: error.localizedDescription)))
-                        return
-                    }
-                }
-                // go to Home screen
-                completion(.success(ScreenInfo(storyboardName: "Tabs", storyboardId: "tabs")))
-            }
-        }
-    }
-    
-    func validateData(usernameField: String?, emailField: String? ,passwordField: String?, confirmPassField: String?) -> Result<User, AlertError> {
+    func validateData(usernameField: String?, emailField: String? ,passwordField: String?, confirmPassField: String?) throws -> DBUser {
         guard let username = usernameField,
             let email = emailField,
             let password = passwordField,
@@ -68,20 +22,91 @@ class RegistrationViewModel {
             !password.isEmpty,
             !confirmPass.isEmpty
         else {
-            return .failure(AlertError(title: "Validation Error", message: "The form must be completed!"))
+            throw AlertError.validation("The form must be completed!")
         }
         
         let emailPattern = #"^\S+@\S+\.\S+$"#
         guard (email.range(of: emailPattern, options: .regularExpression) != nil) else {
-            return .failure(AlertError(title: "Validation Error", message: "Email is not valid"))
+            throw AlertError.validation("Email is not valid")
         }
         if password.count < 8 {
-            return .failure(AlertError(title: "Validation Error", message: "Password must be 8 or more charecters!"))
+            throw AlertError.validation("Password must be 8 or more charecters!")
         }
         if password != confirmPass {
-            return .failure(AlertError(title: "Validation Error", message: "Password not confirmed"))
+            throw AlertError.validation("Password not confirmed")
         }
-        return .success(User(username: username, email: email, password: password))
+        return DBUser(username: username, password: password, email: email)
     }
     
+    func checkUserExist(username: String, completion: @escaping (AlertError?) -> ()) {
+        db.collection("User").whereField("username", isEqualTo: username).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                completion(AlertError.db(err.localizedDescription))
+            }
+            guard querySnapshot?.documents.isEmpty == true else {
+                completion(AlertError.registration("Username is already used!"))
+                return
+            }
+            completion(nil)
+        }
+    }
+    
+    func authUser(user: DBUser, completion: @escaping (Result<String, AlertError>) -> ()) {
+        Auth.auth().createUser(withEmail: user.email, password: user.password) { (result, err) in
+            // check for errors
+            if let err = err{
+                completion(.failure(AlertError.registration(err.localizedDescription)))
+                return
+            }
+            guard let uid = result?.user.uid else {
+                completion(.failure(AlertError.registration("Can't get uid")))
+                return
+            }
+            completion(.success(uid))
+        }
+    }
+    
+    func addUser(uid: String, user: DBUser) -> AlertError? {
+        do {
+            try db.collection("User").document(uid).setData(from: user)
+            return nil
+        }
+        catch {
+            return AlertError.db(error.localizedDescription)
+        }
+    }
+    
+    func registerUser(usernameField: String?, emailField: String? ,passwordField: String?, confirmPassField: String?,
+                      completion: @escaping (Result<Void, AlertError>) -> ()) {
+        // validate data
+        do {
+            let newUser = try validateData(usernameField: usernameField, emailField: emailField, passwordField: passwordField, confirmPassField: confirmPassField)
+            
+            // check user with this username exist
+            checkUserExist(username: newUser.username) { [weak self] (alert) in
+                if let alert = alert {
+                    completion(.failure(alert))
+                    return
+                }
+                // authenticate user
+                self?.authUser(user: newUser) { (result) in
+                    switch result {
+                    case .success(let uid):
+                        // add user in db
+                        if let dbResult = self?.addUser(uid: uid ,user: newUser) {
+                            completion(.failure(dbResult))
+                            return
+                        }
+                        completion(.success(()))
+                    case .failure(let alert):
+                        completion(.failure(alert))
+                        return
+                    }
+                }
+            }
+        }
+        catch {
+            completion(.failure(error as! AlertError))
+        }
+    }
 }

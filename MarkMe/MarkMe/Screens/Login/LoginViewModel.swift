@@ -11,54 +11,58 @@ import FirebaseFirestore
 import FacebookLogin
 
 class LoginViewModel {
-    func loginWithUsername(usernameField: String?, passwordField: String?, completion: @escaping (Result<ScreenInfo, AlertError>) -> ()) {
+    private let db = Firestore.firestore()
+    
+    func validateData(usernameField: String?, passwordField: String?) -> DBUser? {
+        if let username = usernameField, let password = passwordField, !username.isEmpty, !password.isEmpty {
+            return DBUser(username: username, password: password)
+        }
+        return nil
+    }
+    
+    func loginWithUsername(usernameField: String?, passwordField: String?, completion: @escaping (Result<Void, AlertError>) -> ()) {
         // validate form
-        let vaidationResult = validateData(usernameField: usernameField, passwordField: passwordField)
-        var username, password: String
-        switch vaidationResult {
-        case .success(let user):
-            username = user.username
-            password = user.password
-        case .failure(let alert):
-            completion(.failure(alert))
-            return
+        guard let user = validateData(usernameField: usernameField, passwordField: passwordField) else{
+            return completion(.failure(AlertError.validation("The form must be completed!")))
         }
 
         // find user
-        let db = Firestore.firestore()
-        db.collection("User").whereField("username", isEqualTo: username).getDocuments() { (querySnapshot, err) in
+        db.collection("User").whereField("username", isEqualTo: user.username).getDocuments() { (querySnapshot, err) in
             guard err == nil, querySnapshot?.documents.isEmpty == false else {
-                completion(.failure(AlertError(title: "Login Error", message: "User is not found!")))
+                completion(.failure(AlertError.db("User is not found!")))
                 return
             }
             guard let email = querySnapshot?.documents[0].data()["email"] as? String else {
+                completion(.failure(AlertError.db("Can't get email")))
                 return
             }
             // sign in user
-            Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            Auth.auth().signIn(withEmail: email, password: user.password) { (result, error) in
                 if let error = error {
-                    completion(.failure(AlertError(title: "Login Error", message: error.localizedDescription)))
+                    completion(.failure(AlertError.login(error.localizedDescription)))
                     return
                 }
-                completion(.success(ScreenInfo(storyboardName: "Tabs", storyboardId: "tabs")))
+                completion(.success(()))
             }
         }
     }
     
-    func validateData(usernameField: String?, passwordField: String?) -> Result<User, AlertError> {
-        if let username = usernameField, let password = passwordField, !username.isEmpty, !password.isEmpty {
-            return .success(User(username: username, password: password))
+    func addUser(user: User) -> AlertError? {
+        let newUser = DBUser(username: user.displayName!, password: "", email: user.email!)
+        do {
+            try db.collection("User").document(user.uid).setData(from: newUser)
+            return nil
         }
-        else {
-            return .failure(AlertError(title: "Validation Error", message: "The form must be completed!"))
+        catch {
+            return AlertError.db(error.localizedDescription)
         }
     }
     
-    func loginWithFacebook(view: UIViewController, completion: @escaping (Result<ScreenInfo, AlertError>) -> ()) {
+    func loginWithFacebook(view: UIViewController, completion: @escaping (Result<Void, AlertError>) -> ()) {
         LoginManager().logIn(permissions: ["public_profile","email"], from: view) { (fbResult, fbError) in
             // check for error
             if let fbError = fbError {
-                completion(.failure(AlertError(title: "Facebook Error", message: fbError.localizedDescription)))
+                completion(.failure(AlertError.facebook(fbError.localizedDescription)))
                 return
             }
             // check for cancle
@@ -67,13 +71,20 @@ class LoginViewModel {
             }
             // make firebase login
             let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
-            Auth.auth().signIn(with: credential) { (result, error) in
+            Auth.auth().signIn(with: credential) { [weak self] (result, error) in
                 if let error = error {
-                    completion(.failure(AlertError(title: "Facebook Error", message: error.localizedDescription)))
+                    completion(.failure(AlertError.login(error.localizedDescription)))
                     return
                 }
+                guard let user = result?.user else {
+                    completion(.failure(AlertError.login("Can't get user")))
+                    return
+                }
+                if let addResult = self?.addUser(user: user) {
+                    completion(.failure(addResult))
+                }
                 // success
-                completion(.success(ScreenInfo(storyboardName: "Tabs", storyboardId: "tabs")))
+                completion(.success(()))
             }
         }
     }

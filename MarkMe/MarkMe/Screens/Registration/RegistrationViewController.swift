@@ -15,28 +15,28 @@ class RegistrationViewController: UIViewController {
     @IBOutlet private var confirmPassField: UITextField!
     
     let viewModel = RegistrationViewModel()
+    var router: RegistrationRouter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        router = RegistrationRouter(root: self)
     }
 }
 
 extension RegistrationViewController {
     @IBAction func signUp(_ sender: UIButton) {
-        let router = RegistrationRouter(root: self)
-        viewModel.RegisterUser(usernameField: usernameField.text, emailField: emailField.text, passwordField: passwordField.text, confirmPassField: confirmPassField.text) { [weak self] (result) in
+        viewModel.registerUser(usernameField: usernameField.text, emailField: emailField.text, passwordField: passwordField.text, confirmPassField: confirmPassField.text) { [weak self] (result) in
             switch result {
-            case .success(let screen):
-                router.goToNextScreen(storyboardName: screen.storyboardName, storyboardId: screen.storyboardId)
+            case .success(_):
+                self?.router?.goToTabs()
             case .failure(let alert):
-                self?.showAlert(title: alert.title, alertMessage: alert.message)
+                self?.showAlert(title: alert.title, alertMessage: alert.errorDescription)
             }
         }
     }
     
     @IBAction func goToLogin(_ sender: UIButton) {
-        let router = RegistrationRouter(root: self)
-        router.dismiss()
+        router?.dismiss()
     }
     
 }

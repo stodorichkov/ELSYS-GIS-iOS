@@ -5,7 +5,6 @@
 //  Created by Stelian Todorichkov on 16.02.22.
 //
 
-import Foundation
 import UIKit
 
 class CircleButton: UIButton {

@@ -11,13 +11,18 @@ import CoreLocation
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet weak var map: MKMapView!
-    let locationMenager = CLLocationManager()
+    @IBOutlet private var map: MKMapView!
+    private let locationMenager = CLLocationManager()
+    private let regionMeters: Double = 1000
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewWillAppear(true)
         checkLocationServices()
     }
-    
+}
+
+//map
+extension HomeViewController {
     func setupLocationMenager() {
         locationMenager.delegate = self
         locationMenager.desiredAccuracy = kCLLocationAccuracyBest
@@ -25,9 +30,17 @@ class HomeViewController: UIViewController {
     
     func centerOnUserLocation() {
         if let location = locationMenager.location?.coordinate {
-           let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 1000, longitudinalMeters: 1000)
+           let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionMeters, longitudinalMeters: regionMeters )
             map.setRegion(region, animated: true)
         }
+    }
+    
+    func showSettingsAlert(title: String ,message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Go to settings", style: .default) { (action) in
+            UIApplication.shared.open(URL.init(string: UIApplication.openSettingsURLString)!)
+        })
+        present(alert, animated: true)
     }
     
     func checkLocationServices() {
@@ -36,11 +49,7 @@ class HomeViewController: UIViewController {
             checkLocationAuthorization()
         }
         else {
-            let alert = UIAlertController(title: "", message: "Turn on Location Services to Allow 'MarkMe' to Determine Your Location", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Go to settings", style: .default) { (action) in
-                UIApplication.shared.open(URL.init(string: UIApplication.openSettingsURLString)!)
-            })
-            present(alert, animated: true)
+            showSettingsAlert(title: "",message: "Turn on Location Services to Allow 'MarkMe' to Determine Your Location")
         }
     }
     
@@ -54,23 +63,24 @@ class HomeViewController: UIViewController {
             centerOnUserLocation()
             locationMenager.startUpdatingLocation()
         case .denied:
-            let alert = UIAlertController(title: "Access to location denied", message: "Allow acces to the location services!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Go to settings", style: .default) { (action) in
-                UIApplication.shared.open(URL.init(string: UIApplication.openSettingsURLString)!)
-            })
-            present(alert, animated: true)
+            showSettingsAlert(title: "Access to location denied", message: "Allow acces to the location services!")
         default:
             break
         }
     }
-    
 }
 
+// buttons
 extension HomeViewController {
     @IBAction func goToCreateMark(_ sender: UIButton) {
         let router = HomeRouter(root: self)
-        router.goToNextScreen(storyboardName: "Marks", storyboardId: "createMark")
+        router.goToCreateMark()
     }
+    
+    @IBAction func didCenter(_ sender: UIButton) {
+        centerOnUserLocation()
+    }
+    
 }
 
 extension HomeViewController: CLLocationManagerDelegate {
@@ -79,12 +89,11 @@ extension HomeViewController: CLLocationManagerDelegate {
             return
         }
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionMeters , longitudinalMeters: regionMeters )
         map.setRegion(region, animated: true)
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkLocationAuthorization()
     }
-    
 }

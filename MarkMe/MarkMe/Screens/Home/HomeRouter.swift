@@ -5,7 +5,6 @@
 //  Created by Stelian Todorichkov on 24.02.22.
 //
 
-import Foundation
 import UIKit
 
 class HomeRouter: Router {
@@ -15,8 +14,8 @@ class HomeRouter: Router {
         self.root = root
     }
     
-    func goToNextScreen(storyboardName: String, storyboardId: String) {
-        let target = findViewController(storyboardName: storyboardName, storyboardId: storyboardId)
+    func goToCreateMark() {
+        let target = findViewController(storyboardName: "Marks", storyboardId: "createMark")
         root.navigationController?.pushViewController(target, animated: true)
     }
 }

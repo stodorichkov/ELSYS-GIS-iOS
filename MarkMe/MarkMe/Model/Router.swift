@@ -5,7 +5,6 @@
 //  Created by Stelian Todorichkov on 20.02.22.
 //
 
-import Foundation
 import UIKit
 
 protocol Router {
@@ -18,5 +17,11 @@ extension Router {
     func findViewController(storyboardName: String, storyboardId: String) -> UIViewController {
         let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: storyboardId)
+    }
+    
+    func presentTarget (target: UIViewController, transition: UIModalTransitionStyle) {
+        target.modalPresentationStyle = .fullScreen
+        target.modalTransitionStyle = transition
+        root.present(target, animated: true)
     }
 }

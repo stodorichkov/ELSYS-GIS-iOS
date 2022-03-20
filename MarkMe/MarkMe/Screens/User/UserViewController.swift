@@ -12,18 +12,20 @@ import FirebaseFirestore
 
 class UserViewController: UIViewController {
 
-    @IBOutlet weak var userLabel: UILabel!
+    @IBOutlet private var userLabel: UILabel!
     
     let viewModel = UserViewModel()
+    var router: UserRouter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        router = UserRouter(root: self)
         viewModel.setUserLabel() { [weak self] (result) in
             switch result {
             case .success(let userLable):
                 self?.userLabel.text = userLable
             case .failure(let alert):
-                self?.showAlert(title: alert.title, alertMessage: alert.message)
+                self?.showAlert(title: alert.title, alertMessage: alert.errorDescription)
             }
         }
     }
@@ -31,19 +33,17 @@ class UserViewController: UIViewController {
 
 extension UserViewController {
     @IBAction func signOut(_ sender: UIButton) {
-        let router = UserRouter(root: self)
         viewModel.signOut() { [weak self] (result) in
             switch result {
-            case .success(let screen):
-                router.goToNextScreen(storyboardName: screen.storyboardName, storyboardId: screen.storyboardId)
+            case .success(_):
+                self?.router?.goToLogin()
             case .failure(let alert):
-                self?.showAlert(title: alert.title, alertMessage: alert.message)
+                self?.showAlert(title: alert.title, alertMessage: alert.errorDescription)
             }
         }
     }
     
     @IBAction func deleteUser(_ sender: UIButton) {
-        let router = UserRouter(root: self)
-        router.goToNextScreen(storyboardName: "Authentication", storyboardId: "login")
+        router?.goToLogin()
     }
 }
