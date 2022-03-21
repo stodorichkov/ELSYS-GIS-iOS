@@ -14,8 +14,8 @@ class UserViewController: UIViewController {
 
     @IBOutlet private var userLabel: UILabel!
     
-    let viewModel = UserViewModel()
-    var router: UserRouter?
+    private let viewModel = UserViewModel()
+    private var router: UserRouter?
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -9,19 +9,25 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Marks View Controller-->
+        <!--Mark List View Controller-->
         <scene sceneID="2tm-9g-CtX">
             <objects>
-                <viewController storyboardIdentifier="marks" id="6E9-iV-ZC0" customClass="MarksViewController" customModule="MarkMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="markList" id="6E9-iV-ZC0" customClass="MarkListViewController" customModule="MarkMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HEe-1X-FxW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data not found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBb-r9-P9W">
+                                <rect key="frame" x="104" y="410.5" width="206" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gTm-bL-dtf">
                                 <rect key="frame" x="0.0" y="95" width="414" height="718"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="8NZ-nP-AfP">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="8NZ-nP-AfP">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8NZ-nP-AfP" id="U4W-y9-M8q">
@@ -45,12 +51,18 @@
                             <constraint firstItem="vix-V5-lFz" firstAttribute="bottom" secondItem="gTm-bL-dtf" secondAttribute="bottom" id="8xV-n9-yEv"/>
                             <constraint firstItem="uzS-eH-Gff" firstAttribute="leading" secondItem="vix-V5-lFz" secondAttribute="leading" id="HYF-lY-Q8x"/>
                             <constraint firstItem="uzS-eH-Gff" firstAttribute="top" secondItem="vix-V5-lFz" secondAttribute="top" id="PNZ-FA-rc5"/>
+                            <constraint firstItem="UBb-r9-P9W" firstAttribute="centerX" secondItem="vix-V5-lFz" secondAttribute="centerX" id="Vs5-Mh-dKh"/>
                             <constraint firstItem="vix-V5-lFz" firstAttribute="trailing" secondItem="gTm-bL-dtf" secondAttribute="trailing" id="fu8-Qn-9Wm"/>
                             <constraint firstItem="gTm-bL-dtf" firstAttribute="leading" secondItem="vix-V5-lFz" secondAttribute="leading" id="oGE-Zq-jg0"/>
+                            <constraint firstItem="UBb-r9-P9W" firstAttribute="centerY" secondItem="vix-V5-lFz" secondAttribute="centerY" id="yEX-fi-9Y5"/>
                             <constraint firstItem="vix-V5-lFz" firstAttribute="trailing" secondItem="uzS-eH-Gff" secondAttribute="trailing" id="zTT-bs-pbk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="w3a-KF-i0L"/>
+                    <connections>
+                        <outlet property="searchBar" destination="uzS-eH-Gff" id="2Qd-nz-qUE"/>
+                        <outlet property="table" destination="gTm-bL-dtf" id="6hn-VM-Bpz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JY3-PR-2r8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

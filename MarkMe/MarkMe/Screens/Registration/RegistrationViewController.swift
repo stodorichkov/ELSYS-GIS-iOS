@@ -14,8 +14,8 @@ class RegistrationViewController: UIViewController {
     @IBOutlet private var passwordField: UITextField!
     @IBOutlet private var confirmPassField: UITextField!
     
-    let viewModel = RegistrationViewModel()
-    var router: RegistrationRouter?
+    private let viewModel = RegistrationViewModel()
+    private var router: RegistrationRouter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
