@@ -8,14 +8,11 @@
 import Foundation
 import MapKit
 
-class MarAnnotation: NSObject, MKAnnotation {
-    var title: String?
-    var creator: String?
-    var coordinate: CLLocationCoordinate2D
+class CustomAnnotation: MKPointAnnotation {
+    var markInfo: Mark
     
-    init(title: String, creator: String, coordinate: CLLocationCoordinate2D) {
-        self.title = title
-        self.creator = creator
-        self.coordinate = coordinate
+    init(markInfo: Mark) {
+        self.markInfo = markInfo
+        super.init()
     }
 }
