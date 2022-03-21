@@ -21,12 +21,3 @@ struct Mark: Codable, Identifiable {
     var likes = [String]()
     var solved = [String]()
 }
-
-class CustomAnnotation: MKPointAnnotation {
-    var markInfo: Mark
-    
-    init(markInfo: Mark) {
-        self.markInfo = markInfo
-        super.init()
-    }
-}
