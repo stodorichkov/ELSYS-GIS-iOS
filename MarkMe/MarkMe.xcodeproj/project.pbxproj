@@ -11,6 +11,7 @@
 		D907A08727CD64EF00064EC3 /* CreateMarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D907A08627CD64EF00064EC3 /* CreateMarkViewModel.swift */; };
 		D907A08927CD697700064EC3 /* MarkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D907A08827CD697700064EC3 /* MarkType.swift */; };
 		D907A08B27CD6C7F00064EC3 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = D907A08A27CD6C7F00064EC3 /* FirebaseFirestoreSwift-Beta */; };
+		D90A4F7427D6712D00862D56 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90A4F7327D6712D00862D56 /* HomeViewModel.swift */; };
 		D9243A04279DA56500A5A228 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9243A03279DA56500A5A228 /* Extensions.swift */; };
 		D92EEA6B27C2CA8600DCB38C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EEA6A27C2CA8600DCB38C /* MainViewModel.swift */; };
 		D92EEA6D27C2CB0E00DCB38C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EEA6C27C2CB0E00DCB38C /* Router.swift */; };
@@ -51,6 +52,7 @@
 		D9AF5EEC27A20213001DB5D8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D9AF5EEB27A20213001DB5D8 /* FirebaseAnalytics */; };
 		D9AF5EF027A20213001DB5D8 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D9AF5EEF27A20213001DB5D8 /* FirebaseFirestore */; };
 		D9AF5EF227A20279001DB5D8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D9AF5EF127A20279001DB5D8 /* FirebaseAuth */; };
+		D9D52B3A27D69CEE00A41CD6 /* MarkAnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D52B3927D69CEE00A41CD6 /* MarkAnotation.swift */; };
 		D9D905E127A714D800DE1007 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = D9D905E027A714D800DE1007 /* FacebookLogin */; };
 		D9F96ED927982583005CD268 /* Marks.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9F96ED827982583005CD268 /* Marks.storyboard */; };
 		D9F96EDB27982647005CD268 /* CreateMarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F96EDA27982647005CD268 /* CreateMarkViewController.swift */; };
@@ -62,6 +64,7 @@
 		D907A08427CD272800064EC3 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		D907A08627CD64EF00064EC3 /* CreateMarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMarkViewModel.swift; sourceTree = "<group>"; };
 		D907A08827CD697700064EC3 /* MarkType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkType.swift; sourceTree = "<group>"; };
+		D90A4F7327D6712D00862D56 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		D9243A03279DA56500A5A228 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D92EEA6A27C2CA8600DCB38C /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		D92EEA6C27C2CB0E00DCB38C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -99,6 +102,7 @@
 		D9A693D227CA32EC00A2131D /* AlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertError.swift; sourceTree = "<group>"; };
 		D9A693D427CA3DB800A2131D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D9AC456F27C51E8B00F0720E /* AuthProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProviderType.swift; sourceTree = "<group>"; };
+		D9D52B3927D69CEE00A41CD6 /* MarkAnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkAnotation.swift; sourceTree = "<group>"; };
 		D9F96ED827982583005CD268 /* Marks.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Marks.storyboard; sourceTree = "<group>"; };
 		D9F96EDA27982647005CD268 /* CreateMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMarkViewController.swift; sourceTree = "<group>"; };
 		D9F96EDC279831B4005CD268 /* ShowMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMarkViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				D94CB1BB2795E5A00045B391 /* HomeViewController.swift */,
+				D90A4F7327D6712D00862D56 /* HomeViewModel.swift */,
 				D9A693C427C8221300A2131D /* HomeRouter.swift */,
 			);
 			path = Home;
@@ -287,6 +292,7 @@
 				D9A693D427CA3DB800A2131D /* User.swift */,
 				D907A08827CD697700064EC3 /* MarkType.swift */,
 				D95EB3DD27D4E69F00C68BC8 /* Mark.swift */,
+				D9D52B3927D69CEE00A41CD6 /* MarkAnotation.swift */,
 				D9AC456E27C51E4D00F0720E /* Networking */,
 			);
 			path = Model;
@@ -408,12 +414,14 @@
 				D95EB3DC27D4C9E800C68BC8 /* CustomSearch.swift in Sources */,
 				D92EEA6B27C2CA8600DCB38C /* MainViewModel.swift in Sources */,
 				D9A0FDB02781E447009062C1 /* SceneDelegate.swift in Sources */,
+				D90A4F7427D6712D00862D56 /* HomeViewModel.swift in Sources */,
 				D9A693C027C7E53400A2131D /* RegistrationViewModel.swift in Sources */,
 				D9A693C527C8221300A2131D /* HomeRouter.swift in Sources */,
 				D9931EFF27BC3B2A00AE6710 /* RoundedButton.swift in Sources */,
 				D98BFF9E2782117100ACFA59 /* LoginViewController.swift in Sources */,
 				D9931F0527BD4D7200AE6710 /* CircleButton.swift in Sources */,
 				D95EB3DE27D4E69F00C68BC8 /* Mark.swift in Sources */,
+				D9D52B3A27D69CEE00A41CD6 /* MarkAnotation.swift in Sources */,
 				D9A693C927C824F500A2131D /* CreateMarkRouter.swift in Sources */,
 				D9931F0127BC3B7500AE6710 /* SubmitButton.swift in Sources */,
 				D94CB1C02795E5F30045B391 /* UserViewController.swift in Sources */,

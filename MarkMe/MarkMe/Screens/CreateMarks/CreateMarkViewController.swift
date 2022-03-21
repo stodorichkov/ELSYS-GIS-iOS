@@ -19,8 +19,6 @@ class CreateMarkViewController: UIViewController {
     @IBOutlet private var descriptionField: TextView!
     private var image: UIImage?
     private var geoLocation = CLLocationCoordinate2D()
-    
-    
     private let locationManager = CLLocationManager()
     private let viewModel = CreateMarkViewModel()
     private var pickerView = UIPickerView()
@@ -145,7 +143,6 @@ extension CreateMarkViewController {
     }
     
     @IBAction func createNewMark(_ sender: UIButton) {
-        //goBack()
         viewModel.createMark(title: titleTextField.text, description: descriptionField.text, type: typeTextField.text, location: geoLocation, image: image) { [weak self] (result) in
                 switch result {
                 case .success(()):

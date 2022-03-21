@@ -19,7 +19,7 @@ class CreateMarkViewModel {
     private let geoCodder = CLGeocoder()
     var markTypes = [MarkType]()
     private var creator: DocumentReference!
-    
+
     init() {
         setCreator()
         getMarkTypes()
@@ -120,6 +120,8 @@ class CreateMarkViewModel {
             return
         }
         var newMark = vaidationResult
+        
+        
         
         // check mark type is valid
         validateMarkType(type: newMark.type) { (markAlert) in

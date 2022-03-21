@@ -8,8 +8,9 @@
 import Foundation
 import FirebaseFirestoreSwift
 import FirebaseFirestore
+import MapKit
 
-struct Mark: Codable, Identifiable  {
+struct Mark: Codable, Identifiable {
     @DocumentID var id: String?
     var title: String
     var description: String
@@ -17,6 +18,6 @@ struct Mark: Codable, Identifiable  {
     var imgPath: String = ""
     var type: String
     var creator: DocumentReference
-    var likes: Int = 0
-    var solved: Int = 0
+    var likes = Set<String>()
+    var solved = Set<String>()
 }

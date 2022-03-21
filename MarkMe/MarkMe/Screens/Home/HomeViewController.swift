@@ -10,19 +10,23 @@ import MapKit
 import CoreLocation
 
 class HomeViewController: UIViewController {
-
     @IBOutlet private var map: MKMapView!
     private let locationMenager = CLLocationManager()
-    private let regionMeters: Double = 1000
+    private let regionMeters: Double = 750
+    private let viewModel = HomeViewModel()
+    private var router: HomeRouter?
     
     override func viewDidLoad() {
         super.viewWillAppear(true)
+        router = HomeRouter(root: self)
+        map.delegate = self
         checkLocationServices()
+        showMarks()
     }
 }
 
 //map
-extension HomeViewController {
+extension HomeViewController: MKMapViewDelegate {
     func setupLocationMenager() {
         locationMenager.delegate = self
         locationMenager.desiredAccuracy = kCLLocationAccuracyBest
@@ -68,13 +72,78 @@ extension HomeViewController {
             break
         }
     }
+    
+    func showMarks() {
+        // get all marks
+        viewModel.getAllMarks() { [weak self] (result) in
+            self?.map.removeAnnotations((self?.map.annotations)!)
+            switch result {
+            case .success(let marks):
+                for mark in marks {
+                    // create annotation
+                    let annotation = CustomAnnotation(markInfo: mark)
+                    
+                    // set annotation title
+                    annotation.title = annotation.markInfo.title
+                    
+                    // set mark subtitle
+                    self?.viewModel.getCreatorName(documentRef: annotation.markInfo.creator) { (result) in
+                        annotation.subtitle = "by " + result
+                    }
+                    
+                    // set annotation coordinates
+                    annotation.coordinate = CLLocationCoordinate2D(latitude: mark.geolocation.latitude, longitude: mark.geolocation.longitude)
+                    
+                    // add annotation on map
+                    self?.map.addAnnotation(annotation)
+                }
+            case .failure(let alert):
+                self?.showAlert(title: alert.title, alertMessage: alert.errorDescription)
+            }
+        }
+    }
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation is CustomAnnotation else {
+            return nil
+        }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "customAnnotation") as? MKMarkerAnnotationView
+        
+        if annotationView == nil {
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "customAnnotation")
+            annotationView?.canShowCallout = true
+            annotationView?.titleVisibility = .hidden
+            
+            // annotation info button
+            let button = UIButton(type: .detailDisclosure)
+            annotationView?.rightCalloutAccessoryView = button
+        }
+        else {
+            annotationView?.annotation = annotation
+        }
+        
+        guard let annotation = annotation as? CustomAnnotation else {
+            return nil
+        }
+        
+        // set glyphyImage dependin on mark type
+        annotationView?.glyphImage = viewModel.getImageForMarkType(type: annotation.markInfo.type)
+        
+        // set annotation color depend on mark solved
+        annotationView?.markerTintColor = viewModel.getColorForSolvedNumber(solved: annotation.markInfo.solved.count)
+        
+        return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        router?.goToMarkInfo()
+    }
 }
 
 // buttons
 extension HomeViewController {
     @IBAction func goToCreateMark(_ sender: UIButton) {
-        let router = HomeRouter(root: self)
-        router.goToCreateMark()
+        router?.goToCreateMark()
     }
     
     @IBAction func didCenter(_ sender: UIButton) {
