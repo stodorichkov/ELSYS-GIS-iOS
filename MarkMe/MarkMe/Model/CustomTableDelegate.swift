@@ -9,4 +9,5 @@ import Foundation
 protocol CustomTableDelegate {
     func reloadTable()
     func goToMarkInfo(markID: String)
+    func deleteMark(mark: Mark?)
 }

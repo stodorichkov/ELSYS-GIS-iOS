@@ -19,6 +19,7 @@ class MarkListViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        checkHaveMarks()
     }
     
     func setUp() {
@@ -37,6 +38,15 @@ class MarkListViewController: UIViewController{
         //searchBar
         searchBar.delegate = self
     }
+    
+    func checkHaveMarks() {
+        if filterData.isEmpty {
+            table.isHidden = true
+        }
+        else {
+            table.isHidden = false
+        }
+    }
 }
 
 extension MarkListViewController:  UITableViewDelegate, UITableViewDataSource {
@@ -53,21 +63,18 @@ extension MarkListViewController:  UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MarkListViewController: CustomTableDelegate{
+    func deleteMark(mark: Mark?) {
+        viewModel.deleteMark(mark: mark)
+    }
+    
     func goToMarkInfo(markID: String) {
         router?.goToMarkInfo(markID: markID)
     }
     
     func reloadTable() {
-        if viewModel.marks.isEmpty {
-            table.isHidden = true
-            searchBar.isHidden = true
-        }
-        else {
-            table.isHidden = false
-            searchBar.isHidden = false
-            filterData = viewModel.marks
-            table.reloadData()
-        }
+        filterData = viewModel.marks
+        checkHaveMarks()
+        table.reloadData()
     }
 }
 
@@ -75,19 +82,17 @@ extension MarkListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filterData = []
         
-        for mark in viewModel.marks {
-            if mark.title.uppercased().starts(with: searchText.uppercased()) {
-                filterData.append(mark)
-            }
-        }
-        
-        if filterData.isEmpty {
-            table.isHidden = true
+        if searchText == "" {
+            filterData = viewModel.marks
         }
         else {
-            table.isHidden = false
+            for mark in viewModel.marks {
+                if mark.title.uppercased().starts(with: searchText.uppercased()) {
+                    filterData.append(mark)
+                }
+            }
         }
-        
+        checkHaveMarks()
         table.reloadData()
     }
 }

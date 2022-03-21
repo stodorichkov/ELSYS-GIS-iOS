@@ -42,6 +42,6 @@ extension CustomTableViewCell {
     }
     
     @IBAction func trashDidTap() {
-        
+        delegate?.deleteMark(mark: mark)
     }
 }
