@@ -7,7 +7,6 @@
 
 import FirebaseFirestore
 import FirebaseStorage
-import FirebaseStorageUI
 import FirebaseAuth
 import UIKit
 
@@ -49,12 +48,12 @@ class ShowMarkViewModel {
         }
     }
     
-    func setImage(imageView: UIImageView, imgPath: String) {
+    func setImage(imgPath: String) -> StorageReference? {
         if imgPath != "" {
             let storage = Storage.storage()
-            let ref = storage.reference(forURL: imgPath)
-            imageView.sd_setImage(with: ref, placeholderImage: UIImage(systemName: "photo"))
+            return storage.reference(forURL: imgPath)
         }
+        return nil
     }
     
     func updateSet(markID: String?, arrayName: String, array: [String]) {
