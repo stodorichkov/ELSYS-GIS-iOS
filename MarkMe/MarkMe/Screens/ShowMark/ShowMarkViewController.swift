@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseStorageUI
 
 class ShowMarkViewController: UIViewController {
 
@@ -68,7 +69,10 @@ extension ShowMarkViewController {
         }
         
         // get image
-        viewModel.setImage(imageView: image, imgPath: mark.imgPath)
+        guard let ref = viewModel.setImage(imgPath: mark.imgPath) else {
+            return
+        }
+        image.sd_setImage(with: ref, placeholderImage: UIImage(systemName: "photo"))
     }
     
     func setButtonsImage() {
