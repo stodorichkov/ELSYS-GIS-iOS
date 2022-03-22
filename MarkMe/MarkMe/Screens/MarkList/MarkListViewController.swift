@@ -9,7 +9,7 @@ import UIKit
 
 class MarkListViewController: UIViewController{
     
-    @IBOutlet private var table: UITableView!
+    @IBOutlet private var tableView: UITableView!
     @IBOutlet private var searchBar: UISearchBar!
     
     private let viewModel = MarkListViewModel()
@@ -31,21 +31,16 @@ class MarkListViewController: UIViewController{
         router = MarkListRouter(root: self)
         
         //table
-        table.register(CustomTableViewCell.nib(), forCellReuseIdentifier: CustomTableViewCell.identifier)
-        table.dataSource = self
-        table.delegate = self
+        tableView.register(CustomTableViewCell.nib(), forCellReuseIdentifier: CustomTableViewCell.identifier)
+        tableView.dataSource = self
+        tableView.delegate = self
     
         //searchBar
         searchBar.delegate = self
     }
     
     func checkHaveMarks() {
-        if filterData.isEmpty {
-            table.isHidden = true
-        }
-        else {
-            table.isHidden = false
-        }
+        tableView.isHidden = filterData.isEmpty
     }
 }
 
@@ -62,7 +57,7 @@ extension MarkListViewController:  UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension MarkListViewController: CustomTableDelegate{
+extension MarkListViewController: MarkActionsDelegate {
     func deleteMark(mark: Mark?) {
         viewModel.deleteMark(mark: mark)
     }
@@ -74,7 +69,7 @@ extension MarkListViewController: CustomTableDelegate{
     func reloadTable() {
         filterData = viewModel.marks
         checkHaveMarks()
-        table.reloadData()
+        tableView.reloadData()
     }
 }
 
@@ -93,6 +88,6 @@ extension MarkListViewController: UISearchBarDelegate {
             }
         }
         checkHaveMarks()
-        table.reloadData()
+        tableView.reloadData()
     }
 }

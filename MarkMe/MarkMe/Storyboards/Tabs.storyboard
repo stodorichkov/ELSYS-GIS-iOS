@@ -61,7 +61,7 @@
                     <navigationItem key="navigationItem" id="w3a-KF-i0L"/>
                     <connections>
                         <outlet property="searchBar" destination="uzS-eH-Gff" id="2Qd-nz-qUE"/>
-                        <outlet property="table" destination="gTm-bL-dtf" id="6hn-VM-Bpz"/>
+                        <outlet property="tableView" destination="gTm-bL-dtf" id="4Ie-9s-NJq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JY3-PR-2r8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

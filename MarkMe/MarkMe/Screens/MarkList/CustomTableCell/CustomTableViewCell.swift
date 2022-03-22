@@ -12,7 +12,7 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet private var titleButton: UIButton!
     
     static let identifier = "CustomTableViewCell"
-    var delegate: CustomTableDelegate?
+    var delegate: MarkActionsDelegate?
     var mark: Mark?
     
     static func nib() -> UINib {
@@ -22,10 +22,6 @@ class CustomTableViewCell: UITableViewCell {
     func configure(mark: Mark) {
         self.mark = mark
         titleButton.setTitle(mark.title, for: .normal)
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
     }
 }
 

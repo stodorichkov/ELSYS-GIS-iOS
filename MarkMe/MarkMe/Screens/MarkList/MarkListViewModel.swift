@@ -13,9 +13,9 @@ import UIKit
 
 class MarkListViewModel {
     let db = Firestore.firestore()
-    var creatorRef: DocumentReference!
+    var creatorRef: DocumentReference?
     var marks = [Mark]()
-    var delegate: CustomTableDelegate?
+    var delegate: MarkActionsDelegate?
     
     init() {
         getCreator()
@@ -39,15 +39,13 @@ class MarkListViewModel {
                 return
             }
             
-            guard querySnapshot?.documents.isEmpty == false, let documents = querySnapshot?.documents else {
+            guard let documents = querySnapshot?.documents, !documents.isEmpty else {
                 self?.marks = []
                 self?.delegate?.reloadTable()
                 return
             }
             
-            self?.marks = documents.compactMap { (document) -> Mark? in
-                return try? document.data(as: Mark.self)
-            }
+            self?.marks = documents.compactMap { try? $0.data(as: Mark.self) }
             self?.delegate?.reloadTable()
         }
     }
@@ -70,6 +68,7 @@ class MarkListViewModel {
         db.collection("Mark").document(documentID).delete() { [weak self] err in
             if let err = err {
                 print(err)
+                return
             }
             self?.delegate?.reloadTable()
         }
