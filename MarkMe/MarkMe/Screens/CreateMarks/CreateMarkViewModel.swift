@@ -31,9 +31,7 @@ class CreateMarkViewModel {
                 print(err.debugDescription)
                 return
             }
-            self?.markTypes = documents.compactMap { (document) -> MarkType? in
-                return try? document.data(as: MarkType.self)
-            }
+            self?.markTypes = documents.compactMap { try? $0.data(as: MarkType.self) }
         }
     }
     

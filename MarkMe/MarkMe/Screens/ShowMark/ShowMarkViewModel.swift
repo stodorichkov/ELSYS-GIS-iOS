@@ -8,7 +8,6 @@
 import FirebaseFirestore
 import FirebaseStorage
 import FirebaseAuth
-import UIKit
 
 class ShowMarkViewModel {
     let db = Firestore.firestore()
