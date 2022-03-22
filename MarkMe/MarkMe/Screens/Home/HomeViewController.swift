@@ -11,8 +11,10 @@ import CoreLocation
 
 class HomeViewController: UIViewController {
     @IBOutlet private var map: MKMapView!
+    
     private let locationMenager = CLLocationManager()
     private let regionMeters: Double = 750
+    
     private let viewModel = HomeViewModel()
     private var router: HomeRouter?
     
@@ -136,7 +138,10 @@ extension HomeViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        router?.goToMarkInfo()
+        guard let annotation = view.annotation as? CustomAnnotation, let id = annotation.markInfo.id else {
+            return
+        }
+        router?.goToMarkInfo(markID: id)
     }
 }
 

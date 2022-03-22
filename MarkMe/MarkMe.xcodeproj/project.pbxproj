@@ -33,6 +33,9 @@
 		D9931F0127BC3B7500AE6710 /* SubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9931F0027BC3B7500AE6710 /* SubmitButton.swift */; };
 		D9931F0327BC3CEB00AE6710 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9931F0227BC3CEB00AE6710 /* TextField.swift */; };
 		D9931F0527BD4D7200AE6710 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9931F0427BD4D7200AE6710 /* CircleButton.swift */; };
+		D99F57F827E3784000A5837D /* ShowMarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99F57F727E3784000A5837D /* ShowMarkViewModel.swift */; };
+		D99F57FA27E3786100A5837D /* ShowMarkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99F57F927E3786100A5837D /* ShowMarkRouter.swift */; };
+		D99F57FD27E3C69300A5837D /* FirebaseStorageUI in Frameworks */ = {isa = PBXBuildFile; productRef = D99F57FC27E3C69300A5837D /* FirebaseStorageUI */; };
 		D9A0FDAE2781E447009062C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A0FDAD2781E447009062C1 /* AppDelegate.swift */; };
 		D9A0FDB02781E447009062C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A0FDAF2781E447009062C1 /* SceneDelegate.swift */; };
 		D9A0FDB22781E447009062C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A0FDB12781E447009062C1 /* ViewController.swift */; };
@@ -84,6 +87,8 @@
 		D9931F0027BC3B7500AE6710 /* SubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButton.swift; sourceTree = "<group>"; };
 		D9931F0227BC3CEB00AE6710 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		D9931F0427BD4D7200AE6710 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		D99F57F727E3784000A5837D /* ShowMarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMarkViewModel.swift; sourceTree = "<group>"; };
+		D99F57F927E3786100A5837D /* ShowMarkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMarkRouter.swift; sourceTree = "<group>"; };
 		D9A0FDAA2781E447009062C1 /* MarkMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9A0FDAD2781E447009062C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9A0FDAF2781E447009062C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +126,7 @@
 				D95EB3E027D4EBAE00C68BC8 /* FirebaseStorage in Frameworks */,
 				D9F96EF1279D8C99005CD268 /* GoogleSignIn in Frameworks */,
 				D9AF5EF227A20279001DB5D8 /* FirebaseAuth in Frameworks */,
+				D99F57FD27E3C69300A5837D /* FirebaseStorageUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +149,7 @@
 				D9A693C327C821C800A2131D /* Home */,
 				D9A693C627C823B800A2131D /* Marks */,
 				D9A693C727C8247500A2131D /* CreateMarks */,
-				D9A693CA27C8267C00A2131D /* ShowMarks */,
+				D9A693CA27C8267C00A2131D /* ShowMark */,
 				D9A693CB27C8278F00A2131D /* User */,
 			);
 			path = Screens;
@@ -266,12 +272,14 @@
 			path = CreateMarks;
 			sourceTree = "<group>";
 		};
-		D9A693CA27C8267C00A2131D /* ShowMarks */ = {
+		D9A693CA27C8267C00A2131D /* ShowMark */ = {
 			isa = PBXGroup;
 			children = (
 				D9F96EDC279831B4005CD268 /* ShowMarkViewController.swift */,
+				D99F57F727E3784000A5837D /* ShowMarkViewModel.swift */,
+				D99F57F927E3786100A5837D /* ShowMarkRouter.swift */,
 			);
-			path = ShowMarks;
+			path = ShowMark;
 			sourceTree = "<group>";
 		};
 		D9A693CB27C8278F00A2131D /* User */ = {
@@ -331,6 +339,7 @@
 				D9770A2D27B589DD00455DC0 /* FacebookCore */,
 				D907A08A27CD6C7F00064EC3 /* FirebaseFirestoreSwift-Beta */,
 				D95EB3DF27D4EBAE00C68BC8 /* FirebaseStorage */,
+				D99F57FC27E3C69300A5837D /* FirebaseStorageUI */,
 			);
 			productName = MarkMe;
 			productReference = D9A0FDAA2781E447009062C1 /* MarkMe.app */;
@@ -364,6 +373,7 @@
 				D9F96EEF279D8C99005CD268 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				D9AF5EEA27A20213001DB5D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				D9D905DF27A714D800DE1007 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				D99F57FB27E3C69200A5837D /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */,
 			);
 			productRefGroup = D9A0FDAB2781E447009062C1 /* Products */;
 			projectDirPath = "";
@@ -407,6 +417,7 @@
 				D9A693BB27C7A70D00A2131D /* LoginRouter.swift in Sources */,
 				D92EEA6D27C2CB0E00DCB38C /* Router.swift in Sources */,
 				D94CB1BC2795E5A00045B391 /* HomeViewController.swift in Sources */,
+				D99F57F827E3784000A5837D /* ShowMarkViewModel.swift in Sources */,
 				D9A0FDAE2781E447009062C1 /* AppDelegate.swift in Sources */,
 				D907A08527CD272800064EC3 /* TextView.swift in Sources */,
 				D98BFFA02782118D00ACFA59 /* RegistrationViewController.swift in Sources */,
@@ -431,6 +442,7 @@
 				D92EEA6F27C2CC1B00DCB38C /* MainRouter.swift in Sources */,
 				D9A693CD27C827B500A2131D /* UserViewModel.swift in Sources */,
 				D9A693C227C7E54400A2131D /* RegistrationRouter.swift in Sources */,
+				D99F57FA27E3786100A5837D /* ShowMarkRouter.swift in Sources */,
 				D907A08727CD64EF00064EC3 /* CreateMarkViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -651,6 +663,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D99F57FB27E3C69200A5837D /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/FirebaseUI-iOS.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		D9AF5EEA27A20213001DB5D8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -692,6 +712,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D9D905DF27A714D800DE1007 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
 			productName = FacebookCore;
+		};
+		D99F57FC27E3C69300A5837D /* FirebaseStorageUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D99F57FB27E3C69200A5837D /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */;
+			productName = FirebaseStorageUI;
 		};
 		D9AF5EEB27A20213001DB5D8 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

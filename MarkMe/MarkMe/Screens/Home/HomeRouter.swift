@@ -19,8 +19,9 @@ class HomeRouter: Router {
         root.navigationController?.pushViewController(target, animated: true)
     }
     
-    func goToMarkInfo() {
-        let target = findViewController(storyboardName: "Marks", storyboardId: "showMark")
+    func goToMarkInfo(markID: String) {
+        let target = findViewController(storyboardName: "Marks", storyboardId: "showMark") as! ShowMarkViewController
+        target.markID = markID
         root.navigationController?.pushViewController(target, animated: true)
     }
 }

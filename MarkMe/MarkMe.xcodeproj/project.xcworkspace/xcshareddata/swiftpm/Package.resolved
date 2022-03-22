@@ -47,6 +47,15 @@
         }
       },
       {
+        "package": "FirebaseUI",
+        "repositoryURL": "https://github.com/firebase/FirebaseUI-iOS.git",
+        "state": {
+          "branch": "master",
+          "revision": "72a910abba9bdfb2b151938ea84190ffcf818b0c",
+          "version": null
+        }
+      },
+      {
         "package": "GoogleAppMeasurement",
         "repositoryURL": "https://github.com/google/GoogleAppMeasurement.git",
         "state": {
@@ -134,6 +143,15 @@
           "branch": null,
           "revision": "611337c330350c9c1823ad6d671e7f936af5ee13",
           "version": "2.0.0"
+        }
+      },
+      {
+        "package": "SDWebImage",
+        "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
+        "state": {
+          "branch": null,
+          "revision": "2e63d0061da449ad0ed130768d05dceb1496de44",
+          "version": "5.12.5"
         }
       },
       {
