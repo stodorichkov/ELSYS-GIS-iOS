@@ -33,17 +33,25 @@ class UserViewController: UIViewController {
 
 extension UserViewController {
     @IBAction func signOut(_ sender: UIButton) {
-        viewModel.signOut() { [weak self] (result) in
-            switch result {
-            case .success(_):
-                self?.router?.goToLogin()
-            case .failure(let alert):
+        viewModel.signOut() { [weak self] (alert) in
+            if let alert = alert {
                 self?.showAlert(title: alert.title, alertMessage: alert.errorDescription)
+            }
+            else {
+                self?.router?.goToLogin()
             }
         }
     }
     
     @IBAction func deleteUser(_ sender: UIButton) {
-        router?.goToLogin()
+        Task{
+            do {
+                try await viewModel.deleteUser()
+            }
+            catch {
+                let error = error as! AlertError
+                showAlert(title: error.title, alertMessage: error.errorDescription)
+            }
+        }
     }
 }

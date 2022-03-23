@@ -11,23 +11,28 @@ import FacebookLogin
 import FirebaseFirestore
 
 class UserViewModel {
-    func signOut(completion: (Result<Void, AlertError>) -> ()) {
+    let db = Firestore.firestore()
+    
+    func signOut(completion: (AlertError?) -> ()) {
         do {
-            guard let provider = Auth.auth().currentUser?.providerData[0].providerType else{
-                return
-            }
-            switch provider {
-            case .facebook:
-                LoginManager().logOut()
-            default:
-                break
-            }
-            
             try Auth.auth().signOut()
-            completion(.success(()))
+            completion(nil)
         }
         catch let error {
-            completion(.failure(AlertError.logout(error.localizedDescription)))
+            completion(AlertError.logout(error.localizedDescription))
+        }
+    }
+    
+    func deleteUser() async throws {
+        guard let curUser = Auth.auth().currentUser else {
+            return
+        }
+        do {
+            try await db.collection("User").document(curUser.uid).delete()
+            try await curUser.delete()
+        }
+        catch {
+            throw AlertError.delete(error.localizedDescription)
         }
     }
     
@@ -36,7 +41,6 @@ class UserViewModel {
             return
         }
         if provider == .email{
-            let db = Firestore.firestore()
             db.collection("User").document(curUser.uid).addSnapshotListener() { (document, err) in
                 guard err == nil,
                       let document = document,
