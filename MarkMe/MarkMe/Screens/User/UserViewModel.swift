@@ -13,13 +13,12 @@ import FirebaseFirestore
 class UserViewModel {
     let db = Firestore.firestore()
     
-    func signOut(completion: (AlertError?) -> ()) {
+    func signOut() throws {
         do {
             try Auth.auth().signOut()
-            completion(nil)
         }
         catch let error {
-            completion(AlertError.logout(error.localizedDescription))
+            throw AlertError.logout(error.localizedDescription)
         }
     }
     
@@ -36,29 +35,17 @@ class UserViewModel {
         }
     }
     
-    func setUserLabel(completion: @escaping (Result<String, AlertError>) -> ()){
-        guard let curUser = Auth.auth().currentUser, let provider = curUser.providerData[0].providerType  else {
-            return
+    func setUserLabel() async throws -> String? {
+        guard let curUser = Auth.auth().currentUser else {
+            return nil
         }
-        if provider == .email{
-            db.collection("User").document(curUser.uid).addSnapshotListener() { (document, err) in
-                guard err == nil,
-                      let document = document,
-                      document.exists,
-                      let data = document.data(),
-                      let userLable = data["username"] as? String
-                else {
-                    completion(.failure(AlertError.logout("User is not found!")))
-                    return
-                }
-                completion(.success(userLable))
-            }
+        do {
+            let document = try await db.collection("User").document(curUser.uid).getDocument()
+            let user = try document.data(as: DBUser.self)
+            return user?.username
         }
-        else {
-            guard let userLable = curUser.displayName else {
-                return
-            }
-            completion(.success(userLable))
+        catch {
+            throw AlertError.db("User is not found!")
         }
     }
 }
