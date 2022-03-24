@@ -8,7 +8,9 @@
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
+import Firebase
 import FacebookLogin
+import GoogleSignIn
 
 class LoginViewModel {
     private let db = Firestore.firestore()
@@ -20,29 +22,29 @@ class LoginViewModel {
         return nil
     }
     
-    func loginWithUsername(usernameField: String?, passwordField: String?, completion: @escaping (Result<Void, AlertError>) -> ()) {
+    func loginWithUsername(usernameField: String?, passwordField: String?, completion: @escaping (AlertError?) -> ()) {
         // validate form
         guard let user = validateData(usernameField: usernameField, passwordField: passwordField) else{
-            return completion(.failure(AlertError.validation("The form must be completed!")))
+            return completion(AlertError.validation("The form must be completed!"))
         }
 
         // find user
         db.collection("User").whereField("username", isEqualTo: user.username).getDocuments() { (querySnapshot, err) in
             guard err == nil, querySnapshot?.documents.isEmpty == false else {
-                completion(.failure(AlertError.db("User is not found!")))
+                completion(AlertError.db("User is not found!"))
                 return
             }
             guard let email = querySnapshot?.documents[0].data()["email"] as? String else {
-                completion(.failure(AlertError.db("Can't get email")))
+                completion(AlertError.db("Can't get email"))
                 return
             }
             // sign in user
             Auth.auth().signIn(withEmail: email, password: user.password) { (result, error) in
                 if let error = error {
-                    completion(.failure(AlertError.login(error.localizedDescription)))
+                    completion(AlertError.login(error.localizedDescription))
                     return
                 }
-                completion(.success(()))
+                completion(nil)
             }
         }
     }
@@ -58,11 +60,29 @@ class LoginViewModel {
         }
     }
     
-    func loginWithFacebook(view: UIViewController, completion: @escaping (Result<Void, AlertError>) -> ()) {
-        LoginManager().logIn(permissions: ["public_profile","email"], from: view) { (fbResult, fbError) in
+    func firebaseAuth(credential: AuthCredential, completion: @escaping (AlertError?) -> ()) {
+        Auth.auth().signIn(with: credential) { [weak self] (result, error) in
+            if let error = error {
+                completion(AlertError.login(error.localizedDescription))
+                return
+            }
+            guard let user = result?.user else {
+                completion(AlertError.login("Can't get user"))
+                return
+            }
+            if let addResult = self?.addUser(user: user) {
+                completion(addResult)
+            }
+            // success
+            completion(nil)
+        }
+    }
+    
+    func loginWithFacebook(view: UIViewController, completion: @escaping (AlertError?) -> ()) {
+        LoginManager().logIn(permissions: ["public_profile","email"], from: view) { [weak self] (fbResult, fbError) in
             // check for error
             if let fbError = fbError {
-                completion(.failure(AlertError.facebook(fbError.localizedDescription)))
+                completion(AlertError.facebook(fbError.localizedDescription))
                 return
             }
             // check for cancle
@@ -71,20 +91,32 @@ class LoginViewModel {
             }
             // make firebase login
             let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
-            Auth.auth().signIn(with: credential) { [weak self] (result, error) in
-                if let error = error {
-                    completion(.failure(AlertError.login(error.localizedDescription)))
-                    return
+            self?.firebaseAuth(credential: credential) { (alert) in
+                completion(alert)
+            }
+        }
+    }
+    
+    func loginWithGoogle(root: UIViewController, completion: @escaping (AlertError?) -> ()) {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.signIn(with: config, presenting: root) { [weak self] (user, error) in
+            if let error = error {
+                if error.localizedDescription != "The user canceled the sign-in flow." {
+                    completion(AlertError.google(error.localizedDescription))
                 }
-                guard let user = result?.user else {
-                    completion(.failure(AlertError.login("Can't get user")))
-                    return
-                }
-                if let addResult = self?.addUser(user: user) {
-                    completion(.failure(addResult))
-                }
-                // success
-                completion(.success(()))
+                return
+            }
+            
+            guard let authentication = user?.authentication, let idToken = authentication.idToken else {
+                return
+            }
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
+            self?.firebaseAuth(credential: credential) { (alert) in
+                completion(alert)
             }
         }
     }

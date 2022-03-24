@@ -2,10 +2,36 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Plaesas allow access.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Plaesas allow access.</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb324178652792654</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.627690952960-403djgnca4q94lledpt9v85jv6ploj6f</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>324178652792654</string>
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<false/>
+	<key>FacebookClientToken</key>
+	<string>d2088dd624ea82fa5cbe8d58b2610d4e</string>
+	<key>FacebookDisplayName</key>
+	<string>Mark Me</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -25,27 +51,5 @@
 			</array>
 		</dict>
 	</dict>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb324178652792654</string>
-			</array>
-		</dict>
-	</array>
-	<key>FacebookAppID</key>
-	<string>324178652792654</string>
-	<key>FacebookClientToken</key>
-	<string>d2088dd624ea82fa5cbe8d58b2610d4e</string>
-	<key>FacebookDisplayName</key>
-	<string>Mark Me</string>
-	<key>FacebookAutoLogAppEventsEnabled</key>
-	<false/>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbapi</string>
-		<string>fb-messenger-share-api</string>
-	</array>
 </dict>
 </plist>
