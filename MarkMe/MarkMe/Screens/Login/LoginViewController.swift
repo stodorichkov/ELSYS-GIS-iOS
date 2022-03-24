@@ -42,6 +42,10 @@ extension LoginViewController{
         router?.goToRegistration()
     }
     
+    @IBAction func goToForgotPassword(_ sender: UIButton) {
+        router?.goToForgotPassword()
+    }
+    
     // process result
     func processResult(result: Result<Void, AlertError>) {
         switch result {

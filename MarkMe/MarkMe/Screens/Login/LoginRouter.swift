@@ -13,11 +13,11 @@ class LoginRouter: Router {
     required init(root: UIViewController) {
         self.root = root
     }
+
     
-    func goTo(target: UIViewController, transition: UIModalTransitionStyle) {
-        target.modalPresentationStyle = .fullScreen
-        target.modalTransitionStyle = transition
-        root.present(target, animated: true)
+    func goToForgotPassword() {
+        let target = findViewController(storyboardName: "Authentication", storyboardId: "forgotPassword")
+        presentTarget(target: target, transition: .coverVertical)
     }
     
     func goToRegistration() {
