@@ -18,7 +18,7 @@
 		D92EEA6F27C2CC1B00DCB38C /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EEA6E27C2CC1B00DCB38C /* MainRouter.swift */; };
 		D94CB1BA2795E1020045B391 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D94CB1B92795E1020045B391 /* Tabs.storyboard */; };
 		D94CB1BC2795E5A00045B391 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94CB1BB2795E5A00045B391 /* HomeViewController.swift */; };
-		D94CB1BE2795E5D10045B391 /* MarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94CB1BD2795E5D10045B391 /* MarksViewController.swift */; };
+		D94CB1BE2795E5D10045B391 /* MarkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94CB1BD2795E5D10045B391 /* MarkListViewController.swift */; };
 		D94CB1C02795E5F30045B391 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94CB1BF2795E5F30045B391 /* UserViewController.swift */; };
 		D95A64E427C42D0F00188101 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D95A64E327C42D0F00188101 /* GoogleService-Info.plist */; };
 		D95A64E827C42DA100188101 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D95A64E727C42DA000188101 /* Assets.xcassets */; };
@@ -26,6 +26,11 @@
 		D95EB3DE27D4E69F00C68BC8 /* Mark.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EB3DD27D4E69F00C68BC8 /* Mark.swift */; };
 		D95EB3E027D4EBAE00C68BC8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D95EB3DF27D4EBAE00C68BC8 /* FirebaseStorage */; };
 		D9770A2E27B589DD00455DC0 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = D9770A2D27B589DD00455DC0 /* FacebookCore */; };
+		D98186F927E8C35500DBE3A6 /* MarkListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98186F827E8C35500DBE3A6 /* MarkListViewModel.swift */; };
+		D98186FD27E8CE1900DBE3A6 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98186FB27E8CE1900DBE3A6 /* CustomTableViewCell.swift */; };
+		D98186FE27E8CE1900DBE3A6 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D98186FC27E8CE1900DBE3A6 /* CustomTableViewCell.xib */; };
+		D981870027E8FE2C00DBE3A6 /* MarkListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98186FF27E8FE2C00DBE3A6 /* MarkListRouter.swift */; };
+		D981870227E9021B00DBE3A6 /* CustomTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D981870127E9021B00DBE3A6 /* CustomTableDelegate.swift */; };
 		D98BFF932781E6D600ACFA59 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D98BFF922781E6D600ACFA59 /* Authentication.storyboard */; };
 		D98BFF9E2782117100ACFA59 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98BFF9D2782117100ACFA59 /* LoginViewController.swift */; };
 		D98BFFA02782118D00ACFA59 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98BFF9F2782118D00ACFA59 /* RegistrationViewController.swift */; };
@@ -74,12 +79,17 @@
 		D92EEA6E27C2CC1B00DCB38C /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		D94CB1B92795E1020045B391 /* Tabs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tabs.storyboard; sourceTree = "<group>"; };
 		D94CB1BB2795E5A00045B391 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		D94CB1BD2795E5D10045B391 /* MarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksViewController.swift; sourceTree = "<group>"; };
+		D94CB1BD2795E5D10045B391 /* MarkListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkListViewController.swift; sourceTree = "<group>"; };
 		D94CB1BF2795E5F30045B391 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		D95A64E327C42D0F00188101 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "MarkMe/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D95A64E727C42DA000188101 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D95EB3DB27D4C9E800C68BC8 /* CustomSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearch.swift; sourceTree = "<group>"; };
 		D95EB3DD27D4E69F00C68BC8 /* Mark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mark.swift; sourceTree = "<group>"; };
+		D98186F827E8C35500DBE3A6 /* MarkListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkListViewModel.swift; sourceTree = "<group>"; };
+		D98186FB27E8CE1900DBE3A6 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		D98186FC27E8CE1900DBE3A6 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		D98186FF27E8FE2C00DBE3A6 /* MarkListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkListRouter.swift; sourceTree = "<group>"; };
+		D981870127E9021B00DBE3A6 /* CustomTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableDelegate.swift; sourceTree = "<group>"; };
 		D98BFF922781E6D600ACFA59 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		D98BFF9D2782117100ACFA59 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D98BFF9F2782118D00ACFA59 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -147,7 +157,7 @@
 				D9A693B927C7A65600A2131D /* Login */,
 				D9A693BE27C7E49400A2131D /* Registration */,
 				D9A693C327C821C800A2131D /* Home */,
-				D9A693C627C823B800A2131D /* Marks */,
+				D9A693C627C823B800A2131D /* MarkList */,
 				D9A693C727C8247500A2131D /* CreateMarks */,
 				D9A693CA27C8267C00A2131D /* ShowMark */,
 				D9A693CB27C8278F00A2131D /* User */,
@@ -163,6 +173,15 @@
 				D92EEA6E27C2CC1B00DCB38C /* MainRouter.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		D98186FA27E8CDD500DBE3A6 /* CustomTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				D98186FB27E8CE1900DBE3A6 /* CustomTableViewCell.swift */,
+				D98186FC27E8CE1900DBE3A6 /* CustomTableViewCell.xib */,
+			);
+			path = CustomTableCell;
 			sourceTree = "<group>";
 		};
 		D98BFF912781E6B100ACFA59 /* Storyboards */ = {
@@ -254,12 +273,15 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		D9A693C627C823B800A2131D /* Marks */ = {
+		D9A693C627C823B800A2131D /* MarkList */ = {
 			isa = PBXGroup;
 			children = (
-				D94CB1BD2795E5D10045B391 /* MarksViewController.swift */,
+				D94CB1BD2795E5D10045B391 /* MarkListViewController.swift */,
+				D98186F827E8C35500DBE3A6 /* MarkListViewModel.swift */,
+				D98186FF27E8FE2C00DBE3A6 /* MarkListRouter.swift */,
+				D98186FA27E8CDD500DBE3A6 /* CustomTableCell */,
 			);
-			path = Marks;
+			path = MarkList;
 			sourceTree = "<group>";
 		};
 		D9A693C727C8247500A2131D /* CreateMarks */ = {
@@ -301,6 +323,7 @@
 				D907A08827CD697700064EC3 /* MarkType.swift */,
 				D95EB3DD27D4E69F00C68BC8 /* Mark.swift */,
 				D9D52B3927D69CEE00A41CD6 /* MarkAnotation.swift */,
+				D981870127E9021B00DBE3A6 /* CustomTableDelegate.swift */,
 				D9AC456E27C51E4D00F0720E /* Networking */,
 			);
 			path = Model;
@@ -395,6 +418,7 @@
 				D94CB1BA2795E1020045B391 /* Tabs.storyboard in Resources */,
 				D95A64E827C42DA100188101 /* Assets.xcassets in Resources */,
 				D9A0FDB52781E447009062C1 /* Main.storyboard in Resources */,
+				D98186FE27E8CE1900DBE3A6 /* CustomTableViewCell.xib in Resources */,
 				D95A64E427C42D0F00188101 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,6 +435,7 @@
 				D9A0FDB22781E447009062C1 /* ViewController.swift in Sources */,
 				D9A693BD27C7A7DF00A2131D /* LoginViewModel.swift in Sources */,
 				D9F96EDB27982647005CD268 /* CreateMarkViewController.swift in Sources */,
+				D98186F927E8C35500DBE3A6 /* MarkListViewModel.swift in Sources */,
 				D9A693D527CA3DB800A2131D /* User.swift in Sources */,
 				D9F96EDD279831B4005CD268 /* ShowMarkViewController.swift in Sources */,
 				D9931F0327BC3CEB00AE6710 /* TextField.swift in Sources */,
@@ -431,12 +456,15 @@
 				D9931EFF27BC3B2A00AE6710 /* RoundedButton.swift in Sources */,
 				D98BFF9E2782117100ACFA59 /* LoginViewController.swift in Sources */,
 				D9931F0527BD4D7200AE6710 /* CircleButton.swift in Sources */,
+				D98186FD27E8CE1900DBE3A6 /* CustomTableViewCell.swift in Sources */,
 				D95EB3DE27D4E69F00C68BC8 /* Mark.swift in Sources */,
+				D981870227E9021B00DBE3A6 /* CustomTableDelegate.swift in Sources */,
 				D9D52B3A27D69CEE00A41CD6 /* MarkAnotation.swift in Sources */,
 				D9A693C927C824F500A2131D /* CreateMarkRouter.swift in Sources */,
 				D9931F0127BC3B7500AE6710 /* SubmitButton.swift in Sources */,
 				D94CB1C02795E5F30045B391 /* UserViewController.swift in Sources */,
-				D94CB1BE2795E5D10045B391 /* MarksViewController.swift in Sources */,
+				D94CB1BE2795E5D10045B391 /* MarkListViewController.swift in Sources */,
+				D981870027E8FE2C00DBE3A6 /* MarkListRouter.swift in Sources */,
 				D9A693D327CA32EC00A2131D /* AlertError.swift in Sources */,
 				D9243A04279DA56500A5A228 /* Extensions.swift in Sources */,
 				D92EEA6F27C2CC1B00DCB38C /* MainRouter.swift in Sources */,

@@ -19,9 +19,7 @@ class HomeViewModel {
                 return
             }
             var marks = [Mark]()
-            marks = documents.compactMap { (document) -> Mark? in
-                return try? document.data(as: Mark.self)
-            }
+            marks = documents.compactMap { try? $0.data(as: Mark.self) }
             completion(.success(marks))
         }
     }

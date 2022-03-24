@@ -9,12 +9,12 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var line: UIView!
+    @IBOutlet private var line: UIView!
     @IBOutlet private var usernameField: UITextField!
     @IBOutlet private var passwordField: UITextField!
     
-    let viewModel = LoginViewModel()
-    var router: LoginRouter?
+    private let viewModel = LoginViewModel()
+    private var router: LoginRouter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
