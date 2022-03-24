@@ -6,9 +6,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FacebookLogin
-import FirebaseFirestore
 
 class UserViewController: UIViewController {
 
@@ -20,12 +17,17 @@ class UserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         router = UserRouter(root: self)
-        viewModel.setUserLabel() { [weak self] (result) in
-            switch result {
-            case .success(let userLable):
-                self?.userLabel.text = userLable
-            case .failure(let alert):
-                self?.showAlert(title: alert.title, alertMessage: alert.errorDescription)
+        setUpUserLabel()
+    }
+    
+    func setUpUserLabel() {
+        Task {
+            do {
+                userLabel.text = try await viewModel.setUserLabel()
+            }
+            catch{
+                let alert = error as! AlertError
+                showAlert(title: alert.title, alertMessage: alert.errorDescription)
             }
         }
     }
@@ -33,12 +35,14 @@ class UserViewController: UIViewController {
 
 extension UserViewController {
     @IBAction func signOut(_ sender: UIButton) {
-        viewModel.signOut() { [weak self] (alert) in
-            if let alert = alert {
-                self?.showAlert(title: alert.title, alertMessage: alert.errorDescription)
+        Task {
+            do {
+                try viewModel.signOut()
+                self.router?.goToLogin()
             }
-            else {
-                self?.router?.goToLogin()
+            catch {
+                let alert = error as! AlertError
+                showAlert(title: alert.title, alertMessage: alert.errorDescription)
             }
         }
     }
@@ -47,10 +51,11 @@ extension UserViewController {
         Task{
             do {
                 try await viewModel.deleteUser()
+                self.router?.goToLogin()
             }
             catch {
-                let error = error as! AlertError
-                showAlert(title: error.title, alertMessage: error.errorDescription)
+                let alert = error as! AlertError
+                showAlert(title: alert.title, alertMessage: alert.errorDescription)
             }
         }
     }
