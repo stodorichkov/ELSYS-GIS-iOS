@@ -14,11 +14,11 @@ import FirebaseStorage
 
 
 class CreateMarkViewModel {
-    private let db = Firestore.firestore()
-    private let storage = Storage.storage().reference()
-    private let geoCodder = CLGeocoder()
+    let db = Firestore.firestore()
+    let storage = Storage.storage().reference()
+    let geoCodder = CLGeocoder()
     var markTypes = [MarkType]()
-    private var creator: DocumentReference!
+    var creator: DocumentReference!
 
     init() {
         setCreator()
@@ -31,9 +31,7 @@ class CreateMarkViewModel {
                 print(err.debugDescription)
                 return
             }
-            self?.markTypes = documents.compactMap { (document) -> MarkType? in
-                return try? document.data(as: MarkType.self)
-            }
+            self?.markTypes = documents.compactMap { try? $0.data(as: MarkType.self) }
         }
     }
     

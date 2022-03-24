@@ -16,6 +16,9 @@
 		D92EEA6B27C2CA8600DCB38C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EEA6A27C2CA8600DCB38C /* MainViewModel.swift */; };
 		D92EEA6D27C2CB0E00DCB38C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EEA6C27C2CB0E00DCB38C /* Router.swift */; };
 		D92EEA6F27C2CC1B00DCB38C /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EEA6E27C2CC1B00DCB38C /* MainRouter.swift */; };
+		D933350A27EA4CD900DDC485 /* EditMarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D933350927EA4CD900DDC485 /* EditMarkViewController.swift */; };
+		D933350C27EA523000DDC485 /* EditMarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D933350B27EA523000DDC485 /* EditMarkViewModel.swift */; };
+		D933350E27EA524200DDC485 /* EditMarkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D933350D27EA524200DDC485 /* EditMarkRouter.swift */; };
 		D94CB1BA2795E1020045B391 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D94CB1B92795E1020045B391 /* Tabs.storyboard */; };
 		D94CB1BC2795E5A00045B391 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94CB1BB2795E5A00045B391 /* HomeViewController.swift */; };
 		D94CB1BE2795E5D10045B391 /* MarkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94CB1BD2795E5D10045B391 /* MarkListViewController.swift */; };
@@ -77,6 +80,9 @@
 		D92EEA6A27C2CA8600DCB38C /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		D92EEA6C27C2CB0E00DCB38C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		D92EEA6E27C2CC1B00DCB38C /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
+		D933350927EA4CD900DDC485 /* EditMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMarkViewController.swift; sourceTree = "<group>"; };
+		D933350B27EA523000DDC485 /* EditMarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMarkViewModel.swift; sourceTree = "<group>"; };
+		D933350D27EA524200DDC485 /* EditMarkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMarkRouter.swift; sourceTree = "<group>"; };
 		D94CB1B92795E1020045B391 /* Tabs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tabs.storyboard; sourceTree = "<group>"; };
 		D94CB1BB2795E5A00045B391 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D94CB1BD2795E5D10045B391 /* MarkListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkListViewController.swift; sourceTree = "<group>"; };
@@ -157,9 +163,10 @@
 				D9A693B927C7A65600A2131D /* Login */,
 				D9A693BE27C7E49400A2131D /* Registration */,
 				D9A693C327C821C800A2131D /* Home */,
-				D9A693C627C823B800A2131D /* MarkList */,
 				D9A693C727C8247500A2131D /* CreateMarks */,
+				D9A693C627C823B800A2131D /* MarkList */,
 				D9A693CA27C8267C00A2131D /* ShowMark */,
+				D933350827EA4C2900DDC485 /* EditMark */,
 				D9A693CB27C8278F00A2131D /* User */,
 			);
 			path = Screens;
@@ -173,6 +180,16 @@
 				D92EEA6E27C2CC1B00DCB38C /* MainRouter.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		D933350827EA4C2900DDC485 /* EditMark */ = {
+			isa = PBXGroup;
+			children = (
+				D933350927EA4CD900DDC485 /* EditMarkViewController.swift */,
+				D933350B27EA523000DDC485 /* EditMarkViewModel.swift */,
+				D933350D27EA524200DDC485 /* EditMarkRouter.swift */,
+			);
+			path = EditMark;
 			sourceTree = "<group>";
 		};
 		D98186FA27E8CDD500DBE3A6 /* CustomTableCell */ = {
@@ -433,6 +450,7 @@
 				D907A08927CD697700064EC3 /* MarkType.swift in Sources */,
 				D9AC457027C51E8B00F0720E /* AuthProviderType.swift in Sources */,
 				D9A0FDB22781E447009062C1 /* ViewController.swift in Sources */,
+				D933350E27EA524200DDC485 /* EditMarkRouter.swift in Sources */,
 				D9A693BD27C7A7DF00A2131D /* LoginViewModel.swift in Sources */,
 				D9F96EDB27982647005CD268 /* CreateMarkViewController.swift in Sources */,
 				D98186F927E8C35500DBE3A6 /* MarkListViewModel.swift in Sources */,
@@ -442,6 +460,7 @@
 				D9A693BB27C7A70D00A2131D /* LoginRouter.swift in Sources */,
 				D92EEA6D27C2CB0E00DCB38C /* Router.swift in Sources */,
 				D94CB1BC2795E5A00045B391 /* HomeViewController.swift in Sources */,
+				D933350A27EA4CD900DDC485 /* EditMarkViewController.swift in Sources */,
 				D99F57F827E3784000A5837D /* ShowMarkViewModel.swift in Sources */,
 				D9A0FDAE2781E447009062C1 /* AppDelegate.swift in Sources */,
 				D907A08527CD272800064EC3 /* TextView.swift in Sources */,
@@ -456,6 +475,7 @@
 				D9931EFF27BC3B2A00AE6710 /* RoundedButton.swift in Sources */,
 				D98BFF9E2782117100ACFA59 /* LoginViewController.swift in Sources */,
 				D9931F0527BD4D7200AE6710 /* CircleButton.swift in Sources */,
+				D933350C27EA523000DDC485 /* EditMarkViewModel.swift in Sources */,
 				D98186FD27E8CE1900DBE3A6 /* CustomTableViewCell.swift in Sources */,
 				D95EB3DE27D4E69F00C68BC8 /* Mark.swift in Sources */,
 				D981870227E9021B00DBE3A6 /* CustomTableDelegate.swift in Sources */,

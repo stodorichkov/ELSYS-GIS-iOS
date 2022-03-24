@@ -34,7 +34,7 @@ extension CustomTableViewCell {
     }
     
     @IBAction func pencilDidTap() {
-        
+        delegate?.goToEdit(mark: mark)
     }
     
     @IBAction func trashDidTap() {

@@ -19,4 +19,10 @@ class MarkListRouter: Router {
         target.markID = markID
         root.navigationController?.pushViewController(target, animated: true)
     }
+    
+    func goToEdit(mark: Mark?) {
+        let target = findViewController(storyboardName: "Marks", storyboardId: "editMark") as! EditMarkViewController
+        target.mark = mark
+        root.navigationController?.pushViewController(target, animated: true)
+    }
 }

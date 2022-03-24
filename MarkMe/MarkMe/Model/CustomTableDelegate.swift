@@ -9,5 +9,6 @@ import Foundation
 protocol MarkActionsDelegate {
     func reloadTable()
     func goToMarkInfo(markID: String)
+    func goToEdit(mark: Mark?)
     func deleteMark(mark: Mark?)
 }

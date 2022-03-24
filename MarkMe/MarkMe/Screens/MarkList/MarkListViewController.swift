@@ -66,6 +66,10 @@ extension MarkListViewController: MarkActionsDelegate {
         router?.goToMarkInfo(markID: markID)
     }
     
+    func goToEdit(mark: Mark?) {
+        router?.goToEdit(mark: mark)
+    }
+    
     func reloadTable() {
         filterData = viewModel.marks
         checkHaveMarks()
