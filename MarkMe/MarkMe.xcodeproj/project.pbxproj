@@ -26,7 +26,6 @@
 		D94FD41027EC895000109D66 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94FD40F27EC895000109D66 /* ForgotPasswordViewController.swift */; };
 		D94FD41227EC8B5300109D66 /* ForgotPasswordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94FD41127EC8B5300109D66 /* ForgotPasswordRouter.swift */; };
 		D94FD41427EC8E6100109D66 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94FD41327EC8E6100109D66 /* ForgotPasswordViewModel.swift */; };
-		D94FD41827EC9A3700109D66 /* AuthProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94FD41727EC9A3700109D66 /* AuthProviderType.swift */; };
 		D95A64E427C42D0F00188101 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D95A64E327C42D0F00188101 /* GoogleService-Info.plist */; };
 		D95A64E827C42DA100188101 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D95A64E727C42DA000188101 /* Assets.xcassets */; };
 		D95EB3DC27D4C9E800C68BC8 /* CustomSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EB3DB27D4C9E800C68BC8 /* CustomSearch.swift */; };
@@ -93,7 +92,6 @@
 		D94FD40F27EC895000109D66 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		D94FD41127EC8B5300109D66 /* ForgotPasswordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordRouter.swift; sourceTree = "<group>"; };
 		D94FD41327EC8E6100109D66 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
-		D94FD41727EC9A3700109D66 /* AuthProviderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthProviderType.swift; sourceTree = "<group>"; };
 		D95A64E327C42D0F00188101 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "MarkMe/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D95A64E727C42DA000188101 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D95EB3DB27D4C9E800C68BC8 /* CustomSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearch.swift; sourceTree = "<group>"; };
@@ -208,15 +206,6 @@
 			);
 			path = ForgotPassword;
 			sourceTree = "<group>";
-		};
-		D94FD41627EC9A3700109D66 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				D94FD41727EC9A3700109D66 /* AuthProviderType.swift */,
-			);
-			name = Networking;
-			path = MarkMe/Networking;
-			sourceTree = SOURCE_ROOT;
 		};
 		D98186FA27E8CDD500DBE3A6 /* CustomTableCell */ = {
 			isa = PBXGroup;
@@ -367,7 +356,6 @@
 				D95EB3DD27D4E69F00C68BC8 /* Mark.swift */,
 				D9D52B3927D69CEE00A41CD6 /* MarkAnotation.swift */,
 				D981870127E9021B00DBE3A6 /* CustomTableDelegate.swift */,
-				D94FD41627EC9A3700109D66 /* Networking */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -481,7 +469,6 @@
 				D99F57F827E3784000A5837D /* ShowMarkViewModel.swift in Sources */,
 				D9A0FDAE2781E447009062C1 /* AppDelegate.swift in Sources */,
 				D907A08527CD272800064EC3 /* TextView.swift in Sources */,
-				D94FD41827EC9A3700109D66 /* AuthProviderType.swift in Sources */,
 				D98BFFA02782118D00ACFA59 /* RegistrationViewController.swift in Sources */,
 				D9A693CF27C827E700A2131D /* UserRouter.swift in Sources */,
 				D95EB3DC27D4C9E800C68BC8 /* CustomSearch.swift in Sources */,
