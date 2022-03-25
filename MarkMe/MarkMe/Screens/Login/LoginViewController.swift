@@ -36,6 +36,12 @@ extension LoginViewController{
             self?.processResult(result: result)
         }
     }
+    
+    @IBAction func loginWithGoogle(_ sender: UIButton)  {
+        viewModel.loginWithGoogle(root: self) { [weak self] (result) in
+            self?.processResult(result: result)
+        }
+    }
 
     // go to registation screen
     @IBAction func goToRegister(_ sender: UIButton) {
@@ -47,12 +53,12 @@ extension LoginViewController{
     }
     
     // process result
-    func processResult(result: Result<Void, AlertError>) {
-        switch result {
-        case .success(_):
+    func processResult(result: AlertError?) {
+        if let alert = result {
+            showAlert(title: alert.title, alertMessage: alert.errorDescription)
+        }
+        else {
             router?.goToTabs()
-        case .failure(let alert):
-            self.showAlert(title: alert.title, alertMessage: alert.errorDescription)
         }
     }
 }

@@ -650,6 +650,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MarkMe/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Plaesas allow access.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Plaesas allow access.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -677,6 +679,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MarkMe/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Plaesas allow access.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Plaesas allow access.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
