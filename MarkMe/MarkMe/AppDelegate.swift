@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    @available(iOS 9.0, *)
+    
     func application(
         _ app: UIApplication,
         open url: URL,
