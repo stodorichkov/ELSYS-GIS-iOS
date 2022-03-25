@@ -59,7 +59,6 @@
 		D9A693CF27C827E700A2131D /* UserRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A693CE27C827E700A2131D /* UserRouter.swift */; };
 		D9A693D327CA32EC00A2131D /* AlertError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A693D227CA32EC00A2131D /* AlertError.swift */; };
 		D9A693D527CA3DB800A2131D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A693D427CA3DB800A2131D /* User.swift */; };
-		D9AC457027C51E8B00F0720E /* AuthProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AC456F27C51E8B00F0720E /* AuthProviderType.swift */; };
 		D9AF5EEC27A20213001DB5D8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D9AF5EEB27A20213001DB5D8 /* FirebaseAnalytics */; };
 		D9AF5EF027A20213001DB5D8 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D9AF5EEF27A20213001DB5D8 /* FirebaseFirestore */; };
 		D9AF5EF227A20279001DB5D8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D9AF5EF127A20279001DB5D8 /* FirebaseAuth */; };
@@ -122,7 +121,6 @@
 		D9A693CE27C827E700A2131D /* UserRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRouter.swift; sourceTree = "<group>"; };
 		D9A693D227CA32EC00A2131D /* AlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertError.swift; sourceTree = "<group>"; };
 		D9A693D427CA3DB800A2131D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		D9AC456F27C51E8B00F0720E /* AuthProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProviderType.swift; sourceTree = "<group>"; };
 		D9D52B3927D69CEE00A41CD6 /* MarkAnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkAnotation.swift; sourceTree = "<group>"; };
 		D9F96ED827982583005CD268 /* Marks.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Marks.storyboard; sourceTree = "<group>"; };
 		D9F96EDA27982647005CD268 /* CreateMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMarkViewController.swift; sourceTree = "<group>"; };
@@ -341,17 +339,8 @@
 				D95EB3DD27D4E69F00C68BC8 /* Mark.swift */,
 				D9D52B3927D69CEE00A41CD6 /* MarkAnotation.swift */,
 				D981870127E9021B00DBE3A6 /* CustomTableDelegate.swift */,
-				D9AC456E27C51E4D00F0720E /* Networking */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		D9AC456E27C51E4D00F0720E /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				D9AC456F27C51E8B00F0720E /* AuthProviderType.swift */,
-			);
-			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -448,7 +437,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D907A08927CD697700064EC3 /* MarkType.swift in Sources */,
-				D9AC457027C51E8B00F0720E /* AuthProviderType.swift in Sources */,
 				D9A0FDB22781E447009062C1 /* ViewController.swift in Sources */,
 				D933350E27EA524200DDC485 /* EditMarkRouter.swift in Sources */,
 				D9A693BD27C7A7DF00A2131D /* LoginViewModel.swift in Sources */,

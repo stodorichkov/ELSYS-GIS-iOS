@@ -11,50 +11,41 @@ import FacebookLogin
 import FirebaseFirestore
 
 class UserViewModel {
-    func signOut(completion: (Result<Void, AlertError>) -> ()) {
+    let db = Firestore.firestore()
+    
+    func signOut() throws {
         do {
-            guard let provider = Auth.auth().currentUser?.providerData[0].providerType else{
-                return
-            }
-            switch provider {
-            case .facebook:
-                LoginManager().logOut()
-            default:
-                break
-            }
-            
             try Auth.auth().signOut()
-            completion(.success(()))
         }
         catch let error {
-            completion(.failure(AlertError.logout(error.localizedDescription)))
+            throw AlertError.logout(error.localizedDescription)
         }
     }
     
-    func setUserLabel(completion: @escaping (Result<String, AlertError>) -> ()){
-        guard let curUser = Auth.auth().currentUser, let provider = curUser.providerData[0].providerType  else {
+    func deleteUser() async throws {
+        guard let curUser = Auth.auth().currentUser else {
             return
         }
-        if provider == .email{
-            let db = Firestore.firestore()
-            db.collection("User").document(curUser.uid).addSnapshotListener() { (document, err) in
-                guard err == nil,
-                      let document = document,
-                      document.exists,
-                      let data = document.data(),
-                      let userLable = data["username"] as? String
-                else {
-                    completion(.failure(AlertError.logout("User is not found!")))
-                    return
-                }
-                completion(.success(userLable))
-            }
+        do {
+            try await db.collection("User").document(curUser.uid).delete()
+            try await curUser.delete()
         }
-        else {
-            guard let userLable = curUser.displayName else {
-                return
-            }
-            completion(.success(userLable))
+        catch {
+            throw AlertError.delete(error.localizedDescription)
+        }
+    }
+    
+    func setUserLabel() async throws -> String? {
+        guard let curUser = Auth.auth().currentUser else {
+            return nil
+        }
+        do {
+            let document = try await db.collection("User").document(curUser.uid).getDocument()
+            let user = try document.data(as: DBUser.self)
+            return user?.username
+        }
+        catch {
+            throw AlertError.db("User is not found!")
         }
     }
 }

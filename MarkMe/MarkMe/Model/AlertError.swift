@@ -16,6 +16,7 @@ enum AlertError: Error {
     case login(String)
     case logout(String)
     case facebook(String)
+    case delete(String)
 }
 
 extension AlertError {
@@ -37,6 +38,8 @@ extension AlertError {
             return "Logout Error"
         case .facebook(_):
             return "Facebook Error"
+        case .delete(_):
+            return "Delete Error"
         }
     }
     
@@ -57,6 +60,8 @@ extension AlertError {
         case .logout(let message):
             return message
         case .facebook(let message):
+            return message
+        case .delete(let message):
             return message
         }
     }
