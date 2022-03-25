@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -125,6 +126,90 @@
             </objects>
             <point key="canvasLocation" x="703" y="86"/>
         </scene>
+        <!--Forgot Password View Controller-->
+        <scene sceneID="AUq-rs-NUQ">
+            <objects>
+                <viewController storyboardIdentifier="forgotPassword" id="KIM-bg-JCQ" customClass="ForgotPasswordViewController" customModule="MarkMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2lI-qD-4cf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iJs-q1-KfC">
+                                <rect key="frame" x="0.0" y="44" width="414" height="52"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wyr-70-jna">
+                                        <rect key="frame" x="0.0" y="0.0" width="331" height="52"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y3d-sQ-7EQ">
+                                        <rect key="frame" x="331" y="0.0" width="83" height="52"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <imageReference key="image" image="xmark" catalog="system" symbolScale="default"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="font" weight="black">
+                                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                            </preferredSymbolConfiguration>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="goBack:" destination="KIM-bg-JCQ" eventType="touchUpInside" id="Bvd-1h-Z9r"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Wyr-70-jna" firstAttribute="width" secondItem="iJs-q1-KfC" secondAttribute="width" multiplier="0.8" id="0aB-cI-en2"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="EXk-Tp-FFw">
+                                <rect key="frame" x="41.5" y="383" width="331" height="140"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4C2-yn-XnL" customClass="TextField" customModule="MarkMe" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="331" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QuN-j2-nYT" customClass="SubmitButton" customModule="MarkMe" customModuleProvider="target">
+                                        <rect key="frame" x="49.5" y="95" width="232" height="45"/>
+                                        <color key="backgroundColor" systemColor="systemRedColor"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Submit">
+                                            <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="forgotPassDidTap:" destination="KIM-bg-JCQ" eventType="touchUpInside" id="gN4-Fx-xFg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="QuN-j2-nYT" firstAttribute="width" secondItem="EXk-Tp-FFw" secondAttribute="width" multiplier="0.7" id="0Cm-G9-6U6"/>
+                                    <constraint firstItem="4C2-yn-XnL" firstAttribute="width" secondItem="EXk-Tp-FFw" secondAttribute="width" id="p36-QJ-Fx0"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zpt-zl-wDB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="EXk-Tp-FFw" firstAttribute="centerY" secondItem="zpt-zl-wDB" secondAttribute="centerY" id="4cX-xU-wpV"/>
+                            <constraint firstItem="EXk-Tp-FFw" firstAttribute="centerX" secondItem="zpt-zl-wDB" secondAttribute="centerX" id="79v-MB-SvN"/>
+                            <constraint firstItem="EXk-Tp-FFw" firstAttribute="width" secondItem="2lI-qD-4cf" secondAttribute="width" multiplier="0.8" id="C5a-bI-BVd"/>
+                            <constraint firstItem="iJs-q1-KfC" firstAttribute="leading" secondItem="zpt-zl-wDB" secondAttribute="leading" id="PDd-TE-P9y"/>
+                            <constraint firstItem="iJs-q1-KfC" firstAttribute="top" secondItem="zpt-zl-wDB" secondAttribute="top" id="U3q-6S-VTC"/>
+                            <constraint firstItem="4C2-yn-XnL" firstAttribute="height" secondItem="2lI-qD-4cf" secondAttribute="height" multiplier="0.05" id="d2K-RB-zIe"/>
+                            <constraint firstItem="QuN-j2-nYT" firstAttribute="height" secondItem="2lI-qD-4cf" secondAttribute="height" multiplier="0.05" id="tOT-xt-3sj"/>
+                            <constraint firstItem="zpt-zl-wDB" firstAttribute="trailing" secondItem="iJs-q1-KfC" secondAttribute="trailing" id="tq8-fv-oxx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="4C2-yn-XnL" id="lLB-LN-7C4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hGr-De-SQk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1423" y="86"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="5bv-Xl-yPd">
             <objects>
@@ -169,6 +254,9 @@
                                                         </fragment>
                                                     </attributedString>
                                                 </state>
+                                                <connections>
+                                                    <action selector="goToForgotPassword:" destination="dAr-SR-Vh4" eventType="touchUpInside" id="W1u-e7-dkV"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -310,8 +398,12 @@
     </scenes>
     <resources>
         <image name="applelogo" catalog="system" width="103" height="128"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

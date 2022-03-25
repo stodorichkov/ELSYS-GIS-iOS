@@ -23,6 +23,9 @@
 		D94CB1BC2795E5A00045B391 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94CB1BB2795E5A00045B391 /* HomeViewController.swift */; };
 		D94CB1BE2795E5D10045B391 /* MarkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94CB1BD2795E5D10045B391 /* MarkListViewController.swift */; };
 		D94CB1C02795E5F30045B391 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94CB1BF2795E5F30045B391 /* UserViewController.swift */; };
+		D94FD41027EC895000109D66 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94FD40F27EC895000109D66 /* ForgotPasswordViewController.swift */; };
+		D94FD41227EC8B5300109D66 /* ForgotPasswordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94FD41127EC8B5300109D66 /* ForgotPasswordRouter.swift */; };
+		D94FD41427EC8E6100109D66 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94FD41327EC8E6100109D66 /* ForgotPasswordViewModel.swift */; };
 		D95A64E427C42D0F00188101 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D95A64E327C42D0F00188101 /* GoogleService-Info.plist */; };
 		D95A64E827C42DA100188101 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D95A64E727C42DA000188101 /* Assets.xcassets */; };
 		D95EB3DC27D4C9E800C68BC8 /* CustomSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EB3DB27D4C9E800C68BC8 /* CustomSearch.swift */; };
@@ -86,6 +89,9 @@
 		D94CB1BB2795E5A00045B391 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D94CB1BD2795E5D10045B391 /* MarkListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkListViewController.swift; sourceTree = "<group>"; };
 		D94CB1BF2795E5F30045B391 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		D94FD40F27EC895000109D66 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		D94FD41127EC8B5300109D66 /* ForgotPasswordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordRouter.swift; sourceTree = "<group>"; };
+		D94FD41327EC8E6100109D66 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		D95A64E327C42D0F00188101 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "MarkMe/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D95A64E727C42DA000188101 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D95EB3DB27D4C9E800C68BC8 /* CustomSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearch.swift; sourceTree = "<group>"; };
@@ -159,6 +165,7 @@
 			children = (
 				D92EEA6927C2CA5200DCB38C /* Main */,
 				D9A693B927C7A65600A2131D /* Login */,
+				D94FD40E27EC891500109D66 /* ForgotPassword */,
 				D9A693BE27C7E49400A2131D /* Registration */,
 				D9A693C327C821C800A2131D /* Home */,
 				D9A693C727C8247500A2131D /* CreateMarks */,
@@ -188,6 +195,16 @@
 				D933350D27EA524200DDC485 /* EditMarkRouter.swift */,
 			);
 			path = EditMark;
+			sourceTree = "<group>";
+		};
+		D94FD40E27EC891500109D66 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				D94FD40F27EC895000109D66 /* ForgotPasswordViewController.swift */,
+				D94FD41127EC8B5300109D66 /* ForgotPasswordRouter.swift */,
+				D94FD41327EC8E6100109D66 /* ForgotPasswordViewModel.swift */,
+			);
+			path = ForgotPassword;
 			sourceTree = "<group>";
 		};
 		D98186FA27E8CDD500DBE3A6 /* CustomTableCell */ = {
@@ -459,6 +476,8 @@
 				D9A0FDB02781E447009062C1 /* SceneDelegate.swift in Sources */,
 				D90A4F7427D6712D00862D56 /* HomeViewModel.swift in Sources */,
 				D9A693C027C7E53400A2131D /* RegistrationViewModel.swift in Sources */,
+				D94FD41427EC8E6100109D66 /* ForgotPasswordViewModel.swift in Sources */,
+				D94FD41027EC895000109D66 /* ForgotPasswordViewController.swift in Sources */,
 				D9A693C527C8221300A2131D /* HomeRouter.swift in Sources */,
 				D9931EFF27BC3B2A00AE6710 /* RoundedButton.swift in Sources */,
 				D98BFF9E2782117100ACFA59 /* LoginViewController.swift in Sources */,
@@ -479,6 +498,7 @@
 				D9A693CD27C827B500A2131D /* UserViewModel.swift in Sources */,
 				D9A693C227C7E54400A2131D /* RegistrationRouter.swift in Sources */,
 				D99F57FA27E3786100A5837D /* ShowMarkRouter.swift in Sources */,
+				D94FD41227EC8B5300109D66 /* ForgotPasswordRouter.swift in Sources */,
 				D907A08727CD64EF00064EC3 /* CreateMarkViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
