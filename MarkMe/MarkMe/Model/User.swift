@@ -26,10 +26,8 @@ struct DBUser: Codable, Identifiable {
         self.email = email
     }
     
-    
     enum CodingKeys: String, CodingKey {
         case username
         case email
     }
 }
-

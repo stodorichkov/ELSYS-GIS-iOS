@@ -19,7 +19,7 @@ extension Router {
         return storyboard.instantiateViewController(withIdentifier: storyboardId)
     }
     
-    func presentTarget (target: UIViewController, transition: UIModalTransitionStyle) {
+    func presentTarget(target: UIViewController, transition: UIModalTransitionStyle) {
         target.modalPresentationStyle = .fullScreen
         target.modalTransitionStyle = transition
         root.present(target, animated: true)

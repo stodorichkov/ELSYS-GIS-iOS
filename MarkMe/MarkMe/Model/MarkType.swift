@@ -12,4 +12,3 @@ struct MarkType: Codable, Identifiable  {
     @DocumentID var id: String?
     var type: String
 }
-

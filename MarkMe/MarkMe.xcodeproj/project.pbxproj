@@ -36,7 +36,7 @@
 		D98186FD27E8CE1900DBE3A6 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98186FB27E8CE1900DBE3A6 /* CustomTableViewCell.swift */; };
 		D98186FE27E8CE1900DBE3A6 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D98186FC27E8CE1900DBE3A6 /* CustomTableViewCell.xib */; };
 		D981870027E8FE2C00DBE3A6 /* MarkListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98186FF27E8FE2C00DBE3A6 /* MarkListRouter.swift */; };
-		D981870227E9021B00DBE3A6 /* CustomTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D981870127E9021B00DBE3A6 /* CustomTableDelegate.swift */; };
+		D981870227E9021B00DBE3A6 /* MarkActionsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D981870127E9021B00DBE3A6 /* MarkActionsDelegate.swift */; };
 		D98BFF932781E6D600ACFA59 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D98BFF922781E6D600ACFA59 /* Authentication.storyboard */; };
 		D98BFF9E2782117100ACFA59 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98BFF9D2782117100ACFA59 /* LoginViewController.swift */; };
 		D98BFFA02782118D00ACFA59 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98BFF9F2782118D00ACFA59 /* RegistrationViewController.swift */; };
@@ -65,7 +65,7 @@
 		D9AF5EEC27A20213001DB5D8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D9AF5EEB27A20213001DB5D8 /* FirebaseAnalytics */; };
 		D9AF5EF027A20213001DB5D8 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D9AF5EEF27A20213001DB5D8 /* FirebaseFirestore */; };
 		D9AF5EF227A20279001DB5D8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D9AF5EF127A20279001DB5D8 /* FirebaseAuth */; };
-		D9D52B3A27D69CEE00A41CD6 /* MarkAnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D52B3927D69CEE00A41CD6 /* MarkAnotation.swift */; };
+		D9D52B3A27D69CEE00A41CD6 /* MarkAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D52B3927D69CEE00A41CD6 /* MarkAnnotation.swift */; };
 		D9D905E127A714D800DE1007 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = D9D905E027A714D800DE1007 /* FacebookLogin */; };
 		D9F96ED927982583005CD268 /* Marks.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9F96ED827982583005CD268 /* Marks.storyboard */; };
 		D9F96EDB27982647005CD268 /* CreateMarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F96EDA27982647005CD268 /* CreateMarkViewController.swift */; };
@@ -100,7 +100,7 @@
 		D98186FB27E8CE1900DBE3A6 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		D98186FC27E8CE1900DBE3A6 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		D98186FF27E8FE2C00DBE3A6 /* MarkListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkListRouter.swift; sourceTree = "<group>"; };
-		D981870127E9021B00DBE3A6 /* CustomTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableDelegate.swift; sourceTree = "<group>"; };
+		D981870127E9021B00DBE3A6 /* MarkActionsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkActionsDelegate.swift; sourceTree = "<group>"; };
 		D98BFF922781E6D600ACFA59 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		D98BFF9D2782117100ACFA59 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D98BFF9F2782118D00ACFA59 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 		D9A693CE27C827E700A2131D /* UserRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRouter.swift; sourceTree = "<group>"; };
 		D9A693D227CA32EC00A2131D /* AlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertError.swift; sourceTree = "<group>"; };
 		D9A693D427CA3DB800A2131D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		D9D52B3927D69CEE00A41CD6 /* MarkAnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkAnotation.swift; sourceTree = "<group>"; };
+		D9D52B3927D69CEE00A41CD6 /* MarkAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkAnnotation.swift; sourceTree = "<group>"; };
 		D9F96ED827982583005CD268 /* Marks.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Marks.storyboard; sourceTree = "<group>"; };
 		D9F96EDA27982647005CD268 /* CreateMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMarkViewController.swift; sourceTree = "<group>"; };
 		D9F96EDC279831B4005CD268 /* ShowMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMarkViewController.swift; sourceTree = "<group>"; };
@@ -354,8 +354,8 @@
 				D9A693D427CA3DB800A2131D /* User.swift */,
 				D907A08827CD697700064EC3 /* MarkType.swift */,
 				D95EB3DD27D4E69F00C68BC8 /* Mark.swift */,
-				D9D52B3927D69CEE00A41CD6 /* MarkAnotation.swift */,
-				D981870127E9021B00DBE3A6 /* CustomTableDelegate.swift */,
+				D9D52B3927D69CEE00A41CD6 /* MarkAnnotation.swift */,
+				D981870127E9021B00DBE3A6 /* MarkActionsDelegate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -485,8 +485,8 @@
 				D933350C27EA523000DDC485 /* EditMarkViewModel.swift in Sources */,
 				D98186FD27E8CE1900DBE3A6 /* CustomTableViewCell.swift in Sources */,
 				D95EB3DE27D4E69F00C68BC8 /* Mark.swift in Sources */,
-				D981870227E9021B00DBE3A6 /* CustomTableDelegate.swift in Sources */,
-				D9D52B3A27D69CEE00A41CD6 /* MarkAnotation.swift in Sources */,
+				D981870227E9021B00DBE3A6 /* MarkActionsDelegate.swift in Sources */,
+				D9D52B3A27D69CEE00A41CD6 /* MarkAnnotation.swift in Sources */,
 				D9A693C927C824F500A2131D /* CreateMarkRouter.swift in Sources */,
 				D9931F0127BC3B7500AE6710 /* SubmitButton.swift in Sources */,
 				D94CB1C02795E5F30045B391 /* UserViewController.swift in Sources */,
